@@ -2273,19 +2273,27 @@ Warning
 </div>
 <section id="data-source" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="data-source">Data source</h2>
-<p>Blah blah blah<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup> where blah blah came from, an example of footnote</p></div></div></section>
-<section id="why-this-data" class="level2 page-columns page-full">
+<p>The data for this project is sourced from the “The Quick, Draw! Dataset,” a public collection of 50 million drawings across 345 categories.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> This dataset is an open-source project by Google, collated from contributions by players of the online game “Quick, Draw!”. The dataset is licensed under the Creative Commons Attribution 4.0 International License.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup> The full dataset and its documentation are available at: https://github.com/googlecreativelab/quickdraw-dataset</p></div></div><p>For the initial phase of this project, I have downloaded the “simplified” drawing files for three distinct categories: apple, chair, and dolphin. The data is provided in a newline-delimited JSON (.ndjson) format, where each line represents a single drawing. Each drawing’s record includes metadata such as a unique key, country code, and the vector data of the drawing itself, which is a series of strokes, with each stroke containing arrays of ‘x’ and ‘y’ coordinates.</p>
+</section>
+<section id="why-this-data" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-data">Why this data</h2>
-<p>Blah blah blah<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup> another footnote</p></div></div></section>
+<p>I selected this dataset because it provides a unique and massive collection of human behavioral data, which aligns with my initial interest in finding data from psychology or cognitive science. While not a traditional fMRI/EEG dataset, it captures how millions of people from various backgrounds conceptually represent and visually communicate everyday objects. It’s a rich dataset for exploring human cognition at scale.</p>
+<p>The vector-based format is particularly compelling. It allows for an analysis that goes beyond the final static image, potentially revealing the process of drawing (e.g., stroke order, complexity) as a proxy for a person’s conceptual model.</p>
+<p>My initial focus on three distinct categories (apple, chair, and dolphin) will allow me to explore classification models and analyze if the structural or conceptual differences between these objects (e.g., natural vs. man-made, simple vs. complex) lead to measurably different drawing patterns.</p>
+</section>
 <section id="data-quality-complexity-check" class="level2">
 <h2 class="anchored" data-anchor-id="data-quality-complexity-check">Data quality &amp; complexity check</h2>
-<p>Blah blah blah</p>
+<p>The data quality is expected to be high for its purpose. The “simplified” files have already been pre-processed by Google to normalize drawing sizes and simplify paths, which will reduce the amount of initial cleaning required. Furthermore, the data is cleanly labeled by its prompt (the category the user was asked to draw).</p>
+<p>The complexity of this project lies in two main areas: data volume and data structure.</p>
+<p>Data Volume: The three files I have downloaded are large (56.1 MB, 74.0 MB, and 46.3 MB, totaling over 176 MB). Loading even one of these files fully into memory in R will be resource-intensive and may require careful memory management.</p>
+<p>Data Structure: The data is in a nested .ndjson format, not a flat CSV. Each line is a JSON object containing arrays of arrays (strokes, which contain (x, y) points). This structure will require a non-trivial data wrangling step to “tidy” or “flatten” into a data frame suitable for analysis and visualization in R. This will likely involve using packages like jsonlite (specifically stream_in) and tidyverse functions (like tidyr::unnest).</p>
 </section>
 <section id="potential-data-issues" class="level2">
 <h2 class="anchored" data-anchor-id="potential-data-issues">Potential data issues</h2>
-<p>Blah blah blah</p>
+<p>The most immediate technical issue is the file size. As noted in the course guidelines, files of this size (e.g., full_simplified_chair.ndjson at 74.0 MB) are too large to be committed to a standard GitHub repository. I will need to add these .ndjson files to my .gitignore file to prevent push errors. This means my analysis scripts must be fully reproducible without the raw data being in the repo, which I will likely manage by using a small, committed sample for development and providing download instructions in my README.</p>
+<p>A second potential issue is the “noise” in the data. The dataset contains all drawings submitted for a prompt, not just those that were “correctly” recognized by the game’s AI. This means the dataset will include significant noise, such as nonsensical scribbles, incomplete drawings, or drawings that do not match the label. This “noise” will need to be accounted for, either by filtering it out or by ensuring any model built is robust to it.</p>
+<p>Finally, the data ingestion itself is a challenge. Reading the entire 74 MB JSON file into R at once might fail. I will need to use a streaming approach (e.g., jsonlite::stream_in) or systematically sample the files (e.g., read only the first 10,000 lines) for initial exploration and development.</p>
 </section>
 <section id="misc" class="level2">
 <h2 class="anchored" data-anchor-id="misc">Misc</h2>
