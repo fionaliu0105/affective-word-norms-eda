@@ -5,6 +5,7 @@ subtitle: |
   | Data Science 1 with R (STAT 301-1)
 author: "Fiona Liu"
 pagetitle: "PM1 Fiona Liu"
+date: "Oct 22, 2025"
 
 format:
   html:
