@@ -181,7 +181,11 @@ The most immediate technical issue is the file size. As noted in the course guid
 
 A second potential issue is the "noise" in the data. The dataset contains all drawings submitted for a prompt, not just those that were "correctly" recognized by the game's AI. This means the dataset could include significant noise, such as nonsensical scribbles, incomplete drawings, or drawings that do not match the label.
 
-To quantify this, I analyzed the `recognized` flag on the 10,000-drawing sample. As shown in **@fig-2** , this "noise" appears to be a very minor issue. The vast majority of drawings (approximately 9,800) are marked as `recognized = TRUE`. The "noise" from unrecognized drawings (`recognized = FALSE`) accounts for only a tiny fraction (approximately 2%) of the data. This high recognition rate suggests the overall data quality is strong and that, while this noise will need to be accounted for, it is unlikely to significantly skew the analysis.
+To quantify this, I analyzed the `recognized` flag on the **full 30,000-drawing sample** (10,000 for each category). As shown in **@fig-2**, this "noise" appears to be a minor, though variable, issue.
+
+For all three categories, the vast majority of drawings are marked as `recognized = TRUE`. The proportion of "noise" from unrecognized drawings (`recognized = FALSE`) is low across the board, though it does vary by category. It is lowest for `apple` (only a few hundred drawings, or ~2-3% of its sample), and slightly higher for `chair` and `dolphin` (approximately 8-9% of their respective samples).
+
+Even with this variation, the high overall recognition rate suggests the data quality is strong. While this category-specific noise is a factor to be aware of (and potentially account for in modeling), it is unlikely to significantly skew the overall analysis.
 
 ```{r}
 #| label: fig-2
@@ -200,10 +204,6 @@ ggplot(all_samples, aes(x = recognized, fill = recognized)) +
   theme(legend.position = "none")
 ```
 
-Finally, the data ingestion itself is a challenge. Reading the entire 74 MB JSON file into R at once might fail. I will need to use a streaming approach (e.g., jsonlite::stream_in) or systematically sample the files (e.g., read only the first 10,000 lines) for initial exploration and development.
+Finally, the data ingestion itself is a challenge. Reading the entire 74 MB JSON file into R at once might fail. Therefore, I systematically sampled the files by randomly choosing 10,000 samples for initial exploration and development.
 
 
-
-## Misc
-
-Blah Blah
