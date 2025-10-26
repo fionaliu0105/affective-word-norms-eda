@@ -2281,7 +2281,7 @@ Warning
 <section id="data-source" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="data-source">Data source</h2>
 <p>The data for this project is sourced from the “The Quick, Draw! Dataset,” a public collection of 50 million drawings across 345 categories.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> This dataset is an open-source project by Google, collated from contributions by players of the online game “Quick, Draw!”. The dataset is licensed under the Creative Commons Attribution 4.0 International License.</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup> The full dataset and its documentation are available at: https://github.com/googlecreativelab/quickdraw-dataset</p></div></div><p>For the initial phase of this project, I have downloaded the “simplified” drawing files for three distinct categories: apple, chair, and dolphin. The data is provided in a newline-delimited JSON (.ndjson) format, where each line represents a single drawing. Each drawing’s record includes metadata such as a unique key, country code, and the vector data of the drawing itself, which is a series of strokes, with each stroke containing arrays of ‘x’ and ‘y’ coordinates.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup> The full dataset and its documentation are available at: https://github.com/googlecreativelab/quickdraw-dataset</p></div></div><p>For the initial phase of this project, I have downloaded the “simplified” drawing files for three distinct categories: <code>apple</code>, <code>chair</code>, and <code>dolphin</code>. The data is provided in a newline-delimited JSON (.ndjson) format, where each line represents a single drawing. Each drawing’s record includes metadata such as a unique key, country code, and the vector data of the drawing itself, which is a series of strokes, with each stroke containing arrays of ‘x’ and ‘y’ coordinates.</p>
 </section>
 <section id="why-this-data" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-data">Why this data</h2>
@@ -2295,6 +2295,41 @@ Warning
 <p>The complexity of this project lies in two main areas: data volume and data structure.</p>
 <p>Data Volume: The three files I have downloaded are large (56.1 MB, 74.0 MB, and 46.3 MB, totaling over 176 MB). Loading even one of these files fully into memory in R will be resource-intensive and may require careful memory management.</p>
 <p>Data Structure: The data is in a nested .ndjson format, not a flat CSV. Each line is a JSON object containing arrays of arrays (strokes, which contain (x, y) points). This structure will require a non-trivial data wrangling step to “tidy” or “flatten” into a data frame suitable for analysis and visualization in R. This will likely involve using packages like jsonlite (specifically stream_in) and tidyverse functions (like tidyr::unnest).</p>
+<div class="cell">
+<div id="tbl-counts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 1: Count of drawings in each downloaded .ndjson file.
+</figcaption>
+<div aria-describedby="tbl-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Category</th>
+<th style="text-align: right;">Total Drawings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Apple</td>
+<td style="text-align: right;">144722</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chair</td>
+<td style="text-align: right;">222706</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dolphin</td>
+<td style="text-align: right;">121613</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
 </section>
 <section id="potential-data-issues" class="level2">
 <h2 class="anchored" data-anchor-id="potential-data-issues">Potential data issues</h2>
