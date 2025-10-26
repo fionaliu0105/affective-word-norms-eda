@@ -23,42 +23,38 @@ reference-location: margin
 citation-location: margin
 ---
 
-::: {.callout-important collapse=true}
+::: {.callout-important collapse="true"}
 ## Memo format
 
 Like all other submissions for this course, we expect the memo to be **neat and well organized**.
 
 A memo is a short, polished report. Meaning, it should be well written and thoughtfully laid out. Some neatness and organizational hints/tips (not an exhaustive list):
 
-- There should be absolutely no code in your report --- don’t hide it; code should not be visible/accessible.
-- Include a date indicating when report was created.
-- There should be no tibbles/data frames or raw R output --- should use tables (avoid unnecessarily long output)!
-- Any plots or graphics should be polished (appropriate labels and/or captions).
-- All figures and tables should be properly labeled and referenced --- must make use of quarto cross-referencing.
-- Should use heading and sub-headings appropriately.
-- Remove prompts and instructions meant to assist students.
-- Should include a link to project’s GitHub repo.
-- GitHub repo should be well organized and have a few commits (no templates, commit of most recent work)
-
-
+-   There should be absolutely no code in your report --- don’t hide it; code should not be visible/accessible.
+-   Include a date indicating when report was created.
+-   There should be no tibbles/data frames or raw R output --- should use tables (avoid unnecessarily long output)!
+-   Any plots or graphics should be polished (appropriate labels and/or captions).
+-   All figures and tables should be properly labeled and referenced --- must make use of quarto cross-referencing.
+-   Should use heading and sub-headings appropriately.
+-   Remove prompts and instructions meant to assist students.
+-   Should include a link to project’s GitHub repo.
+-   GitHub repo should be well organized and have a few commits (no templates, commit of most recent work)
 :::
 
-::: {.callout-warning collapse=true}
+::: {.callout-warning collapse="true"}
 GitHub (free account) cannot store large files. If you try to commit and push a large dataset you will have an ERROR! Any file over 100 MB (100,000 KB) needs to be added to the `.gitignore` file BEFORE committing.
 
 **We may need to do that for files in your final project!**
 :::
 
-
-::: {.callout-tip icon=false}
-
+::: {.callout-tip icon="false"}
 ## Github Repo Link
 
 To link to your github **repo**sitory, appropriately edit the example link below. Meaning replace `https://your-github-repo-url` with your github repo url. Suggest verifying the link works before submitting.
 
 [Fiona's Github](https://github.com/stat301-1-2025-fall/final-project-1-fionaliu0105)
-
 :::
+
 ```{r}
 #| label: setup
 #| include: false
@@ -68,10 +64,11 @@ library(jsonlite)
 library(knitr)
 ```
 
-
 ## Data source
 
-The data for this project is sourced from the "The Quick, Draw! Dataset," a public collection of 50 million drawings across 345 categories.^[The full dataset and its documentation are available at: https://github.com/googlecreativelab/quickdraw-dataset] This dataset is an open-source project by Google, collated from contributions by players of the online game "Quick, Draw!". The dataset is licensed under the Creative Commons Attribution 4.0 International License.
+The data for this project is sourced from the "The Quick, Draw! Dataset," a public collection of 50 million drawings across 345 categories.[^1] This dataset is an open-source project by Google, collated from contributions by players of the online game "Quick, Draw!". The dataset is licensed under the Creative Commons Attribution 4.0 International License.
+
+[^1]: The full dataset and its documentation are available at: https://github.com/googlecreativelab/quickdraw-dataset
 
 For the initial phase of this project, I have downloaded the "simplified" drawing files for three distinct categories: `apple`, `chair`, and `dolphin`. The data is provided in a newline-delimited JSON (.ndjson) format, where each line represents a single drawing. Each drawing's record includes metadata such as a unique key, country code, and the vector data of the drawing itself, which is a series of strokes, with each stroke containing arrays of 'x' and 'y' coordinates.
 
@@ -89,7 +86,7 @@ The data quality is expected to be high for its purpose. The "simplified" files 
 
 The complexity of this project lies in two main areas: data volume and data structure.
 
-Data Volume: The three files I have downloaded are large (56.1 MB, 74.0 MB, and 46.3 MB, totaling over 176 MB). As shown in **@tbl-counts** and **@fig-example**, this gives me access to hundreds of thousands of drawings for my initial analysis. Loading even one of these files fully into memory in R will be resource-intensive. Therefore, only 10,000 of each sample will be used for this project. 
+Data Volume: The three files I have downloaded are large (56.1 MB, 74.0 MB, and 46.3 MB, totaling over 176 MB). As shown in @tbl-counts and @fig-example, this gives me access to hundreds of thousands of drawings for my initial analysis. Loading even one of these files fully into memory in R will be resource-intensive. Therefore, only 10,000 of each sample will be used for this project.
 
 ```{r}
 #| label: tbl-counts
@@ -112,6 +109,7 @@ summary_table <- tibble(
 
 kable(summary_table, format = "pipe", col.names = c("Category", "Total Drawings"))
 ```
+
 ```{r}
 #| label: fig-example
 #| echo: false
@@ -165,15 +163,7 @@ dolphin_sample <- sample_and_parse(file_dolphin, sample_size = 10000)
 all_samples <- bind_rows(apple_sample, chair_sample, dolphin_sample)
 ```
 
-
-
-
-
-Data Structure: The data is in a nested .ndjson format, not a flat CSV. Each line is a JSON object containing arrays of arrays (strokes, which contain (x, y) points). This structure will require a non-trivial data wrangling step to "tidy" or "flatten" into a data frame suitable for analysis and visualization in R. This will likely involve using packages like `jsonlite` (specifically stream_in) and tidyverse functions (like `tidyr::unnest`).
-I have successfully developed a method to parse this data, which proves the ingestion process works. The next step will be to create a "tidy" data frame from this nested structure. In this tidy frame, each row will represent a single point in a single stroke, which will be the basis for all future feature engineering.
-
-
-
+Data Structure: The data is in a nested .ndjson format, not a flat CSV. Each line is a JSON object containing arrays of arrays (strokes, which contain (x, y) points). This structure will require a non-trivial data wrangling step to "tidy" or "flatten" into a data frame suitable for analysis and visualization in R. This will likely involve using packages like `jsonlite` (specifically stream_in) and tidyverse functions (like `tidyr::unnest`). I have successfully developed a method to parse this data, which proves the ingestion process works. The next step will be to create a "tidy" data frame from this nested structure. In this tidy frame, each row will represent a single point in a single stroke, which will be the basis for all future feature engineering.
 
 ## Potential data issues
 
@@ -181,9 +171,9 @@ The most immediate technical issue is the file size. As noted in the course guid
 
 A second potential issue is the "noise" in the data. The dataset contains all drawings submitted for a prompt, not just those that were "correctly" recognized by the game's AI. This means the dataset could include significant noise, such as nonsensical scribbles, incomplete drawings, or drawings that do not match the label.
 
-To quantify this, I analyzed the `recognized` flag on the **full 30,000-drawing sample** (10,000 for each category). As shown in **@fig-2**, this "noise" appears to be a minor, though variable, issue.
+To quantify this, I analyzed the `recognized` flag on the **full 30,000-drawing sample** (10,000 for each category). As shown in @fig-2, this "noise" appears to be a minor, though variable, issue.
 
-For all three categories, the vast majority of drawings are marked as `recognized = TRUE`. The proportion of "noise" from unrecognized drawings (`recognized = FALSE`) is low across the board, though it does vary by category. It is lowest for `apple` (only a few hundred drawings, or ~2-3% of its sample), and slightly higher for `chair` and `dolphin` (approximately 8-9% of their respective samples).
+For all three categories, the vast majority of drawings are marked as `recognized = TRUE`. The proportion of "noise" from unrecognized drawings (`recognized = FALSE`) is low across the board, though it does vary by category. It is lowest for `apple` (only a few hundred drawings, or \~2-3% of its sample), and slightly higher for `chair` and `dolphin` (approximately 8-9% of their respective samples).
 
 Even with this variation, the high overall recognition rate suggests the data quality is strong. While this category-specific noise is a factor to be aware of (and potentially account for in modeling), it is unlikely to significantly skew the overall analysis.
 
@@ -205,5 +195,3 @@ ggplot(all_samples, aes(x = recognized, fill = recognized)) +
 ```
 
 Finally, the data ingestion itself is a challenge. Reading the entire 74 MB JSON file into R at once might fail. Therefore, I systematically sampled the files by randomly choosing 10,000 samples for initial exploration and development.
-
-
