@@ -38,4 +38,4 @@ Download Links:
 
 -   Dolphin: <https://storage.googleapis.com/quickdraw_dataset/simplified/dolphin.ndjson>
 
-Download these files and place them in this /data directory.
+Download these files and place them in this `/data` directory.
