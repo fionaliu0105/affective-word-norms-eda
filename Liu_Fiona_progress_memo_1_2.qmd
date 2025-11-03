@@ -83,7 +83,7 @@ This data was collected via large-scale crowdsourcing, where participants rated 
 
 I am interested in a cognitive science dataset, and this one is a good fit for an Exploratory Data Analysis (EDA). It directly relates to my interest in how humans process language and memory.
 
-The data's structure is simple, clean, and well-documented, making it perfect for applying the data manipulation (`dplyr`) and visualization (`ggplot2`) skills from STAT 301-1[cite: 168, 111]. [cite_start]It allows for a meaningful analysis of linguistic patterns without requiring the complex machine learning or modeling techniques that are outside the scope of this course.
+The data's structure is simple, clean, and well-documented, making it perfect for applying the data manipulation (`dplyr`) and visualization (`ggplot2`) skills from STAT 301-1. It allows for a meaningful analysis of linguistic patterns without requiring the complex machine learning or modeling techniques that are outside the scope of this course.
 
 ## Data quality & complexity check
 
@@ -98,18 +98,41 @@ The dataset is of high quality and low complexity.
       * `D.Mean.Sum`: The mean dominance rating (numeric).
       * Other columns, such as standard deviations for each rating, are also available and can be used to explore the consistency of the ratings.
 
+A summary of these three numeric dimensions was generated using `dplyr::summarize()` and is shown in @tbl-data-summary. As the table indicates, there are no missing (`NA`) values in the key data columns.
 ```{r}
 #| label: tbl-data-summary
-#| tbl-cap: "Data Quality and Complexity Summary"
-skimr::skim(affective_data) |>
-  select(skim_type, skim_variable, n_missing, complete_rate, numeric.mean, numeric.sd, numeric.hist) |> 
-  kable(
-    col.names = c("Type", "Variable", "Missing", "Complete", "Mean", "SD", "Histogram"),
-    digits = 2
-  )
+#| tbl-cap: "Summary Statistics for Key Affective Dimensions"
+#| echo: false
+affective_data |> 
+  select(
+    Word, 
+    Valence = V.Mean.Sum, 
+    Arousal = A.Mean.Sum, 
+    Dominance = D.Mean.Sum
+  )|> 
+  select(Valence, Arousal, Dominance) |> 
+  pivot_longer(
+    cols = everything(), 
+    names_to = "Dimension", 
+    values_to = "Score"
+  ) |> 
+  group_by(Dimension) |> 
+  summarize(
+    Mean = mean(Score),
+    `Std. Dev.` = sd(Score),
+    Min = min(Score),
+    Max = max(Score),
+    Missing = sum(is.na(Score))
+  ) |> 
+  mutate(
+    Dimension = fct_relevel(Dimension, "Valence", "Arousal", "Dominance")
+  ) |>
+  arrange(Dimension) |> 
+  kable(digits = 2)
 ```
 
 ```{r}
+#| echo: false
 #| label: fig-valence-dist
 #| fig-cap: "Distribution of Mean Valence Scores (V.Mean.Sum) for 13,915 English Words"
 

@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
-
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-}
-pre.numberSource { margin-left: 3em; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -2319,7 +2284,7 @@ Warning
 <section id="why-this-data" class="level3">
 <h3 class="anchored" data-anchor-id="why-this-data">Why this data</h3>
 <p>I am interested in a cognitive science dataset, and this one is a good fit for an Exploratory Data Analysis (EDA). It directly relates to my interest in how humans process language and memory.</p>
-<p>The data’s structure is simple, clean, and well-documented, making it perfect for applying the data manipulation (<code>dplyr</code>) and visualization (<code>ggplot2</code>) skills from STAT 301-1[cite: 168, 111]. [cite_start]It allows for a meaningful analysis of linguistic patterns without requiring the complex machine learning or modeling techniques that are outside the scope of this course.</p>
+<p>The data’s structure is simple, clean, and well-documented, making it perfect for applying the data manipulation (<code>dplyr</code>) and visualization (<code>ggplot2</code>) skills from STAT 301-1. It allows for a meaningful analysis of linguistic patterns without requiring the complex machine learning or modeling techniques that are outside the scope of this course.</p>
 </section>
 </section>
 <section id="data-quality-complexity-check" class="level2">
@@ -2337,617 +2302,50 @@ Warning
 <li>Other columns, such as standard deviations for each rating, are also available and can be used to explore the consistency of the ratings.</li>
 </ul></li>
 </ol>
+<p>A summary of these three numeric dimensions was generated using <code>dplyr::summarize()</code> and is shown in <a href="#tbl-data-summary" class="quarto-xref">Table 1</a>. As the table indicates, there are no missing (<code>NA</code>) values in the key data columns.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(affective_data) <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(skim_type, skim_variable, n_missing, complete_rate, numeric.mean, numeric.sd, numeric.hist) <span class="sc">|&gt;</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Type&quot;</span>, <span class="st">&quot;Variable&quot;</span>, <span class="st">&quot;Missing&quot;</span>, <span class="st">&quot;Complete&quot;</span>, <span class="st">&quot;Mean&quot;</span>, <span class="st">&quot;SD&quot;</span>, <span class="st">&quot;Histogram&quot;</span>),</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">2</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="tbl-data-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 1: Data Quality and Complexity Summary
+Table 1: Summary Statistics for Key Affective Dimensions
 </figcaption>
 <div aria-describedby="tbl-data-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Type</th>
-<th style="text-align: left;">Variable</th>
-<th style="text-align: right;">Missing</th>
-<th style="text-align: right;">Complete</th>
+<th style="text-align: left;">Dimension</th>
 <th style="text-align: right;">Mean</th>
-<th style="text-align: right;">SD</th>
-<th style="text-align: left;">Histogram</th>
+<th style="text-align: right;">Std. Dev.</th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;">Max</th>
+<th style="text-align: right;">Missing</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Word</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">…1</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">6958.00</td>
-<td style="text-align: right;">4017.06</td>
-<td style="text-align: left;">▇▇▇▇▇</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Mean.Sum</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
+<td style="text-align: left;">Valence</td>
 <td style="text-align: right;">5.06</td>
 <td style="text-align: right;">1.27</td>
-<td style="text-align: left;">▁▃▇▆▁</td>
+<td style="text-align: right;">1.26</td>
+<td style="text-align: right;">8.53</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.SD.Sum</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1.68</td>
-<td style="text-align: right;">0.35</td>
-<td style="text-align: left;">▁▅▇▂▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Rat.Sum</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">21.81</td>
-<td style="text-align: right;">23.44</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Mean.Sum</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
+<td style="text-align: left;">Arousal</td>
 <td style="text-align: right;">4.21</td>
 <td style="text-align: right;">0.90</td>
-<td style="text-align: left;">▁▇▇▂▁</td>
+<td style="text-align: right;">1.60</td>
+<td style="text-align: right;">7.79</td>
+<td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.SD.Sum</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.30</td>
-<td style="text-align: right;">0.32</td>
-<td style="text-align: left;">▁▂▇▆▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Rat.Sum</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">22.97</td>
-<td style="text-align: right;">24.73</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Mean.Sum</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
+<td style="text-align: left;">Dominance</td>
 <td style="text-align: right;">5.18</td>
 <td style="text-align: right;">0.94</td>
-<td style="text-align: left;">▁▂▇▇▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.SD.Sum</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.16</td>
-<td style="text-align: right;">0.33</td>
-<td style="text-align: left;">▁▂▇▅▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Rat.Sum</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">24.32</td>
-<td style="text-align: right;">25.07</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Mean.M</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5.13</td>
-<td style="text-align: right;">1.29</td>
-<td style="text-align: left;">▁▃▇▆▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.SD.M</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1.60</td>
-<td style="text-align: right;">0.57</td>
-<td style="text-align: left;">▁▇▇▁▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Rat.M</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">8.39</td>
-<td style="text-align: right;">9.51</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Mean.F</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5.01</td>
-<td style="text-align: right;">1.39</td>
-<td style="text-align: left;">▁▅▇▅▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.SD.F</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1.64</td>
-<td style="text-align: right;">0.44</td>
-<td style="text-align: left;">▁▃▇▂▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Rat.F</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">13.27</td>
-<td style="text-align: right;">14.46</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Mean.M</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">4.38</td>
-<td style="text-align: right;">1.09</td>
-<td style="text-align: left;">▁▆▇▂▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.SD.M</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.27</td>
-<td style="text-align: right;">0.50</td>
-<td style="text-align: left;">▁▃▇▃▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Rat.M</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">8.60</td>
-<td style="text-align: right;">9.50</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Mean.F</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">4.10</td>
-<td style="text-align: right;">0.99</td>
-<td style="text-align: left;">▁▇▇▂▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.SD.F</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.28</td>
-<td style="text-align: right;">0.41</td>
-<td style="text-align: left;">▁▂▇▆▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Rat.F</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">14.20</td>
-<td style="text-align: right;">15.42</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Mean.M</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5.17</td>
-<td style="text-align: right;">1.01</td>
-<td style="text-align: left;">▁▂▇▇▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.SD.M</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.15</td>
-<td style="text-align: right;">0.48</td>
-<td style="text-align: left;">▁▂▇▆▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Rat.M</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">10.70</td>
-<td style="text-align: right;">11.28</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Mean.F</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5.19</td>
-<td style="text-align: right;">1.09</td>
-<td style="text-align: left;">▁▃▇▅▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.SD.F</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.13</td>
-<td style="text-align: right;">0.45</td>
-<td style="text-align: left;">▁▂▇▅▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Rat.F</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">13.50</td>
-<td style="text-align: right;">14.15</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Mean.Y</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5.10</td>
-<td style="text-align: right;">1.30</td>
-<td style="text-align: left;">▁▃▇▅▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.SD.Y</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
 <td style="text-align: right;">1.68</td>
-<td style="text-align: right;">0.51</td>
-<td style="text-align: left;">▁▆▇▂▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Rat.Y</td>
+<td style="text-align: right;">7.90</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">10.45</td>
-<td style="text-align: right;">11.58</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Mean.O</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5.04</td>
-<td style="text-align: right;">1.40</td>
-<td style="text-align: left;">▁▃▇▅▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.SD.O</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1.61</td>
-<td style="text-align: right;">0.48</td>
-<td style="text-align: left;">▁▇▇▂▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Rat.O</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">11.18</td>
-<td style="text-align: right;">12.18</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Mean.Y</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">4.31</td>
-<td style="text-align: right;">1.04</td>
-<td style="text-align: left;">▁▆▇▂▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.SD.Y</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.31</td>
-<td style="text-align: right;">0.48</td>
-<td style="text-align: left;">▁▁▇▆▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Rat.Y</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">10.42</td>
-<td style="text-align: right;">11.44</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Mean.O</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">4.13</td>
-<td style="text-align: right;">1.05</td>
-<td style="text-align: left;">▂▇▆▂▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.SD.O</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.27</td>
-<td style="text-align: right;">0.43</td>
-<td style="text-align: left;">▁▂▇▆▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Rat.O</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">12.46</td>
-<td style="text-align: right;">13.54</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Mean.Y</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5.12</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: left;">▁▂▇▅▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.SD.Y</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.17</td>
-<td style="text-align: right;">0.45</td>
-<td style="text-align: left;">▁▃▇▃▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Rat.Y</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">13.31</td>
-<td style="text-align: right;">14.13</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Mean.O</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5.20</td>
-<td style="text-align: right;">1.20</td>
-<td style="text-align: left;">▁▃▇▆▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.SD.O</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.04</td>
-<td style="text-align: right;">0.52</td>
-<td style="text-align: left;">▁▂▇▅▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Rat.O</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">10.91</td>
-<td style="text-align: right;">11.42</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Mean.L</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5.04</td>
-<td style="text-align: right;">1.30</td>
-<td style="text-align: left;">▁▃▇▅▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.SD.L</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1.70</td>
-<td style="text-align: right;">0.45</td>
-<td style="text-align: left;">▁▃▇▃▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Rat.L</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">12.02</td>
-<td style="text-align: right;">13.06</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Mean.H</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5.10</td>
-<td style="text-align: right;">1.37</td>
-<td style="text-align: left;">▁▃▇▆▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.SD.H</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1.58</td>
-<td style="text-align: right;">0.49</td>
-<td style="text-align: left;">▁▇▇▂▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">V.Rat.H</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">9.79</td>
-<td style="text-align: right;">10.65</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Mean.L</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">4.15</td>
-<td style="text-align: right;">1.03</td>
-<td style="text-align: left;">▁▇▆▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.SD.L</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.33</td>
-<td style="text-align: right;">0.44</td>
-<td style="text-align: left;">▁▂▇▃▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Rat.L</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">12.73</td>
-<td style="text-align: right;">13.96</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Mean.H</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">4.28</td>
-<td style="text-align: right;">1.09</td>
-<td style="text-align: left;">▁▇▇▂▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.SD.H</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.17</td>
-<td style="text-align: right;">0.51</td>
-<td style="text-align: left;">▁▃▇▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">A.Rat.H</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">10.24</td>
-<td style="text-align: right;">11.38</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Mean.L</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5.20</td>
-<td style="text-align: right;">1.05</td>
-<td style="text-align: left;">▁▃▇▅▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.SD.L</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.22</td>
-<td style="text-align: right;">0.47</td>
-<td style="text-align: left;">▁▃▇▃▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Rat.L</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">13.24</td>
-<td style="text-align: right;">13.91</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Mean.H</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">5.17</td>
-<td style="text-align: right;">1.07</td>
-<td style="text-align: left;">▁▃▇▅▁</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.SD.H</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2.02</td>
-<td style="text-align: right;">0.50</td>
-<td style="text-align: left;">▁▅▇▁▁</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">D.Rat.H</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">11.08</td>
-<td style="text-align: right;">11.68</td>
-<td style="text-align: left;">▇▁▁▁▁</td>
 </tr>
 </tbody>
 </table>
@@ -2957,14 +2355,6 @@ Table 1: Data Quality and Complexity Summary
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(affective_data, <span class="fu">aes</span>(<span class="at">x =</span> V.Mean.Sum)) <span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.25</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Word &#39;Valence&#39; (Pleasantness)&quot;</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Mean Valence Rating (1=Negative, 9=Positive)&quot;</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count of Words&quot;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-valence-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
