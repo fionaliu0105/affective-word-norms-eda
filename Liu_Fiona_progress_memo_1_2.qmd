@@ -1,0 +1,107 @@
+---
+title: "Progress Memo 1"
+subtitle: |
+  | Final Project 
+  | Data Science 1 with R (STAT 301-1)
+author: "Fiona Liu"
+pagetitle: "PM1 Fiona Liu"
+
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    toc-location: left
+    embed-resources: true
+    link-external-newwindow: true
+
+execute:
+  warning: false
+
+from: markdown+emoji
+reference-location: margin
+citation-location: margin
+---
+
+::: {.callout-important collapse=true}
+## Memo format
+
+Like all other submissions for this course, we expect the memo to be **neat and well organized**.
+
+A memo is a short, polished report. Meaning, it should be well written and thoughtfully laid out. Some neatness and organizational hints/tips (not an exhaustive list):
+
+- There should be absolutely no code in your report --- don’t hide it; code should not be visible/accessible.
+- Include a date indicating when report was created.
+- There should be no tibbles/data frames or raw R output --- should use tables (avoid unnecessarily long output)!
+- Any plots or graphics should be polished (appropriate labels and/or captions).
+- All figures and tables should be properly labeled and referenced --- must make use of quarto cross-referencing.
+- Should use heading and sub-headings appropriately.
+- Remove prompts and instructions meant to assist students.
+- Should include a link to project’s GitHub repo.
+- GitHub repo should be well organized and have a few commits (no templates, commit of most recent work)
+
+
+:::
+
+::: {.callout-warning collapse=true}
+GitHub (free account) cannot store large files. If you try to commit and push a large dataset you will have an ERROR! Any file over 100 MB (100,000 KB) needs to be added to the `.gitignore` file BEFORE committing.
+
+**We may need to do that for files in your final project!**
+:::
+
+
+::: {.callout-tip icon=false}
+
+## Github Repo Link
+
+To link to your github **repo**sitory, appropriately edit the example link below. Meaning replace `https://your-github-repo-url` with your github repo url. Suggest verifying the link works before submitting.
+
+[Fiona's Github](https://github.com/stat301-1-2025-fall/final-project-1-fionaliu0105)
+
+:::
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(knitr)
+
+emot_data <- read_csv("data/BRM-emot-submit.csv")
+```
+
+## Data source
+
+The dataset for this project is a collection of affective (emotional) norms for 13,915 English words, known as lemmas.^[Warriner, A. B., Kuperman, V., & Brysbaert, M. (2013). Norms of valence, arousal, and dominance for 13,915 English lemmas. *Behavior Research Methods*, 45(4), 1191–1207.]
+
+This data was collected via large-scale crowdsourcing, where participants rated each word on three distinct emotional dimensions:
+
+  * **Valence:** The pleasantness of the word (from negative/unpleasant to positive/pleasant).
+  * **Arousal:** The intensity of the emotion evoked (from calm/subdued to excited/energized).
+  * **Dominance:** The sense of control associated with the word (from submissive/controlled to dominant/in-control).
+
+
+### Why this data
+
+I am interested in a cognitive science dataset, and this one is a good fit for an Exploratory Data Analysis (EDA). It directly relates to my interest in how humans process language and memory.
+
+The data's structure is simple, clean, and well-documented, making it perfect for applying the data manipulation (`dplyr`) and visualization (`ggplot2`) skills from STAT 301-1[cite: 168, 111]. [cite_start]It allows for a meaningful analysis of linguistic patterns without requiring the complex machine learning or modeling techniques that are outside the scope of this course.
+
+## Data quality & complexity check
+
+The dataset is of high quality and low complexity.
+
+1.  **Format & Size:** The data is available as a single, standard `.csv` file. The file size is very small (approximately 3.6 MB), which is well below the 100 MB GitHub limit noted in the course instructions . It will not require the use of `.gitignore`.
+2.  **Structure:** The data is tidy, with each row representing a single word.
+3.  **Key Variables:** The primary variables for analysis will be:
+      * `Word`: The English word (a character string).
+      * `V.Mean.Sum`: The mean valence rating (numeric).
+      * `A.Mean.Sum`: The mean arousal rating (numeric).
+      * `D.Mean.Sum`: The mean dominance rating (numeric).
+      * Other columns, such as standard deviations for each rating, are also available and can be used to explore the consistency of the ratings.
+
+
+## Potential data issues
+
+This dataset is pre-cleaned and standardized, so no significant data cleaning is anticipated. The main "challenge" will not be cleaning data but rather exploring it effectively.
+
+The primary task will be to use functions from `dplyr` to filter and summarize the 13,915 words to answer interesting questions (e.g., "What are the 10 most positive-valence words?" or "How does arousal relate to valence?"). The analysis will focus on data exploration and visualization rather than data wrangling.
