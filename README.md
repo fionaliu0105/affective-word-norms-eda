@@ -1,5 +1,7 @@
 ## Basic repo setup for final project
 
+[/data] contains data.
+
 ### Project Description
 
 This project explores the "Quick, Draw!" dataset, a collection of 50 million drawings from the Google game of the same name. The goal is to analyze the vector-based drawing data to understand how people conceptually represent and visually communicate common objects.
