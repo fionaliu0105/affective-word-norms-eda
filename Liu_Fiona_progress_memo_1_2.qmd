@@ -5,7 +5,6 @@ subtitle: |
   | Data Science 1 with R (STAT 301-1)
 author: "Fiona Liu"
 pagetitle: "PM1 Fiona Liu"
-
 format:
   html:
     toc: true
@@ -13,13 +12,13 @@ format:
     toc-location: left
     embed-resources: true
     link-external-newwindow: true
-
 execute:
   warning: false
-
 from: markdown+emoji
 reference-location: margin
 citation-location: margin
+editor_options: 
+  chunk_output_type: console
 ---
 
 ::: {.callout-important collapse=true}
@@ -66,7 +65,7 @@ To link to your github **repo**sitory, appropriately edit the example link below
 library(tidyverse)
 library(knitr)
 
-emot_data <- read_csv("data/BRM-emot-submit.csv")
+affective_data <- read_csv("data/BRM-emot-submit.csv")
 ```
 
 ## Data source
@@ -98,6 +97,31 @@ The dataset is of high quality and low complexity.
       * `A.Mean.Sum`: The mean arousal rating (numeric).
       * `D.Mean.Sum`: The mean dominance rating (numeric).
       * Other columns, such as standard deviations for each rating, are also available and can be used to explore the consistency of the ratings.
+
+```{r}
+#| label: tbl-data-summary
+#| tbl-cap: "Data Quality and Complexity Summary"
+skimr::skim(affective_data) |>
+  select(skim_type, skim_variable, n_missing, complete_rate, numeric.mean, numeric.sd, numeric.hist) |> 
+  kable(
+    col.names = c("Type", "Variable", "Missing", "Complete", "Mean", "SD", "Histogram"),
+    digits = 2
+  )
+```
+
+```{r}
+#| label: fig-valence-dist
+#| fig-cap: "Distribution of Mean Valence Scores (V.Mean.Sum) for 13,915 English Words"
+
+ggplot(affective_data, aes(x = V.Mean.Sum)) +
+  geom_histogram(binwidth = 0.25, fill = "steelblue", color = "white", alpha = 0.8) +
+  labs(
+    title = "Distribution of Word 'Valence' (Pleasantness)",
+    x = "Mean Valence Rating (1=Negative, 9=Positive)",
+    y = "Count of Words"
+  ) +
+  theme_minimal()
+```
 
 
 ## Potential data issues
