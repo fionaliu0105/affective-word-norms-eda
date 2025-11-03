@@ -2179,6 +2179,7 @@ vertical-align: -.125em;
   </ul></li>
   <li><a href="#data-quality-complexity-check" id="toc-data-quality-complexity-check" class="nav-link" data-scroll-target="#data-quality-complexity-check">Data quality &amp; complexity check</a></li>
   <li><a href="#potential-data-issues" id="toc-potential-data-issues" class="nav-link" data-scroll-target="#potential-data-issues">Potential data issues</a></li>
+  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis Plan</a></li>
   </ul>
 </nav>
 </div>
@@ -2373,6 +2374,34 @@ Figure 1: Distribution of Mean Valence Scores (V.Mean.Sum) for 13,915 English W
 <h2 class="anchored" data-anchor-id="potential-data-issues">Potential data issues</h2>
 <p>This dataset is pre-cleaned and standardized, so no significant data cleaning is anticipated. The main “challenge” will not be cleaning data but rather exploring it effectively.</p>
 <p>The primary task will be to use functions from <code>dplyr</code> to filter and summarize the 13,915 words to answer interesting questions (e.g., “What are the 10 most positive-valence words?” or “How does arousal relate to valence?”). The analysis will focus on data exploration and visualization rather than data wrangling.</p>
+<p>This is the perfect place for that outline. The memo instructions (from your previous prompt) state that if the data is already tidy, you’re expected to provide a more “extensive and in-depth EDA report.”</p>
+<p>The best place to put your plan is in the <code>Potential data issues</code> section, as it’s not really a “data issue” but a “plan of action” given the lack of issues.</p>
+<p>I’ve replaced your original <code>Potential data issues</code> section with a new one called <strong><code>Potential Data Issues &amp; Analysis Plan</code></strong>. This new section incorporates the full EDA outline we discussed, referencing the figures from the paper. I also added the <code>date</code> to the top, as your memo instructions require it.</p>
+<p>Here is the complete, updated <code>.qmd</code> file for you to copy and paste.</p>
+</section>
+<section id="analysis-plan" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h2>
+<p>My proposed analysis plan includes:</p>
+<ul>
+<li><p><strong>1. Univariate Analysis:</strong> I will first explore the shape of the three main dimensions. This involves:</p>
+<ul>
+<li>Plotting histograms for <code>Valence</code>, <code>Arousal</code>, and <code>Dominance</code> to examine their distributions.</li>
+<li>Calculating summary statistics and using <code>dplyr::slice_max()</code> and <code>slice_min()</code> to find the top/bottom 10 most extreme words for each dimension.</li>
+</ul></li>
+<li><p><strong>2. Bivariate Analysis:</strong> The core of the analysis will be exploring the relationships <em>between</em> the dimensions, as shown in <strong>Figure 3</strong> of the paper.</p>
+<ul>
+<li>I will plot <code>Valence</code> vs. <code>Arousal</code> (using <code>geom_point</code> and <code>geom_smooth</code>) to find the “U-shaped” relationship, which shows that both very positive and very negative words are highly arousing.</li>
+<li>I will also plot <code>Valence</code> vs. <code>Dominance</code> to show their linear relationship.</li>
+</ul></li>
+<li><p><strong>3. Group Difference Analysis:</strong> I will explore the demographic data by comparing the <code>V.Mean.M</code> (Male) and <code>V.Mean.F</code> (Female) columns, as inspired by <strong>Figures 10-12</strong>.</p>
+<ul>
+<li>I plan to create scatter plots comparing male and female ratings directly, using <code>geom_abline</code> to show the line of equality.</li>
+<li>I will also <code>filter()</code> for specific “taboo” or “weapon” words (as mentioned in the paper) to see if I can replicate the finding that males rate these words as more positive and in-control.</li>
+</ul></li>
+<li><p><strong>4. Variability Analysis:</strong> Finally, I will analyze rating <em>agreement</em> by plotting the mean scores (e.g., <code>V.Mean.Sum</code>) against their standard deviations (<code>V.SD.Sum</code>), replicating <strong>Figure 2</strong> to see if neutral words are indeed the most “ambiguous” (have the highest standard deviation).</p></li>
+</ul>
+<p>This plan will allow me to heavily use <code>dplyr</code> for filtering and summarizing and <code>ggplot2</code> for creating a wide variety of polished visualizations, demonstrating mastery of the course’s core tools.</p>
+<pre><code></code></pre>
 </section>
 
 
