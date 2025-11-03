@@ -174,17 +174,17 @@ My proposed analysis plan includes:
       * Plotting histograms for `Valence`, `Arousal`, and `Dominance` to examine their distributions.
       * Calculating summary statistics and using `dplyr::slice_max()` and `slice_min()` to find the top/bottom 10 most extreme words for each dimension.
 
-  * **2. Bivariate Analysis:** The core of the analysis will be exploring the relationships *between* the dimensions, as shown in **Figure 3** of the paper.
+  * **2. Bivariate Analysis:** The core of the analysis will be exploring the relationships *between* the dimensions.
 
       * I will plot `Valence` vs. `Arousal` (using `geom_point` and `geom_smooth`) to find the "U-shaped" relationship, which shows that both very positive and very negative words are highly arousing.
       * I will also plot `Valence` vs. `Dominance` to show their linear relationship.
 
-  * **3. Group Difference Analysis:** I will explore the demographic data by comparing the `V.Mean.M` (Male) and `V.Mean.F` (Female) columns, as inspired by **Figures 10-12**.
+  * **3. Group Difference Analysis:** I will explore the demographic data by comparing the `V.Mean.M` (Male) and `V.Mean.F` (Female) columns.
 
       * I plan to create scatter plots comparing male and female ratings directly, using `geom_abline` to show the line of equality.
       * I will also `filter()` for specific "taboo" or "weapon" words (as mentioned in the paper) to see if I can replicate the finding that males rate these words as more positive and in-control.
 
-  * **4. Variability Analysis:** Finally, I will analyze rating *agreement* by plotting the mean scores (e.g., `V.Mean.Sum`) against their standard deviations (`V.SD.Sum`), replicating **Figure 2** to see if neutral words are indeed the most "ambiguous" (have the highest standard deviation).
+  * **4. Variability Analysis:** Finally, I will analyze rating *agreement* by plotting the mean scores (e.g., `V.Mean.Sum`) against their standard deviations (`V.SD.Sum`) to see if neutral words are indeed the most "ambiguous" (have the highest standard deviation).
 
 This plan will allow me to heavily use `dplyr` for filtering and summarizing and `ggplot2` for creating a wide variety of polished visualizations, demonstrating mastery of the course's core tools.
 

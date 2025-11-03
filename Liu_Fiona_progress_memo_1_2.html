@@ -2388,17 +2388,17 @@ Figure 1: Distribution of Mean Valence Scores (V.Mean.Sum) for 13,915 English W
 <li>Plotting histograms for <code>Valence</code>, <code>Arousal</code>, and <code>Dominance</code> to examine their distributions.</li>
 <li>Calculating summary statistics and using <code>dplyr::slice_max()</code> and <code>slice_min()</code> to find the top/bottom 10 most extreme words for each dimension.</li>
 </ul></li>
-<li><p><strong>2. Bivariate Analysis:</strong> The core of the analysis will be exploring the relationships <em>between</em> the dimensions, as shown in <strong>Figure 3</strong> of the paper.</p>
+<li><p><strong>2. Bivariate Analysis:</strong> The core of the analysis will be exploring the relationships <em>between</em> the dimensions.</p>
 <ul>
 <li>I will plot <code>Valence</code> vs. <code>Arousal</code> (using <code>geom_point</code> and <code>geom_smooth</code>) to find the “U-shaped” relationship, which shows that both very positive and very negative words are highly arousing.</li>
 <li>I will also plot <code>Valence</code> vs. <code>Dominance</code> to show their linear relationship.</li>
 </ul></li>
-<li><p><strong>3. Group Difference Analysis:</strong> I will explore the demographic data by comparing the <code>V.Mean.M</code> (Male) and <code>V.Mean.F</code> (Female) columns, as inspired by <strong>Figures 10-12</strong>.</p>
+<li><p><strong>3. Group Difference Analysis:</strong> I will explore the demographic data by comparing the <code>V.Mean.M</code> (Male) and <code>V.Mean.F</code> (Female) columns.</p>
 <ul>
 <li>I plan to create scatter plots comparing male and female ratings directly, using <code>geom_abline</code> to show the line of equality.</li>
 <li>I will also <code>filter()</code> for specific “taboo” or “weapon” words (as mentioned in the paper) to see if I can replicate the finding that males rate these words as more positive and in-control.</li>
 </ul></li>
-<li><p><strong>4. Variability Analysis:</strong> Finally, I will analyze rating <em>agreement</em> by plotting the mean scores (e.g., <code>V.Mean.Sum</code>) against their standard deviations (<code>V.SD.Sum</code>), replicating <strong>Figure 2</strong> to see if neutral words are indeed the most “ambiguous” (have the highest standard deviation).</p></li>
+<li><p><strong>4. Variability Analysis:</strong> Finally, I will analyze rating <em>agreement</em> by plotting the mean scores (e.g., <code>V.Mean.Sum</code>) against their standard deviations (<code>V.SD.Sum</code>) to see if neutral words are indeed the most “ambiguous” (have the highest standard deviation).</p></li>
 </ul>
 <p>This plan will allow me to heavily use <code>dplyr</code> for filtering and summarizing and <code>ggplot2</code> for creating a wide variety of polished visualizations, demonstrating mastery of the course’s core tools.</p>
 <pre><code></code></pre>
