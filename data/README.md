@@ -1,41 +1,43 @@
-## Datasets
+## Dataset: Affective Norms for English Lemmas
 
-### Data Directory
+### Overview
 
-This directory contains the raw data used for the project, sourced from Google's "The Quick, Draw! Dataset."
-
-### Dataset Citation
-
-Dataset: The Quick, Draw! Dataset
-
-Source: [Google Creative Lab GitHub](https://github.com/googlecreativelab/quickdraw-dataset)
-
-License: Creative Commons Attribution 4.0 International License.
+This directory contains the dataset used for the final project in STAT 301-1. The data consists of emotional ratings for 13,915 English words (lemmas), gathered through a large-scale crowdsourcing study.
 
 ### Files
 
-This analysis uses the "simplified" drawing files, which are provided in a newline-delimited JSON format. Each line is a JSON object representing a single drawing.
+* `BRM-emot-submit.csv`: The raw data file containing all ratings and word information.
 
-The files used in this analysis are:
+### Source & Citation
 
--   `full_simplified_apple.ndjson`
+This data was originally published associated with the following paper:
 
--   `full_simplified_chair.ndjson`
+Warriner, A. B., Kuperman, V., & Brysbaert, M. (2013). Norms of valence, arousal, and dominance for 13,915 English lemmas. *Behavior Research Methods*, 45(4), 1191–1207. doi:10.3758/s13428-012-0314-x
 
--   `full_simplified_dolphin.ndjson`
+* **Original Source URL:** [http://crr.ugent.be/archives/1003](http://crr.ugent.be/archives/1003)
+* **Date Accessed:** November 3, 2025
 
-### IMPORTANT: Download Instructions
+### Data Collection Summary
 
-These files are large (45MB - 75MB each) and are intentionally not tracked by Git (they are listed in the .gitignore file).
+Participants (US residents) rated words on a 9-point scale for three dimensions:
+1.  **Valence:** Unhappy (1) to Happy (9).
+2.  **Arousal:** Calm (1) to Excited (9).
+3.  **Dominance:** Controlled (1) to In Control (9).
 
-To reproduce the analysis, you must download the files directly from the Google Cloud Storage bucket linked in the official repository.
+### Data Dictionary
 
-Download Links:
+While the full dataset contains 65 variables (including ratings split by age and education), this project primarily utilizes the following core variables:
 
--   Apple: <https://storage.googleapis.com/quickdraw_dataset/simplified/apple.ndjson>
+| Variable Name | Original Column | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| **Word** | `Word` | The English lemma rated. | String |
+| **Valence** | `V.Mean.Sum` | Overall mean valence rating. | Numeric (1-9) |
+| **Arousal** | `A.Mean.Sum` | Overall mean arousal rating. | Numeric (1-9) |
+| **Dominance** | `D.Mean.Sum` | Overall mean dominance rating. | Numeric (1-9) |
+| **Valence SD** | `V.SD.Sum` | Standard deviation of valence ratings (agreement). | Numeric |
+| **Arousal SD** | `A.SD.Sum` | Standard deviation of arousal ratings. | Numeric |
+| **Dominance SD**| `D.SD.Sum` | Standard deviation of dominance ratings. | Numeric |
+| **Male Valence**| `V.Mean.M` | Mean valence rating from male participants. | Numeric (1-9) |
+| **Female Valence**| `V.Mean.F` | Mean valence rating from female participants. | Numeric (1-9) |
 
--   Chair: <https://storage.googleapis.com/quickdraw_dataset/simplified/chair.ndjson>
-
--   Dolphin: <https://storage.googleapis.com/quickdraw_dataset/simplified/dolphin.ndjson>
-
-Download these files and place them in this `/data` directory.
+*Note: Corresponding `.M` (male) and `.F` (female) columns also exist for Arousal (A) and Dominance (D).*

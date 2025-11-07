@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Fiona Liu">
+<meta name="dcterms.date" content="2025-11-07">
 
 <title>PM1 Fiona Liu</title>
 <style>
@@ -2205,6 +2206,12 @@ Data Science 1 with R (STAT 301-1)</div><p></p>
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 7, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -2214,51 +2221,6 @@ Data Science 1 with R (STAT 301-1)</div><p></p>
 </header>
 
 
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Memo format
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Like all other submissions for this course, we expect the memo to be <strong>neat and well organized</strong>.</p>
-<p>A memo is a short, polished report. Meaning, it should be well written and thoughtfully laid out. Some neatness and organizational hints/tips (not an exhaustive list):</p>
-<ul>
-<li>There should be absolutely no code in your report — don’t hide it; code should not be visible/accessible.</li>
-<li>Include a date indicating when report was created.</li>
-<li>There should be no tibbles/data frames or raw R output — should use tables (avoid unnecessarily long output)!</li>
-<li>Any plots or graphics should be polished (appropriate labels and/or captions).</li>
-<li>All figures and tables should be properly labeled and referenced — must make use of quarto cross-referencing.</li>
-<li>Should use heading and sub-headings appropriately.</li>
-<li>Remove prompts and instructions meant to assist students.</li>
-<li>Should include a link to project’s GitHub repo.</li>
-<li>GitHub repo should be well organized and have a few commits (no templates, commit of most recent work)</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>GitHub (free account) cannot store large files. If you try to commit and push a large dataset you will have an ERROR! Any file over 100 MB (100,000 KB) needs to be added to the <code>.gitignore</code> file BEFORE committing.</p>
-<p><strong>We may need to do that for files in your final project!</strong></p>
-</div>
-</div>
-</div>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2294,21 +2256,91 @@ Warning
 <ol type="1">
 <li><strong>Format &amp; Size:</strong> The data is available as a single, standard <code>.csv</code> file. The file size is very small (approximately 3.6 MB), which is well below the 100 MB GitHub limit noted in the course instructions . It will not require the use of <code>.gitignore</code>.</li>
 <li><strong>Structure:</strong> The data is tidy, with each row representing a single word.</li>
-<li><strong>Key Variables:</strong> The primary variables for analysis will be:
+<li><strong>Key Variables:</strong> The primary variables for analysis will b
 <ul>
 <li><code>Word</code>: The English word (a character string).</li>
 <li><code>V.Mean.Sum</code>: The mean valence rating (numeric).</li>
 <li><code>A.Mean.Sum</code>: The mean arousal rating (numeric).</li>
 <li><code>D.Mean.Sum</code>: The mean dominance rating (numeric).</li>
-<li>Other columns, such as standard deviations for each rating, are also available and can be used to explore the consistency of the ratings.</li>
+<li>Other columns, such as their associated standard deviations and gender breakdowns.</li>
 </ul></li>
 </ol>
-<p>A summary of these three numeric dimensions was generated using <code>dplyr::summarize()</code> and is shown in <a href="#tbl-data-summary" class="quarto-xref">Table 1</a>. As the table indicates, there are no missing (<code>NA</code>) values in the key data columns.</p>
+<p>A complete dictionary of the variables selected for analysis is provided in <a href="#tbl-data-dict" class="quarto-xref">Table 1</a>.</p>
+<div class="cell">
+<div id="tbl-data-dict" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-dict-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 1: Data Dictionary: Key Variables for Analysis
+</figcaption>
+<div aria-describedby="tbl-data-dict-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 13%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Original Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>Word</code></td>
+<td style="text-align: left;">chr</td>
+<td style="text-align: left;">The English lemma (word) rated by participants</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>V.Mean.Sum</code></td>
+<td style="text-align: left;">dbl</td>
+<td style="text-align: left;">Mean Valence rating (overall across all participants)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>A.Mean.Sum</code></td>
+<td style="text-align: left;">dbl</td>
+<td style="text-align: left;">Mean Arousal rating (overall across all participants)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>D.Mean.Sum</code></td>
+<td style="text-align: left;">dbl</td>
+<td style="text-align: left;">Mean Dominance rating (overall across all participants)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>V.SD.Sum</code></td>
+<td style="text-align: left;">dbl</td>
+<td style="text-align: left;">Standard deviation of all Valence ratings for this word</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>A.SD.Sum</code></td>
+<td style="text-align: left;">dbl</td>
+<td style="text-align: left;">Standard deviation of all Arousal ratings for this word</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>D.SD.Sum</code></td>
+<td style="text-align: left;">dbl</td>
+<td style="text-align: left;">Standard deviation of all Dominance ratings for this word</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>V.Mean.M</code> / <code>V.Mean.F</code></td>
+<td style="text-align: left;">dbl</td>
+<td style="text-align: left;">Mean Valence ratings split by male (M) and female (F) participants</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A summary of these three numeric dimensions was generated using <code>dplyr::summarize()</code> and is shown in <a href="#tbl-data-summary" class="quarto-xref">Table 2</a>. As the table indicates, there are no missing (<code>NA</code>) values in the key data columns.</p>
 <div class="cell">
 <div id="tbl-data-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table 1: Summary Statistics for Key Affective Dimensions
+Table 2: Summary Statistics for Key Affective Dimensions
 </figcaption>
 <div aria-describedby="tbl-data-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2355,6 +2387,7 @@ Table 1: Summary Statistics for Key Affective Dimensions
 </figure>
 </div>
 </div>
+<p>The preliminary plot in <a href="#fig-valence-dist" class="quarto-xref">Figure 1</a> shows the distribution of valence scores. It appears to be roughly normal, centered around a neutral score of 5.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-valence-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2396,11 +2429,11 @@ Figure 1: Distribution of Mean Valence Scores (V.Mean.Sum) for 13,915 English W
 <li><p><strong>3. Group Difference Analysis:</strong> I will explore the demographic data by comparing the <code>V.Mean.M</code> (Male) and <code>V.Mean.F</code> (Female) columns.</p>
 <ul>
 <li>I plan to create scatter plots comparing male and female ratings directly, using <code>geom_abline</code> to show the line of equality.</li>
-<li>I will also <code>filter()</code> for specific “taboo” or “weapon” words (as mentioned in the paper) to see if I can replicate the finding that males rate these words as more positive and in-control.</li>
+<li>I will also <code>filter()</code> for specific “taboo” or “weapon” words (as mentioned in the paper) to see if I can replicate the finding that males rate these words as more positive and in-control. (str_detect)</li>
 </ul></li>
-<li><p><strong>4. Variability Analysis:</strong> Finally, I will analyze rating <em>agreement</em> by plotting the mean scores (e.g., <code>V.Mean.Sum</code>) against their standard deviations (<code>V.SD.Sum</code>) to see if neutral words are indeed the most “ambiguous” (have the highest standard deviation).</p></li>
+<li><p><strong>4. Variability Analysis:</strong> I will analyze rating <em>agreement</em> by plotting the mean scores (e.g., <code>V.Mean.Sum</code>) against their standard deviations (<code>V.SD.Sum</code>) to see if neutral words are indeed the most “ambiguous” (have the highest standard deviation).</p></li>
+<li><p><strong>5. Linguistic Comparison (Verb vs. Noun suffixes)</strong>: I plan to use <code>stringr</code> functions taught in class, specifically <code>str_detect()</code>, to identify words with common noun suffixes (e.g., ending in “-tion”, “-ment”) versus common verb suffixes (e.g., ending in “-ize”, “-ate”). I will then compare the emotional ratings of these two groups to see if grammatical form relates to valence or arousal.</p></li>
 </ul>
-<p>This plan will allow me to heavily use <code>dplyr</code> for filtering and summarizing and <code>ggplot2</code> for creating a wide variety of polished visualizations, demonstrating mastery of the course’s core tools.</p>
 <pre><code></code></pre>
 </section>
 

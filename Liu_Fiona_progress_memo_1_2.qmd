@@ -5,6 +5,7 @@ subtitle: |
   | Data Science 1 with R (STAT 301-1)
 author: "Fiona Liu"
 pagetitle: "PM1 Fiona Liu"
+date: today
 format:
   html:
     toc: true
@@ -21,31 +22,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-::: {.callout-important collapse=true}
-## Memo format
 
-Like all other submissions for this course, we expect the memo to be **neat and well organized**.
-
-A memo is a short, polished report. Meaning, it should be well written and thoughtfully laid out. Some neatness and organizational hints/tips (not an exhaustive list):
-
-- There should be absolutely no code in your report --- don’t hide it; code should not be visible/accessible.
-- Include a date indicating when report was created.
-- There should be no tibbles/data frames or raw R output --- should use tables (avoid unnecessarily long output)!
-- Any plots or graphics should be polished (appropriate labels and/or captions).
-- All figures and tables should be properly labeled and referenced --- must make use of quarto cross-referencing.
-- Should use heading and sub-headings appropriately.
-- Remove prompts and instructions meant to assist students.
-- Should include a link to project’s GitHub repo.
-- GitHub repo should be well organized and have a few commits (no templates, commit of most recent work)
-
-
-:::
-
-::: {.callout-warning collapse=true}
-GitHub (free account) cannot store large files. If you try to commit and push a large dataset you will have an ERROR! Any file over 100 MB (100,000 KB) needs to be added to the `.gitignore` file BEFORE committing.
-
-**We may need to do that for files in your final project!**
-:::
 
 
 ::: {.callout-tip icon=false}
@@ -91,12 +68,35 @@ The dataset is of high quality and low complexity.
 
 1.  **Format & Size:** The data is available as a single, standard `.csv` file. The file size is very small (approximately 3.6 MB), which is well below the 100 MB GitHub limit noted in the course instructions . It will not require the use of `.gitignore`.
 2.  **Structure:** The data is tidy, with each row representing a single word.
-3.  **Key Variables:** The primary variables for analysis will be:
+3.  **Key Variables:** The primary variables for analysis will b
       * `Word`: The English word (a character string).
       * `V.Mean.Sum`: The mean valence rating (numeric).
       * `A.Mean.Sum`: The mean arousal rating (numeric).
       * `D.Mean.Sum`: The mean dominance rating (numeric).
-      * Other columns, such as standard deviations for each rating, are also available and can be used to explore the consistency of the ratings.
+      * Other columns, such as their associated standard deviations and gender breakdowns.
+
+A complete dictionary of the variables selected for analysis is provided in @tbl-data-dict.
+
+```{r}
+#| label: tbl-data-dict
+#| tbl-cap: "Data Dictionary: Key Variables for Analysis"
+#| echo: false
+tibble(
+  Variable = c("`Word`", "`V.Mean.Sum`", "`A.Mean.Sum`", "`D.Mean.Sum`",
+               "`V.SD.Sum`", "`A.SD.Sum`", "`D.SD.Sum`",
+               "`V.Mean.M` / `V.Mean.F`"),
+  `Original Type` = c("chr", "dbl", "dbl", "dbl", "dbl", "dbl", "dbl", "dbl"),
+  Description = c("The English lemma (word) rated by participants",
+                  "Mean Valence rating (overall across all participants)",
+                  "Mean Arousal rating (overall across all participants)",
+                  "Mean Dominance rating (overall across all participants)",
+                  "Standard deviation of all Valence ratings for this word",
+                  "Standard deviation of all Arousal ratings for this word",
+                  "Standard deviation of all Dominance ratings for this word",
+                  "Mean Valence ratings split by male (M) and female (F) participants")
+) |>
+  kable()
+```
 
 A summary of these three numeric dimensions was generated using `dplyr::summarize()` and is shown in @tbl-data-summary. As the table indicates, there are no missing (`NA`) values in the key data columns.
 ```{r}
@@ -131,6 +131,7 @@ affective_data |>
   kable(digits = 2)
 ```
 
+The preliminary plot in @fig-valence-dist shows the distribution of valence scores. It appears to be roughly normal, centered around a neutral score of 5.
 ```{r}
 #| echo: false
 #| label: fig-valence-dist
@@ -182,11 +183,10 @@ My proposed analysis plan includes:
   * **3. Group Difference Analysis:** I will explore the demographic data by comparing the `V.Mean.M` (Male) and `V.Mean.F` (Female) columns.
 
       * I plan to create scatter plots comparing male and female ratings directly, using `geom_abline` to show the line of equality.
-      * I will also `filter()` for specific "taboo" or "weapon" words (as mentioned in the paper) to see if I can replicate the finding that males rate these words as more positive and in-control. (detect)
+      * I will also `filter()` for specific "taboo" or "weapon" words (as mentioned in the paper) to see if I can replicate the finding that males rate these words as more positive and in-control. (str_detect)
 
-  * **4. Variability Analysis:** Finally, I will analyze rating *agreement* by plotting the mean scores (e.g., `V.Mean.Sum`) against their standard deviations (`V.SD.Sum`) to see if neutral words are indeed the most "ambiguous" (have the highest standard deviation).
+  * **4. Variability Analysis:** I will analyze rating *agreement* by plotting the mean scores (e.g., `V.Mean.Sum`) against their standard deviations (`V.SD.Sum`) to see if neutral words are indeed the most "ambiguous" (have the highest standard deviation).
 
-This plan will allow me to heavily use `dplyr` for filtering and summarizing and `ggplot2` for creating a wide variety of polished visualizations, demonstrating mastery of the course's core tools.
-
+  * **5. Linguistic Comparison (Verb vs. Noun suffixes)**: I plan to use `stringr` functions taught in class, specifically `str_detect()`, to identify words with common noun suffixes (e.g., ending in "-tion", "-ment") versus common verb suffixes (e.g., ending in "-ize", "-ate"). I will then compare the emotional ratings of these two groups to see if grammatical form relates to valence or arousal.
 ```
 ```
