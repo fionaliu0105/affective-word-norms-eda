@@ -1,10 +1,10 @@
 ---
-title: "Progress Memo 2"
+title: "Final Report"
 subtitle: |
   | Final Project 
   | Data Science 1 with R (STAT 301-1)
 author: "Fiona Liu"
-pagetitle: "PM1 Fiona Liu"
+pagetitle: "Final Report Fiona Liu"
 date: today
 format:
   html:
@@ -47,14 +47,53 @@ affective_data <- read_csv("data/BRM-emot-submit.csv")
 
 ## Introduction
 
+How do we quantify the "feeling" of a word? While language is subjective, psycholinguistics has established that human emotional reaction to concepts can be mapped onto a multi-dimensional space. Understanding these dimensions is crucial. 
+
+This project conducts an Exploratory Data Analysis (EDA) on a large-scale dataset of affective norms. The motivation for this analysis is to uncover the structural relationship between emotional dimensions and to investigate how gender and linguistic features (word endings) modulate our perception of words.
+
 ## Data Overview & Quality
 
-The dataset consists of 13,915 English lemmas rated on **Valence** (pleasantness), **Arousal** (intensity), and **Dominance** (control). The data source is Warriner et al. (2013).
+The data used in this report is derived from *Norms of valence, arousal, and dominance for 13,915 English lemmas* (Warriner et al., 2013). The dataset contains mean ratings gathered from extensive human trials where participants rated words on a 1-9 scale for:
 
-As noted in the previous memo, the data is high quality. There are no missing values in the primary columns. The scope of this progress memo is to demonstrate the completion of the initial Exploratory Data Analysis (EDA), specifically regarding univariate distributions, variable relationships, and demographic comparisons.
+- Valence: The pleasantness of the stimulus (1 = Unhappy, 9 = Happy).
+
+- Arousal: The intensity of the feeling evoked (1 = Calm, 9 = Excited).
+
+- Dominance: The degree of control felt by the rater (1 = Controlled, 9 = In Control).
+
+The dataset consists of 13,915 observations and 63 variables. The data quality is high; a check for missingness reveals no missing values in the primary variables of interest.
+
+@tbl-summary below provides a high-level summary of the rating scales.
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "Summary Statistics of Emotional Dimensions (Scale 1-9)"
+#| echo: false
+summary_stats <- affective_data |>
+  summarise(
+    Variable = c("Valence", "Arousal", "Dominance"),
+    Mean = c(mean(V.Mean.Sum), mean(A.Mean.Sum), mean(D.Mean.Sum)),
+    Median = c(median(V.Mean.Sum), median(A.Mean.Sum), median(D.Mean.Sum)),
+    SD = c(sd(V.Mean.Sum), sd(A.Mean.Sum), sd(D.Mean.Sum)),
+    Min = c(min(V.Mean.Sum), min(A.Mean.Sum), min(D.Mean.Sum)),
+    Max = c(max(V.Mean.Sum), max(A.Mean.Sum), max(D.Mean.Sum))
+  )
+
+summary_stats |>
+  gt() |>
+  fmt_number(columns = c(Mean, Median, SD), decimals = 2) |>
+  cols_label(SD = "Std. Dev.") |>
+  tab_header(title = "Descriptive Statistics of Affective Dimensions") |>
+  opt_align_table_header(align = "left") |>
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  )
+```
+
 
 ## Explorations
-### 2\. Univariate Analysis: Distributions
+### Univariate Analysis: Distributions
 
 My first objective was to understand the shape of the three main emotional dimensions. Do they follow similar patterns?
 
@@ -79,7 +118,7 @@ long_dims <- affective_data |>
 ggplot(long_dims, aes(x = Rating, fill = Dimension)) +
   geom_histogram(binwidth = 0.25, color = "white", show.legend = FALSE) +
   facet_wrap(~Dimension, scales = "free_y") +
-  scale_fill_manual(values = c("steelblue2", "red3", "violet")) +
+  scale_fill_manual(values = c("steelblue2", "indianred3", "violet")) +
   labs(
     x = "Mean Rating (1-9 Scale)",
     y = "Count of Words"
@@ -87,21 +126,24 @@ ggplot(long_dims, aes(x = Rating, fill = Dimension)) +
   theme_minimal()
 ```
 
-### 3\. Bivariate Analysis: The "U-Shape"
+### Bivariate Analysis: The "Boomerang" of Intensity
 
-My second guiding curiosity was confirming the relationship between **Valence** and **Arousal**.
+How do pleasantness and intensity relate? One might hypothesize a linear relationship, but the data suggests a more complex dynamic.
 
-As seen in @fig-valence-arousal, the relationship is distinctly non-linear. The "U-shape" (or boomerang) indicates that neutral words (Valence \~5) have the lowest arousal, while both highly positive and highly negative words trigger high arousal.
+@fig-valence-arousal visualizes the relationship between Valence and Arousal. We observe a distinct U-shaped (or boomerang) relationship. Words that are highly unpleasant (Valence < 3) and highly pleasant (Valence > 7) both correlate with high Arousal. It is the "neutral" words (Valence ~5) that are the least arousing.
+
+This suggests that emotional neutrality is synonymous with calmness, while strong emotion—regardless of whether it is good or bad—is inherently intense.
 
 ```{r}
 #| echo: false
 #| label: fig-valence-arousal
-#| fig-cap: "Relationship between Valence and Arousal. The blue line represents a LOESS smoother, highlighting the U-shaped relationship."
-
+#| fig-cap: "The 'Boomerang' Effect: Relationship between Valence and Arousal. The curve (LOESS smoothing) highlights that arousal is lowest for neutral words and increases at emotional extremes."
 ggplot(affective_data, aes(x = V.Mean.Sum, y = A.Mean.Sum)) +
-  # Use low alpha to handle overplotting of 13k points
   geom_point(alpha = 0.1, color = "darkgray") +
-  geom_smooth(method = "loess", color = "steelblue", se = FALSE) +
+  geom_smooth(method = "loess", color = "steelblue", se = FALSE, size = 1.2) +
+  annotate("text", x = 2, y = 7, label = "High Arousal\nNegative", color = "steelblue") +
+  annotate("text", x = 8, y = 7, label = "High Arousal\nPositive", color = "steelblue") +
+  annotate("text", x = 5, y = 3, label = "Low Arousal\nNeutral", color = "steelblue") +
   labs(
     x = "Valence (Pleasantness)",
     y = "Arousal (Intensity)"
@@ -109,15 +151,15 @@ ggplot(affective_data, aes(x = V.Mean.Sum, y = A.Mean.Sum)) +
   theme_minimal()
 ```
 
-### 4\. Demographic Analysis: Male vs. Female
-A key part of this project is understanding if men and women perceive words differently. I separated the data into three groups: Overall Average, Male Ratings, and Female Ratings to compare their distributions.
+### Demographic Analysis: The Gender Gap in Perception
+A critical component of the Warriner et al. dataset is the segmentation of raters by gender. Do men and women perceive concepts differently?
 
 #### Distribution Comparison
 In @fig-gender-hist, I overlaid the density distributions to examine how men and women utilize the 1-9 rating scale differently.
 
-* **Arousal:** This dimension displays the most distinct gender difference. The **Male distribution (blue)** is shifted noticeably to the right compared to the **Female distribution (pink)**. This indicates that men generally rated words as having higher intensity (arousal) than women did, while women utilized the lower end of the arousal scale more frequently.
-* **Dominance:** The distributions for Dominance are nearly identical, showing a high degree of overlap. This suggests that men and women share a very similar sense of "control" (or lack thereof) regarding these words, peaking around a moderately high score of 6.
-* **Valence:** The Valence distributions also show strong consistency between genders. Both groups follow the general trend of the "Overall" average, peaking in the positive range (around 5-6), though the Female distribution appears slightly more concentrated around the peak than the Male distribution.
+* **Similarities (Valence & Dominance)**: The distributions for Valence and Dominance show a high degree of overlap between genders. Both groups follow the same general trends, peaking at the same points. This suggests that men and women share a very similar distinct sense of what is "pleasant" and what represents "control."
+
+* **The Divergence (Arousal)**: The most distinct gender difference appears in Arousal. The Male distribution is shifted noticeably to the right compared to the Female distribution. This indicates a systematic difference: men generally rate words as having higher intensity (arousal) than women do, while women utilize the lower end of the arousal scale more frequently.
 
 <!-- end list -->
 
@@ -156,13 +198,7 @@ ggplot(gender_long, aes(x = Rating, color = Group, fill = Group)) +
   theme_minimal()
 ```
 
-A key part of this project is understanding if men and women perceive words differently. I compared the mean ratings for Males vs. Females across all three dimensions.
-
-In @fig-gender, the solid black line represents the **Identity Line** ($y=x$).
-
-  * Points lying **on the line** indicate perfect agreement.
-  * Points **above** the line indicate Females rated the word higher.
-  * Points **below** the line indicate Males rated the word higher.
+To further quantify this divergence, I compared the mean ratings for Males vs. Females directly. In @fig-gender, the solid black line represents the Identity Line ($y=x$), where points would fall if genders agreed perfectly.
 
 **Findings:**
 
@@ -196,6 +232,8 @@ ggplot(gender_comp, aes(x = Male, y = Female)) +
   coord_fixed() # Ensures the aspect ratio is square so the line is 45 degrees
 ```
 
+#### Divergence in Arousal
+As is discussed 
 
 ## Conclusions
 
