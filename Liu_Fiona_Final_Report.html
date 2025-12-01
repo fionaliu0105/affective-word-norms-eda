@@ -2313,15 +2313,19 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-source-quality" id="toc-data-source-quality" class="nav-link active" data-scroll-target="#data-source-quality">1. Data Source &amp; Quality</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#data-overview-quality" id="toc-data-overview-quality" class="nav-link" data-scroll-target="#data-overview-quality">Data Overview &amp; Quality</a></li>
+  <li><a href="#explorations" id="toc-explorations" class="nav-link" data-scroll-target="#explorations">Explorations</a>
+  <ul>
   <li><a href="#univariate-analysis-distributions" id="toc-univariate-analysis-distributions" class="nav-link" data-scroll-target="#univariate-analysis-distributions">2. Univariate Analysis: Distributions</a></li>
   <li><a href="#bivariate-analysis-the-u-shape" id="toc-bivariate-analysis-the-u-shape" class="nav-link" data-scroll-target="#bivariate-analysis-the-u-shape">3. Bivariate Analysis: The “U-Shape”</a></li>
   <li><a href="#demographic-analysis-male-vs.-female" id="toc-demographic-analysis-male-vs.-female" class="nav-link" data-scroll-target="#demographic-analysis-male-vs.-female">4. Demographic Analysis: Male vs. Female</a>
-  <ul>
+  <ul class="collapse">
   <li><a href="#distribution-comparison" id="toc-distribution-comparison" class="nav-link" data-scroll-target="#distribution-comparison">Distribution Comparison</a></li>
   </ul></li>
-  <li><a href="#summary-of-progress" id="toc-summary-of-progress" class="nav-link" data-scroll-target="#summary-of-progress">5. Summary of Progress</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">6. Next Steps</a></li>
+  </ul></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
 </div>
@@ -2375,13 +2379,18 @@ Data Science 1 with R (STAT 301-1)</div><p></p>
 <p><a href="https://github.com/stat301-1-2025-fall/final-project-1-fionaliu0105">Fiona’s Github</a></p>
 </div>
 </div>
-<section id="data-source-quality" class="level2">
-<h2 class="anchored" data-anchor-id="data-source-quality">1. Data Source &amp; Quality</h2>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</section>
+<section id="data-overview-quality" class="level2">
+<h2 class="anchored" data-anchor-id="data-overview-quality">Data Overview &amp; Quality</h2>
 <p>The dataset consists of 13,915 English lemmas rated on <strong>Valence</strong> (pleasantness), <strong>Arousal</strong> (intensity), and <strong>Dominance</strong> (control). The data source is Warriner et al. (2013).</p>
 <p>As noted in the previous memo, the data is high quality. There are no missing values in the primary columns. The scope of this progress memo is to demonstrate the completion of the initial Exploratory Data Analysis (EDA), specifically regarding univariate distributions, variable relationships, and demographic comparisons.</p>
 </section>
-<section id="univariate-analysis-distributions" class="level2">
-<h2 class="anchored" data-anchor-id="univariate-analysis-distributions">2. Univariate Analysis: Distributions</h2>
+<section id="explorations" class="level2">
+<h2 class="anchored" data-anchor-id="explorations">Explorations</h2>
+<section id="univariate-analysis-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="univariate-analysis-distributions">2. Univariate Analysis: Distributions</h3>
 <p>My first objective was to understand the shape of the three main emotional dimensions. Do they follow similar patterns?</p>
 <p><a href="#fig-distributions" class="quarto-xref">Figure 1</a> displays the distributions for Valence, Arousal, and Dominance side-by-side.</p>
 <ul>
@@ -2405,8 +2414,8 @@ Figure 1: Distributions of the three affective dimensions. Valence is bell-shap
 </div>
 </div>
 </section>
-<section id="bivariate-analysis-the-u-shape" class="level2">
-<h2 class="anchored" data-anchor-id="bivariate-analysis-the-u-shape">3. Bivariate Analysis: The “U-Shape”</h2>
+<section id="bivariate-analysis-the-u-shape" class="level3">
+<h3 class="anchored" data-anchor-id="bivariate-analysis-the-u-shape">3. Bivariate Analysis: The “U-Shape”</h3>
 <p>My second guiding curiosity was confirming the relationship between <strong>Valence</strong> and <strong>Arousal</strong>.</p>
 <p>As seen in <a href="#fig-valence-arousal" class="quarto-xref">Figure 2</a>, the relationship is distinctly non-linear. The “U-shape” (or boomerang) indicates that neutral words (Valence ~5) have the lowest arousal, while both highly positive and highly negative words trigger high arousal.</p>
 <div class="cell">
@@ -2424,11 +2433,11 @@ Figure 2: Relationship between Valence and Arousal. The blue line represents a 
 </div>
 </div>
 </section>
-<section id="demographic-analysis-male-vs.-female" class="level2">
-<h2 class="anchored" data-anchor-id="demographic-analysis-male-vs.-female">4. Demographic Analysis: Male vs. Female</h2>
+<section id="demographic-analysis-male-vs.-female" class="level3">
+<h3 class="anchored" data-anchor-id="demographic-analysis-male-vs.-female">4. Demographic Analysis: Male vs. Female</h3>
 <p>A key part of this project is understanding if men and women perceive words differently. I separated the data into three groups: Overall Average, Male Ratings, and Female Ratings to compare their distributions.</p>
-<section id="distribution-comparison" class="level3">
-<h3 class="anchored" data-anchor-id="distribution-comparison">Distribution Comparison</h3>
+<section id="distribution-comparison" class="level4">
+<h4 class="anchored" data-anchor-id="distribution-comparison">Distribution Comparison</h4>
 <p>In <a href="#fig-gender-hist" class="quarto-xref">Figure 3</a>, I overlaid the density distributions to examine how men and women utilize the 1-9 rating scale differently.</p>
 <ul>
 <li><strong>Arousal:</strong> This dimension displays the most distinct gender difference. The <strong>Male distribution (blue)</strong> is shifted noticeably to the right compared to the <strong>Female distribution (pink)</strong>. This indicates that men generally rated words as having higher intensity (arousal) than women did, while women utilized the lower end of the arousal scale more frequently.</li>
@@ -2479,25 +2488,12 @@ Figure 4: Comparison of Mean Ratings by Gender. The line represents perfect agr
 </div>
 </section>
 </section>
-<section id="summary-of-progress" class="level2">
-<h2 class="anchored" data-anchor-id="summary-of-progress">5. Summary of Progress</h2>
-<p>Since the submission of Progress Memo 1, I have made significant strides in understanding the structure and relationships within the affective norms dataset. My progress can be summarized as follows:</p>
-<ul>
-<li><strong>Data Readiness:</strong> The dataset is fully loaded, cleaned, and validated. No missing values or major formatting issues were found, allowing for immediate analysis.</li>
-<li><strong>Univariate Insights:</strong> I have established the baseline distributions for all three dimensions. Key findings indicate that while the English lexicon leans slightly positive (Valence), it is predominantly composed of “calm” or low-arousal words.</li>
-<li><strong>Relationship Confirmation:</strong> I successfully replicated the well-known “U-shaped” relationship between Valence and Arousal, confirming that linguistic intensity increases at both the positive and negative extremes of pleasantness.</li>
-<li><strong>Demographic Discovery:</strong> By breaking down the data by gender, I uncovered a specific divergence in <strong>Arousal</strong>. While men and women largely agree on how pleasant or controlling a word is, men tend to rate words with consistently higher intensity scores than women.</li>
-</ul>
 </section>
-<section id="next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="next-steps">6. Next Steps</h2>
-<p>Having completed the core visualizations for distributions and demographics, my next steps for the final report will be:</p>
-<ol type="1">
-<li><strong>Linguistic Suffix Analysis:</strong> I will use <code>stringr</code> to detect grammatical patterns (e.g., verbs ending in “-ize” vs. nouns ending in “-tion”) to see if word type influences the Dominance rating.</li>
-<li><strong>Standard Deviation Analysis:</strong> I plan to investigate the “ambiguity” of words. I will plot the Mean scores against the Standard Deviation to see if neutral words generally have higher disagreement among raters.</li>
-<li><strong>Specific Word Queries:</strong> I will identify the specific outliers in <a href="#fig-gender" class="quarto-xref">Figure 4</a> (the Dominance plot) to see exactly <em>which</em> words men and women disagree on most.</li>
-</ol>
-<!-- end list -->
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
 </section>
 
 </main>

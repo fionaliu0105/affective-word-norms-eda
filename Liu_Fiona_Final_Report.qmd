@@ -45,13 +45,16 @@ library(patchwork)
 affective_data <- read_csv("data/BRM-emot-submit.csv")
 ```
 
-## 1\. Data Source & Quality
+## Introduction
+
+## Data Overview & Quality
 
 The dataset consists of 13,915 English lemmas rated on **Valence** (pleasantness), **Arousal** (intensity), and **Dominance** (control). The data source is Warriner et al. (2013).
 
 As noted in the previous memo, the data is high quality. There are no missing values in the primary columns. The scope of this progress memo is to demonstrate the completion of the initial Exploratory Data Analysis (EDA), specifically regarding univariate distributions, variable relationships, and demographic comparisons.
 
-## 2\. Univariate Analysis: Distributions
+## Explorations
+### 2\. Univariate Analysis: Distributions
 
 My first objective was to understand the shape of the three main emotional dimensions. Do they follow similar patterns?
 
@@ -84,7 +87,7 @@ ggplot(long_dims, aes(x = Rating, fill = Dimension)) +
   theme_minimal()
 ```
 
-## 3\. Bivariate Analysis: The "U-Shape"
+### 3\. Bivariate Analysis: The "U-Shape"
 
 My second guiding curiosity was confirming the relationship between **Valence** and **Arousal**.
 
@@ -106,10 +109,10 @@ ggplot(affective_data, aes(x = V.Mean.Sum, y = A.Mean.Sum)) +
   theme_minimal()
 ```
 
-## 4\. Demographic Analysis: Male vs. Female
+### 4\. Demographic Analysis: Male vs. Female
 A key part of this project is understanding if men and women perceive words differently. I separated the data into three groups: Overall Average, Male Ratings, and Female Ratings to compare their distributions.
 
-### Distribution Comparison
+#### Distribution Comparison
 In @fig-gender-hist, I overlaid the density distributions to examine how men and women utilize the 1-9 rating scale differently.
 
 * **Arousal:** This dimension displays the most distinct gender difference. The **Male distribution (blue)** is shifted noticeably to the right compared to the **Female distribution (pink)**. This indicates that men generally rated words as having higher intensity (arousal) than women did, while women utilized the lower end of the arousal scale more frequently.
@@ -194,23 +197,7 @@ ggplot(gender_comp, aes(x = Male, y = Female)) +
 ```
 
 
-## 5. Summary of Progress
+## Conclusions
 
-Since the submission of Progress Memo 1, I have made significant strides in understanding the structure and relationships within the affective norms dataset. My progress can be summarized as follows:
-
-* **Data Readiness:** The dataset is fully loaded, cleaned, and validated. No missing values or major formatting issues were found, allowing for immediate analysis.
-* **Univariate Insights:** I have established the baseline distributions for all three dimensions. Key findings indicate that while the English lexicon leans slightly positive (Valence), it is predominantly composed of "calm" or low-arousal words.
-* **Relationship Confirmation:** I successfully replicated the well-known "U-shaped" relationship between Valence and Arousal, confirming that linguistic intensity increases at both the positive and negative extremes of pleasantness.
-* **Demographic Discovery:** By breaking down the data by gender, I uncovered a specific divergence in **Arousal**. While men and women largely agree on how pleasant or controlling a word is, men tend to rate words with consistently higher intensity scores than women.
-
-## 6. Next Steps
-
-Having completed the core visualizations for distributions and demographics, my next steps for the final report will be:
-
-
-1.  **Linguistic Suffix Analysis:** I will use `stringr` to detect grammatical patterns (e.g., verbs ending in "-ize" vs. nouns ending in "-tion") to see if word type influences the Dominance rating.
-2.  **Standard Deviation Analysis:** I plan to investigate the "ambiguity" of words. I will plot the Mean scores against the Standard Deviation to see if neutral words generally have higher disagreement among raters.
-3.  **Specific Word Queries:** I will identify the specific outliers in @fig-gender (the Dominance plot) to see exactly *which* words men and women disagree on most.
-
-<!-- end list -->
+## References
 
