@@ -1,0 +1,216 @@
+---
+title: "Progress Memo 2"
+subtitle: |
+  | Final Project 
+  | Data Science 1 with R (STAT 301-1)
+author: "Fiona Liu"
+pagetitle: "PM1 Fiona Liu"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    toc-location: left
+    embed-resources: true
+    link-external-newwindow: true
+execute:
+  warning: false
+from: markdown+emoji
+reference-location: margin
+citation-location: margin
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+
+::: {.callout-tip icon=false}
+
+## Github Repo Link
+
+[Fiona's Github](https://github.com/stat301-1-2025-fall/final-project-1-fionaliu0105)
+
+:::
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(knitr)
+library(gt)
+library(patchwork)
+
+affective_data <- read_csv("data/BRM-emot-submit.csv")
+```
+
+## 1\. Data Source & Quality
+
+The dataset consists of 13,915 English lemmas rated on **Valence** (pleasantness), **Arousal** (intensity), and **Dominance** (control). The data source is Warriner et al. (2013).
+
+As noted in the previous memo, the data is high quality. There are no missing values in the primary columns. The scope of this progress memo is to demonstrate the completion of the initial Exploratory Data Analysis (EDA), specifically regarding univariate distributions, variable relationships, and demographic comparisons.
+
+## 2\. Univariate Analysis: Distributions
+
+My first objective was to understand the shape of the three main emotional dimensions. Do they follow similar patterns?
+
+@fig-distributions displays the distributions for Valence, Arousal, and Dominance side-by-side.
+
+* **Arousal (Blue):** This distribution is **right-skewed**. The peak is concentrated at the lower end of the scale (between 3 and 4), indicating that the majority of words in the English lexicon are perceived as relatively "calm" or low-intensity. High-excitement words are comparatively rare.
+* **Dominance (Red):** This distribution is the most "peaked" (leptokurtic) and is centered slightly above the neutral mark (around 5.5). This suggests that for most words, participants feel a moderate to high sense of control.
+* **Valence (Green):** This shows the most variation. While roughly bell-shaped, it is centered slightly on the positive side (above 5). This aligns with the "Pollyanna Principle" in linguistics, where languages tend to contain more positive words than negative ones.
+
+<!-- end list -->
+
+```{r}
+#| echo: false
+#| label: fig-distributions
+#| fig-cap: "Distributions of the three affective dimensions. Valence is bell-shaped, while Arousal and Dominance show slight skew."
+
+# Pivot data longer to use facet_wrap
+long_dims <- affective_data |> 
+  select(Valence = V.Mean.Sum, Arousal = A.Mean.Sum, Dominance = D.Mean.Sum) |> 
+  pivot_longer(cols = everything(), names_to = "Dimension", values_to = "Rating")
+
+ggplot(long_dims, aes(x = Rating, fill = Dimension)) +
+  geom_histogram(binwidth = 0.25, color = "white", show.legend = FALSE) +
+  facet_wrap(~Dimension, scales = "free_y") +
+  scale_fill_manual(values = c("steelblue2", "red3", "violet")) +
+  labs(
+    x = "Mean Rating (1-9 Scale)",
+    y = "Count of Words"
+  ) +
+  theme_minimal()
+```
+
+## 3\. Bivariate Analysis: The "U-Shape"
+
+My second guiding curiosity was confirming the relationship between **Valence** and **Arousal**.
+
+As seen in @fig-valence-arousal, the relationship is distinctly non-linear. The "U-shape" (or boomerang) indicates that neutral words (Valence \~5) have the lowest arousal, while both highly positive and highly negative words trigger high arousal.
+
+```{r}
+#| echo: false
+#| label: fig-valence-arousal
+#| fig-cap: "Relationship between Valence and Arousal. The blue line represents a LOESS smoother, highlighting the U-shaped relationship."
+
+ggplot(affective_data, aes(x = V.Mean.Sum, y = A.Mean.Sum)) +
+  # Use low alpha to handle overplotting of 13k points
+  geom_point(alpha = 0.1, color = "darkgray") +
+  geom_smooth(method = "loess", color = "steelblue", se = FALSE) +
+  labs(
+    x = "Valence (Pleasantness)",
+    y = "Arousal (Intensity)"
+  ) +
+  theme_minimal()
+```
+
+## 4\. Demographic Analysis: Male vs. Female
+A key part of this project is understanding if men and women perceive words differently. I separated the data into three groups: Overall Average, Male Ratings, and Female Ratings to compare their distributions.
+
+### Distribution Comparison
+In @fig-gender-hist, I overlaid the density distributions to examine how men and women utilize the 1-9 rating scale differently.
+
+* **Arousal:** This dimension displays the most distinct gender difference. The **Male distribution (blue)** is shifted noticeably to the right compared to the **Female distribution (pink)**. This indicates that men generally rated words as having higher intensity (arousal) than women did, while women utilized the lower end of the arousal scale more frequently.
+* **Dominance:** The distributions for Dominance are nearly identical, showing a high degree of overlap. This suggests that men and women share a very similar sense of "control" (or lack thereof) regarding these words, peaking around a moderately high score of 6.
+* **Valence:** The Valence distributions also show strong consistency between genders. Both groups follow the general trend of the "Overall" average, peaking in the positive range (around 5-6), though the Female distribution appears slightly more concentrated around the peak than the Male distribution.
+
+<!-- end list -->
+
+```{r}
+#| echo: false
+#| label: fig-gender-hist
+#| fig-cap: "Density Comparison: Male vs. Female vs. Overall Average across all dimensions."
+
+gender_long <- affective_data |> 
+  select(
+    Word,
+    Valence_Overall = V.Mean.Sum, Valence_Male = V.Mean.M, Valence_Female = V.Mean.F,
+
+    Arousal_Overall = A.Mean.Sum, Arousal_Male = A.Mean.M, Arousal_Female = A.Mean.F,
+
+    Dominance_Overall = D.Mean.Sum, Dominance_Male = D.Mean.M, Dominance_Female = D.Mean.F
+  ) |> 
+
+  pivot_longer(
+    cols = -Word,
+    names_to = c("Dimension", "Group"),
+    names_sep = "_", 
+    values_to = "Rating"
+  )
+
+ggplot(gender_long, aes(x = Rating, color = Group, fill = Group)) +
+  geom_density(alpha = 0.3) +
+  facet_wrap(~Dimension, scales = "free_y", ncol = 1) +
+  scale_color_manual(values = c("Female" = "violet", "Male" = "steelblue2", "Overall" = "grey50")) +
+  scale_fill_manual(values = c("Female" = "violet", "Male" = "steelblue2", "Overall" = "gray")) +
+  labs(
+    x = "Rating Score (1-9)",
+    y = "Density",
+    title = "Rating Distributions by Gender"
+  ) +
+  theme_minimal()
+```
+
+A key part of this project is understanding if men and women perceive words differently. I compared the mean ratings for Males vs. Females across all three dimensions.
+
+In @fig-gender, the solid black line represents the **Identity Line** ($y=x$).
+
+  * Points lying **on the line** indicate perfect agreement.
+  * Points **above** the line indicate Females rated the word higher.
+  * Points **below** the line indicate Males rated the word higher.
+
+**Findings:**
+
+1.  **Valence & Arousal:** There is very high agreement (tight clustering around the line).
+2.  **Dominance:** There is noticeable divergence. The cloud of points shifts slightly, suggesting subtle gender differences in how "control" is perceived for certain concepts.
+
+<!-- end list -->
+
+```{r}
+#| echo: false
+#| label: fig-gender
+#| fig-height: 4
+#| fig-cap: "Comparison of Mean Ratings by Gender. The line represents perfect agreement (y=x)."
+
+# Create a combined dataset for faceting
+gender_comp <- bind_rows(
+  affective_data |> select(Male = V.Mean.M, Female = V.Mean.F) |> mutate(Dimension = "Valence"),
+  affective_data |> select(Male = A.Mean.M, Female = A.Mean.F) |> mutate(Dimension = "Arousal"),
+  affective_data |> select(Male = D.Mean.M, Female = D.Mean.F) |> mutate(Dimension = "Dominance")
+)
+
+ggplot(gender_comp, aes(x = Male, y = Female)) +
+  geom_point(alpha = 0.05, color = "steelblue2") +
+  geom_abline(slope = 1, intercept = 0, color = "black", size = 0.5) +
+  facet_wrap(~Dimension) +
+  labs(
+    x = "Male Mean Rating",
+    y = "Female Mean Rating"
+  ) +
+  theme_minimal() +
+  coord_fixed() # Ensures the aspect ratio is square so the line is 45 degrees
+```
+
+
+## 5. Summary of Progress
+
+Since the submission of Progress Memo 1, I have made significant strides in understanding the structure and relationships within the affective norms dataset. My progress can be summarized as follows:
+
+* **Data Readiness:** The dataset is fully loaded, cleaned, and validated. No missing values or major formatting issues were found, allowing for immediate analysis.
+* **Univariate Insights:** I have established the baseline distributions for all three dimensions. Key findings indicate that while the English lexicon leans slightly positive (Valence), it is predominantly composed of "calm" or low-arousal words.
+* **Relationship Confirmation:** I successfully replicated the well-known "U-shaped" relationship between Valence and Arousal, confirming that linguistic intensity increases at both the positive and negative extremes of pleasantness.
+* **Demographic Discovery:** By breaking down the data by gender, I uncovered a specific divergence in **Arousal**. While men and women largely agree on how pleasant or controlling a word is, men tend to rate words with consistently higher intensity scores than women.
+
+## 6. Next Steps
+
+Having completed the core visualizations for distributions and demographics, my next steps for the final report will be:
+
+
+1.  **Linguistic Suffix Analysis:** I will use `stringr` to detect grammatical patterns (e.g., verbs ending in "-ize" vs. nouns ending in "-tion") to see if word type influences the Dominance rating.
+2.  **Standard Deviation Analysis:** I plan to investigate the "ambiguity" of words. I will plot the Mean scores against the Standard Deviation to see if neutral words generally have higher disagreement among raters.
+3.  **Specific Word Queries:** I will identify the specific outliers in @fig-gender (the Dominance plot) to see exactly *which* words men and women disagree on most.
+
+<!-- end list -->
+
