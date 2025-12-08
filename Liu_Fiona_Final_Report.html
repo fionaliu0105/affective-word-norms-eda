@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -2322,6 +2357,7 @@ window.Quarto = {
   <li><a href="#demographic-analysis-the-gender-gap-in-perception" id="toc-demographic-analysis-the-gender-gap-in-perception" class="nav-link" data-scroll-target="#demographic-analysis-the-gender-gap-in-perception">Demographic Analysis: The Gender Gap in Perception</a>
   <ul class="collapse">
   <li><a href="#distribution-comparison" id="toc-distribution-comparison" class="nav-link" data-scroll-target="#distribution-comparison">Distribution Comparison</a></li>
+  <li><a href="#identification-of-disagreement" id="toc-identification-of-disagreement" class="nav-link" data-scroll-target="#identification-of-disagreement">Identification of Disagreement</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
@@ -2402,20 +2438,20 @@ Table 1: Summary Statistics of Emotional Dimensions (Scale 1-9)
 </figcaption>
 <div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="znajyaundq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#znajyaundq table {
+<div id="zpifkevbyg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zpifkevbyg table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#znajyaundq thead, #znajyaundq tbody, #znajyaundq tfoot, #znajyaundq tr, #znajyaundq td, #znajyaundq th {
+#zpifkevbyg thead, #zpifkevbyg tbody, #zpifkevbyg tfoot, #zpifkevbyg tr, #zpifkevbyg td, #zpifkevbyg th {
 border-style: none;
 }
-#znajyaundq p {
+#zpifkevbyg p {
 margin: 0;
 padding: 0;
 }
-#znajyaundq .gt_table {
+#zpifkevbyg .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -2440,11 +2476,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#znajyaundq .gt_caption {
+#zpifkevbyg .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#znajyaundq .gt_title {
+#zpifkevbyg .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -2455,7 +2491,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#znajyaundq .gt_subtitle {
+#zpifkevbyg .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -2466,7 +2502,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#znajyaundq .gt_heading {
+#zpifkevbyg .gt_heading {
 background-color: #FFFFFF;
 text-align: left;
 border-bottom-color: #FFFFFF;
@@ -2477,12 +2513,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#znajyaundq .gt_bottom_border {
+#zpifkevbyg .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#znajyaundq .gt_col_headings {
+#zpifkevbyg .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2496,7 +2532,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#znajyaundq .gt_col_heading {
+#zpifkevbyg .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2515,7 +2551,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#znajyaundq .gt_column_spanner_outer {
+#zpifkevbyg .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2526,13 +2562,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#znajyaundq .gt_column_spanner_outer:first-child {
+#zpifkevbyg .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#znajyaundq .gt_column_spanner_outer:last-child {
+#zpifkevbyg .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#znajyaundq .gt_column_spanner {
+#zpifkevbyg .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -2543,10 +2579,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#znajyaundq .gt_spanner_row {
+#zpifkevbyg .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#znajyaundq .gt_group_heading {
+#zpifkevbyg .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2571,7 +2607,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#znajyaundq .gt_empty_group_heading {
+#zpifkevbyg .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -2585,13 +2621,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#znajyaundq .gt_from_md > :first-child {
+#zpifkevbyg .gt_from_md > :first-child {
 margin-top: 0;
 }
-#znajyaundq .gt_from_md > :last-child {
+#zpifkevbyg .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#znajyaundq .gt_row {
+#zpifkevbyg .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2609,7 +2645,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#znajyaundq .gt_stub {
+#zpifkevbyg .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2621,7 +2657,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#znajyaundq .gt_stub_row_group {
+#zpifkevbyg .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2634,13 +2670,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#znajyaundq .gt_row_group_first td {
+#zpifkevbyg .gt_row_group_first td {
 border-top-width: 2px;
 }
-#znajyaundq .gt_row_group_first th {
+#zpifkevbyg .gt_row_group_first th {
 border-top-width: 2px;
 }
-#znajyaundq .gt_summary_row {
+#zpifkevbyg .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2649,14 +2685,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#znajyaundq .gt_first_summary_row {
+#zpifkevbyg .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#znajyaundq .gt_first_summary_row.thick {
+#zpifkevbyg .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#znajyaundq .gt_last_summary_row {
+#zpifkevbyg .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2665,7 +2701,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#znajyaundq .gt_grand_summary_row {
+#zpifkevbyg .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2674,7 +2710,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#znajyaundq .gt_first_grand_summary_row {
+#zpifkevbyg .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2683,7 +2719,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#znajyaundq .gt_last_grand_summary_row_top {
+#zpifkevbyg .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2692,10 +2728,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#znajyaundq .gt_striped {
+#zpifkevbyg .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#znajyaundq .gt_table_body {
+#zpifkevbyg .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2703,7 +2739,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#znajyaundq .gt_footnotes {
+#zpifkevbyg .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2716,7 +2752,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#znajyaundq .gt_footnote {
+#zpifkevbyg .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -2724,7 +2760,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#znajyaundq .gt_sourcenotes {
+#zpifkevbyg .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2737,64 +2773,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#znajyaundq .gt_sourcenote {
+#zpifkevbyg .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#znajyaundq .gt_left {
+#zpifkevbyg .gt_left {
 text-align: left;
 }
-#znajyaundq .gt_center {
+#zpifkevbyg .gt_center {
 text-align: center;
 }
-#znajyaundq .gt_right {
+#zpifkevbyg .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#znajyaundq .gt_font_normal {
+#zpifkevbyg .gt_font_normal {
 font-weight: normal;
 }
-#znajyaundq .gt_font_bold {
+#zpifkevbyg .gt_font_bold {
 font-weight: bold;
 }
-#znajyaundq .gt_font_italic {
+#zpifkevbyg .gt_font_italic {
 font-style: italic;
 }
-#znajyaundq .gt_super {
+#zpifkevbyg .gt_super {
 font-size: 65%;
 }
-#znajyaundq .gt_footnote_marks {
+#zpifkevbyg .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#znajyaundq .gt_asterisk {
+#zpifkevbyg .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#znajyaundq .gt_indent_1 {
+#zpifkevbyg .gt_indent_1 {
 text-indent: 5px;
 }
-#znajyaundq .gt_indent_2 {
+#zpifkevbyg .gt_indent_2 {
 text-indent: 10px;
 }
-#znajyaundq .gt_indent_3 {
+#zpifkevbyg .gt_indent_3 {
 text-indent: 15px;
 }
-#znajyaundq .gt_indent_4 {
+#zpifkevbyg .gt_indent_4 {
 text-indent: 20px;
 }
-#znajyaundq .gt_indent_5 {
+#zpifkevbyg .gt_indent_5 {
 text-indent: 25px;
 }
-#znajyaundq .katex-display {
+#zpifkevbyg .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#znajyaundq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zpifkevbyg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -2939,6 +2975,521 @@ Figure 4: Comparison of Mean Ratings by Gender. The line represents perfect agr
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+</section>
+<section id="identification-of-disagreement" class="level4">
+<h4 class="anchored" data-anchor-id="identification-of-disagreement">Identification of Disagreement</h4>
+<p>To make this actionable, we can identify specific words where gender disagreement is highest. I calculated the difference between Male and Female arousal ratings (<code>Diff = Male - Female</code>).</p>
+<p><a href="#tbl-outliers" class="quarto-xref">Table 2</a> shows words where men felt significantly more “In Control” (Arousal) than women, and vice versa.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> affective_data <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Arousal_Diff =</span> A.Mean.M <span class="sc">-</span> A.Mean.F) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Word, <span class="at">Male_Rating =</span> A.Mean.M, <span class="at">Female_Rating =</span> A.Mean.F, <span class="at">Diff =</span> Arousal_Diff)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>top_male_arousal <span class="ot">&lt;-</span> outliers <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(Diff)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Category =</span> <span class="st">&quot;Men felt more intense&quot;</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>top_female_arousal <span class="ot">&lt;-</span> outliers <span class="sc">|&gt;</span> <span class="fu">arrange</span>(Diff) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Category =</span> <span class="st">&quot;Women felt more intense&quot;</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(top_male_arousal, top_female_arousal) <span class="sc">|&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">&quot;Category&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(Male_Rating, Female_Rating, Diff), <span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Male_Rating =</span> <span class="st">&quot;Male Score&quot;</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Female_Rating =</span> <span class="st">&quot;Female Score&quot;</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Diff =</span> <span class="st">&quot;Difference&quot;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">list</span>(<span class="fu">cell_fill</span>(<span class="at">color =</span> <span class="st">&quot;whitesmoke&quot;</span>), <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">&quot;bold&quot;</span>)),</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_row_groups</span>()</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tbl-outliers" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-outliers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 2: Top Words with Gender Disagreement in Arousal
+</figcaption>
+<div aria-describedby="tbl-outliers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="vitflikhec" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vitflikhec table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#vitflikhec thead, #vitflikhec tbody, #vitflikhec tfoot, #vitflikhec tr, #vitflikhec td, #vitflikhec th {
+border-style: none;
+}
+#vitflikhec p {
+margin: 0;
+padding: 0;
+}
+#vitflikhec .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#vitflikhec .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#vitflikhec .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#vitflikhec .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#vitflikhec .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#vitflikhec .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#vitflikhec .gt_col_headings {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#vitflikhec .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#vitflikhec .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#vitflikhec .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#vitflikhec .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#vitflikhec .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#vitflikhec .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#vitflikhec .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#vitflikhec .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#vitflikhec .gt_from_md > :first-child {
+margin-top: 0;
+}
+#vitflikhec .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#vitflikhec .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#vitflikhec .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#vitflikhec .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#vitflikhec .gt_row_group_first td {
+border-top-width: 2px;
+}
+#vitflikhec .gt_row_group_first th {
+border-top-width: 2px;
+}
+#vitflikhec .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#vitflikhec .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#vitflikhec .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#vitflikhec .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#vitflikhec .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#vitflikhec .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#vitflikhec .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#vitflikhec .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#vitflikhec .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#vitflikhec .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#vitflikhec .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#vitflikhec .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#vitflikhec .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#vitflikhec .gt_left {
+text-align: left;
+}
+#vitflikhec .gt_center {
+text-align: center;
+}
+#vitflikhec .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#vitflikhec .gt_font_normal {
+font-weight: normal;
+}
+#vitflikhec .gt_font_bold {
+font-weight: bold;
+}
+#vitflikhec .gt_font_italic {
+font-style: italic;
+}
+#vitflikhec .gt_super {
+font-size: 65%;
+}
+#vitflikhec .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#vitflikhec .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#vitflikhec .gt_indent_1 {
+text-indent: 5px;
+}
+#vitflikhec .gt_indent_2 {
+text-indent: 10px;
+}
+#vitflikhec .gt_indent_3 {
+text-indent: 15px;
+}
+#vitflikhec .gt_indent_4 {
+text-indent: 20px;
+}
+#vitflikhec .gt_indent_5 {
+text-indent: 25px;
+}
+#vitflikhec .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#vitflikhec div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Word" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Word</th>
+<th id="Male_Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Male Score</th>
+<th id="Female_Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Female Score</th>
+<th id="Diff" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Difference</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="4" id="Men felt more intense" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #F5F5F5; font-weight: bold" scope="colgroup">Men felt more intense</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="Men felt more intense  Word">musket</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Male_Rating">6.83</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Female_Rating">2.58</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Diff">4.25</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Men felt more intense  Word">oral</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Male_Rating">7.50</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Female_Rating">3.43</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Diff">4.07</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Men felt more intense  Word">nomad</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Male_Rating">6.17</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Female_Rating">2.17</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Diff">4.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Men felt more intense  Word">barmaid</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Male_Rating">6.78</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Female_Rating">2.82</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Diff">3.96</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Men felt more intense  Word">Jack Daniels</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Male_Rating">6.67</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Female_Rating">2.73</td>
+<td class="gt_row gt_right" headers="Men felt more intense  Diff">3.94</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="4" id="Women felt more intense" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #F5F5F5; font-weight: bold" scope="colgroup">Women felt more intense</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="Women felt more intense  Word">pop</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Male_Rating">1.80</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Female_Rating">5.38</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Diff">−3.58</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Women felt more intense  Word">seafood</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Male_Rating">2.70</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Female_Rating">6.00</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Diff">−3.30</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Women felt more intense  Word">toddler</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Male_Rating">2.73</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Female_Rating">6.00</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Diff">−3.27</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Women felt more intense  Word">gigolo</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Male_Rating">2.00</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Female_Rating">5.19</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Diff">−3.19</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Women felt more intense  Word">skinny</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Male_Rating">2.40</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Female_Rating">5.44</td>
+<td class="gt_row gt_right" headers="Women felt more intense  Diff">−3.04</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
 </div>
 </div>
 </section>

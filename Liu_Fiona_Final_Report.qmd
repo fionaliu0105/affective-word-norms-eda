@@ -232,6 +232,40 @@ ggplot(gender_comp, aes(x = Male, y = Female)) +
   theme_minimal() +
   coord_fixed() # Ensures the aspect ratio is square so the line is 45 degrees
 ```
+
+
+#### Identification of Disagreement
+To make this actionable, we can identify specific words where gender disagreement is highest. I calculated the difference between Male and Female arousal ratings (`Diff = Male - Female`).
+
+@tbl-outliers shows words where men felt significantly more "In Control" (Arousal) than women, and vice versa. 
+
+```{r}
+#| echo: false
+#| label: tbl-outliers
+#| tbl-cap: "Top Words with Gender Disagreement in Arousal"
+
+outliers <- affective_data |>
+  mutate(Arousal_Diff = A.Mean.M - A.Mean.F) |>
+  select(Word, Male_Rating = A.Mean.M, Female_Rating = A.Mean.F, Diff = Arousal_Diff)
+
+top_male_arousal <- outliers |> arrange(desc(Diff)) |> head(5) |> mutate(Category = "Men felt more intense")
+
+top_female_arousal <- outliers |> arrange(Diff) |> head(5) |> mutate(Category = "Women felt more intense")
+
+bind_rows(top_male_arousal, top_female_arousal) |>
+  gt(groupname_col = "Category") |>
+  fmt_number(columns = c(Male_Rating, Female_Rating, Diff), decimals = 2) |>
+  cols_label(
+    Male_Rating = "Male Score",
+    Female_Rating = "Female Score",
+    Diff = "Difference"
+  ) |>
+  tab_style(
+    style = list(cell_fill(color = "whitesmoke"), cell_text(weight = "bold")),
+    locations = cells_row_groups()
+  )
+```
+
 ## Conclusions
 
 ## References
