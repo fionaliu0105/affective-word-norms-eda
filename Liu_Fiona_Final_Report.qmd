@@ -202,8 +202,9 @@ To further quantify this divergence, I compared the mean ratings for Males vs. F
 
 **Findings:**
 
-1.  **Valence & Arousal:** There is very high agreement (tight clustering around the line).
-2.  **Dominance:** There is noticeable divergence. The cloud of points shifts slightly, suggesting subtle gender differences in how "control" is perceived for certain concepts.
+1. Valence & Dominance: These plots show tight clustering around the identity line, confirming that men and women largely agree on the pleasantness and dominance of words.
+
+2. Arousal: This plot confirms the trend seen in the density analysis. The cloud of points is shifted slightly below the line (towards the Male axis). This visual shift confirms that for the same word, the Male rating is consistently higher than the Female rating.
 
 <!-- end list -->
 
@@ -231,10 +232,6 @@ ggplot(gender_comp, aes(x = Male, y = Female)) +
   theme_minimal() +
   coord_fixed() # Ensures the aspect ratio is square so the line is 45 degrees
 ```
-
-#### Divergence in Arousal
-As is discussed 
-
 ## Conclusions
 
 ## References
