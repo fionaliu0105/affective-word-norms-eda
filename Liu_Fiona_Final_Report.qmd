@@ -126,6 +126,46 @@ ggplot(long_dims, aes(x = Rating, fill = Dimension)) +
   theme_minimal()
 ```
 
+### Correlation Analysis
+Before visualizing specific relationships, I examined the Pearson correlations among the three dimensions. As visualized in @fig-cor-heatmap, Valence and Dominance share a strong positive relationship ($r = 0.72$), indicated by the dark red square. In contrast, Arousal shows weak linear correlations with the other dimensions (lighter colors).
+
+```{r}
+#| echo: false
+#| label: fig-cor-heatmap
+#| fig-cap: "Heatmap of Pearson Correlations. Red indicates positive correlation; Blue indicates negative. The numbers represent the correlation coefficient (r)."
+
+cor_matrix <- affective_data |>
+  select(Valence = V.Mean.Sum, Arousal = A.Mean.Sum, Dominance = D.Mean.Sum) |>
+  cor()
+
+cor_long <- as.data.frame(cor_matrix) |>
+  rownames_to_column(var = "Dimension1") |>
+  pivot_longer(
+    cols = -Dimension1, 
+    names_to = "Dimension2", 
+    values_to = "Correlation"
+  )
+
+ggplot(cor_long, aes(x = Dimension1, y = Dimension2, fill = Correlation)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = round(Correlation, 2)), color = "black", size = 5) + 
+  scale_fill_gradient2(
+    low = "skyblue", 
+    mid = "white", 
+    high = "indianred2", 
+    midpoint = 0, 
+    limit = c(-1, 1),
+    name = "Pearson r"
+  ) +
+  labs(x = NULL, y = NULL) + 
+  theme_minimal() +
+  coord_fixed() + 
+  theme(
+    axis.text = element_text(size = 12, face = "bold"),
+    panel.grid = element_blank()
+  )
+```
+
 ### Bivariate Analysis: The "Boomerang" of Intensity
 
 How do pleasantness and intensity relate? One might hypothesize a linear relationship, but the data suggests a more complex dynamic.
