@@ -379,6 +379,10 @@ This exploratory analysis of the Warriner et al. dataset has effectively mapped 
 * **The Gender Gap in Intensity:** Perhaps the most significant finding was the systemic divergence in **Arousal**. While men and women largely agree on whether a word is pleasant (Valence) or controlling (Dominance), men consistently rate words as having higher intensity than women. This suggests a fundamental difference in how genders anchor their perception of excitement or alertness.
 * **The Grammar of Agency:** The linguistic analysis successfully linked grammatical form to emotional weight. By confirming that active verbs (ending in *-ize*) carry higher Dominance scores than abstract nouns (ending in *-tion*), we demonstrated that the structure of a word contributes to its perceived level of agency.
 
+**Limitations & Confounds:**
+
+It is important to acknowledge potential confounds in this analysis. First, the data relies on a North American sample, meaning the emotional ratings are culturally specific and may not generalize to other English-speaking populations (e.g., UK, Australia). Additionally, variables such as word familiarity and concreteness were not controlled for in this specific EDA; it is possible that abstract words generally receive lower dominance ratings regardless of their grammatical suffix.
+
 **Future Work:**
 While this project analyzed words in isolation (lemmas), language rarely exists without context. Future analyses could benefit from:
 
