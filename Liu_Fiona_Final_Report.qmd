@@ -214,7 +214,6 @@ To further quantify this divergence, I compared the mean ratings for Males vs. F
 #| fig-height: 4
 #| fig-cap: "Comparison of Mean Ratings by Gender. The line represents perfect agreement (y=x)."
 
-# Create a combined dataset for faceting
 gender_comp <- bind_rows(
   affective_data |> select(Male = V.Mean.M, Female = V.Mean.F) |> mutate(Dimension = "Valence"),
   affective_data |> select(Male = A.Mean.M, Female = A.Mean.F) |> mutate(Dimension = "Arousal"),
@@ -237,7 +236,7 @@ ggplot(gender_comp, aes(x = Male, y = Female)) +
 #### Identification of Disagreement
 To make this actionable, we can identify specific words where gender disagreement is highest. I calculated the difference between Male and Female arousal ratings (`Diff = Male - Female`).
 
-@tbl-outliers shows words where men felt significantly more "In Control" (Arousal) than women, and vice versa. 
+@tbl-outliers shows words where men felt significantly more intense (Arousal) than women, and vice versa. Notably, men found traditional "vice" or conflict-related words (musket, Jack Daniels) more arousing, while women reported higher intensity for words related to family and social dynamics (toddler, gigolo).
 
 ```{r}
 #| echo: false
@@ -266,7 +265,61 @@ bind_rows(top_male_arousal, top_female_arousal) |>
   )
 ```
 
-## Conclusions
+### Linguistic Analysis: The Grammar of Control
+Finally, I investigated if the grammatical form of a word influences its emotional weight. Specifically, I hypothesized that active verbs would carry a stronger sense of Dominance (Control) than abstract nouns, as verbs imply agency and action.
+
+I used regular expressions to tag words based on suffixes:
+
+- `"-tion"`: Typically abstract nouns (e.g., abstraction, notion).
+
+- `"-ize"`: Typically active verbs (e.g., terrorize, mobilize).
+
+@fig-suffixes compares the Dominance ratings for these two groups. The boxplot clearly shows that "-ize" verbs have a higher median Dominance rating than "-tion" nouns. This suggests that action-oriented language is perceived as having more agency and control than abstract state-of-being nouns.
+
+```{r}
+#| echo: false
+#| label: fig-suffixes
+#| fig-cap: "Dominance Ratings by Word Suffix. Verbs ending in '-ize' show higher median dominance than nouns ending in '-tion'."
+
+suffix_data <- affective_data |>
+  mutate(
+    Suffix = case_when(
+      str_detect(Word, "tion$") ~ "Nouns (-tion)",
+      str_detect(Word, "ize$") ~ "Verbs (-ize)",
+      TRUE ~ NA_character_
+    )
+  ) |>
+  filter(!is.na(Suffix))
+
+ggplot(suffix_data, aes(x = Suffix, y = D.Mean.Sum, fill = Suffix)) +
+  geom_boxplot(alpha = 0.7, show.legend = FALSE, outlier.shape = 1) +
+  scale_fill_manual(values = c("orange", "skyblue")) +
+  labs(
+    x = "Word Ending",
+    y = "Dominance Rating",
+    subtitle = "Comparing Abstract Nouns vs. Active Verbs"
+  ) +
+  theme_minimal()
+```
+
+
+## Conclusion
+
+This exploratory analysis of the Warriner et al. dataset has effectively mapped the emotional structure of the English lexicon, revealing that our perception of words is not random, but follows distinct psychological and linguistic patterns.
+
+**Key Insights:**
+
+* **The Shape of Emotion:** We confirmed the "Pollyanna Principle," observing that the English language is positively biased. However, we also established that emotional neutrality is synonymous with calmness; the "U-shaped" relationship between Valence and Arousal demonstrates that as words become more positive *or* more negative, they inherently become more intense.
+* **The Gender Gap in Intensity:** Perhaps the most significant finding was the systemic divergence in **Arousal**. While men and women largely agree on whether a word is pleasant (Valence) or controlling (Dominance), men consistently rate words as having higher intensity than women. This suggests a fundamental difference in how genders anchor their perception of excitement or alertness.
+* **The Grammar of Agency:** The linguistic analysis successfully linked grammatical form to emotional weight. By confirming that active verbs (ending in *-ize*) carry higher Dominance scores than abstract nouns (ending in *-tion*), we demonstrated that the structure of a word contributes to its perceived level of agency.
+
+**Future Work:**
+While this project analyzed words in isolation (lemmas), language rarely exists without context. Future analyses could benefit from:
+
+1.  **Contextual Sentiment Analysis:** Integrating this dictionary with natural language text (e.g., social media feeds or literature) to see if the gender gap in Arousal persists when words are used in full sentences.
+2.  **Part-of-Speech Expansion:** expanding the linguistic analysis beyond specific suffixes to compare all nouns, verbs, and adjectives to see if "part of speech" is a reliable predictor of Dominance.
+3.  **Ambiguity Analysis:** Investigating the standard deviations of the ratings to identify which words have the highest disagreement among all raters, regardless of gender.
 
 ## References
 
+Warriner, A. B., Kuperman, V., & Brysbaert, M. (2013). Norms of valence, arousal, and dominance for 13,915 English lemmas. *Behavior Research Methods*, 45(4), 1191–1207.
