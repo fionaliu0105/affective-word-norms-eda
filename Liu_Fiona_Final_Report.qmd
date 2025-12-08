@@ -197,6 +197,32 @@ ggplot(gender_long, aes(x = Rating, color = Group, fill = Group)) +
   ) +
   theme_minimal()
 ```
+To quantify this visual shift in Arousal, I calculated the aggregate mean difference between the groups. As seen in @tbl-gender-stats, men rated words on average 0.29 points higher on the intensity scale than women, a consistent systemic difference across the lexicon.
+```{r}
+#| echo: false
+#| label: tbl-gender-stats
+#| tbl-cap: "Aggregate Gender Difference in Arousal Ratings"
+
+affective_data |> 
+  summarise(
+    Mean_Male_Arousal = mean(A.Mean.M),
+    Mean_Female_Arousal = mean(A.Mean.F),
+    Difference = mean(A.Mean.M - A.Mean.F)
+  ) |>
+  gt() |>
+  fmt_number(columns = everything(), decimals = 2) |>
+  cols_label(
+    Mean_Male_Arousal = "Avg. Male Arousal",
+    Mean_Female_Arousal = "Avg. Female Arousal",
+    Difference = "Net Difference"
+  ) |>
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  )
+```
+
+
 
 To further quantify this divergence, I compared the mean ratings for Males vs. Females directly. In @fig-gender, the solid black line represents the Identity Line ($y=x$), where points would fall if genders agreed perfectly.
 
@@ -236,7 +262,7 @@ ggplot(gender_comp, aes(x = Male, y = Female)) +
 #### Identification of Disagreement
 To make this actionable, we can identify specific words where gender disagreement is highest. I calculated the difference between Male and Female arousal ratings (`Diff = Male - Female`).
 
-@tbl-outliers shows words where men felt significantly more intense (Arousal) than women, and vice versa. Notably, men found traditional "vice" or conflict-related words (musket, Jack Daniels) more arousing, while women reported higher intensity for words related to family and social dynamics (toddler, gigolo).
+@tbl-outliers shows words where men felt significantly more intense (Arousal) than women, and vice versa. Notably, men found traditional "vice" or conflict-related words (musket, Jack Daniels) more arousing, while women reported higher intensity for words related to family, social dynamics as well as stereotypical expectations for women (toddler, gigolo, skinny).
 
 ```{r}
 #| echo: false
