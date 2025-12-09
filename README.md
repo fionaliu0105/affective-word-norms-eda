@@ -8,13 +8,15 @@
 
 ### Project Overview
 
-This project is an Exploratory Data Analysis (EDA) of a large-scale psycholinguistic dataset containing emotional ratings for nearly 14,000 English words. The goal is to use R, specifically the `tidyverse` suite of tools (`ggplot2`, `dplyr`, `stringr`), to replicate key findings from cognitive science literature and uncover relationships between the grammatical forms of words and their emotional content.
+This project presents an Exploratory Data Analysis (EDA) of a large-scale psycholinguistic dataset containing emotional ratings for nearly 14,000 English words. Using R and the `tidyverse` suite, the analysis replicates well-established findings in affective science and explores new patterns related to gender, linguistic form, and the emotional structure of the English lexicon.
 
+The dataset includes human ratings—on a 1–9 scale—along three core emotional dimensions:
 The analysis focuses on three core emotional dimensions:
-* **Valence:** The pleasantness of a word (negative to positive).
+* **Valence:** The pleasantness of a word (unhappy to happy).
 * **Arousal:** The intensity of emotion evoked by a word (calm to excited).
-* **Dominance:** The degree of control associated with a word (submissive to dominant).
+* **Dominance:** The degree of control associated with a word (controlled to in control).
 
+The project examines how these dimensions interact, how perceptions differ by gender, and how grammatical form (e.g., suffixes) shapes emotional meaning.
 ### Dataset
 
 The data used in this project comes from Warriner et al. (2013). It contains affective norms for 13,915 English lemmas collected via crowdsourcing.
@@ -35,37 +37,65 @@ The data used in this project comes from Warriner et al. (2013). It contains aff
 | `Valence_M` | `V.Mean.M` | Mean valence rating from male participants. |
 | `Valence_F` | `V.Mean.F` | Mean valence rating from female participants. |
 
-### Key Analysis Goals
+### Key Questions Explored
 
-This project aims to explore the following questions:
+This analysis addresses the following research questions:
+	1.	Distributional Structure
+What are the shapes of the distributions for valence, arousal, and dominance?
+(Replicates the well-known “positivity bias.”)
+	
+	2.	Relationships Between Dimensions
+How do emotional dimensions relate?
+(Identifies the U-shaped association between valence and arousal.)
+	
+	3.	Gender Differences
+Do men and women rate the emotional intensity of words differently?
 
-1.  **Univariate Distributions:** What are the shapes of the distributions for valence, arousal, and dominance? (Replicating the "positivity bias").
+	4.	Disagreement and Ambiguity
+Which words show the most variability (high SD), indicating ambiguous emotional meaning?
 
-2.  **Bivariate Relationships:** How do these dimensions relate to one another? (Investigating the U-shaped relationship between valence and arousal).
+	5.	Linguistic Patterns
+Do grammatical suffixes (e.g., -tion vs. -ize) correspond to different dominance or agency ratings?
 
-3.  **Demographic Differences:** Do male and female participants rate certain categories of words (e.g., "taboo" words) differently?
+## Repository Structure
 
-4.  **Ambiguity & Agreement:** Which words have the highest disagreement (standard deviation) in their ratings?
+The project is organized as follows:
 
-5.  **Linguistic Analysis:** Do words with common noun suffixes (e.g., *-ment*) differ emotionally from words with common verb suffixes (e.g., *-ize*)?
+```plaintext
+project/
+│
+├── data/
+│   └── BRM-emot-submit.csv            # The Warriner et al. (2013) dataset
+│
+├── Liu_Fiona_Final_Report.qmd         # MAIN REPORT: Full EDA analysis code & narrative
+├── Liu_Fiona_Final_Report.html        # Rendered HTML of the main report
+│
+├── Liu_Fiona_Executive_Summary.qmd    # Standalone high-level summary of findings
+├── Liu_Fiona_Executive_Summary.html   # Rendered HTML of the executive summary
+│
+├── Liu_Fiona_progress_memo_2.qmd      # Progress update (Memo 2)
+├── Liu_Fiona_progress_memo_1_2.qmd    # Initial progress update (Memo 1)
+│
+├── 0_data_cleaning.r                  # Utility script for initial data checks
+├── .gitignore                         # Git configuration
+└── README.md                          # Project documentation (this file)
+```
 
-### Repository Structure
+## How to Reproduce
 
-* `data/`: Contains the raw data file (`BRM-emot-submit.csv`).
-* `plots/`: Folder for saved plots from the analysis (optional).
-* `Liu_Fiona_Final_Project.qmd`: Main Quarto analysis document.
-* `Liu_Fiona_Final_Project.html`: Rendered final report.
-* `Liu_Fiona_progress_memo_1.qmd`: Progress memo.
-* `README.md`: Project overview (this file).
+1.  **Clone this repository** to your local machine.
+2.  Open the project in **RStudio**.
+3.  Ensure the following packages are installed:
+    ```r
+    install.packages(c("tidyverse", "knitr", "gt", "patchwork"))
+    ```
+4.  Open `Liu_Fiona_Final_Report.qmd` and click **Render** to generate the full analysis.
 
-### Usage Needed to Run
 
-To replicate this analysis:
 
-1.  Clone this repository.
 
-2.  Ensure you have R and RStudio installed with the following packages: `tidyverse`, `knitr`, `skimr`.
 
-3.  Open `Liu_Fiona_Final_Project.qmd` in RStudio.
 
-4.  Render the file to HTML to view the full analysis and visualizations.
+
+
+

@@ -360,21 +360,21 @@ display: none;
 <p><strong>Final Project</strong></p>
 <div id="project-overview" class="section level3">
 <h3>Project Overview</h3>
-<p>This project is an Exploratory Data Analysis (EDA) of a large-scale
-psycholinguistic dataset containing emotional ratings for nearly 14,000
-English words. The goal is to use R, specifically the
-<code>tidyverse</code> suite of tools (<code>ggplot2</code>,
-<code>dplyr</code>, <code>stringr</code>), to replicate key findings
-from cognitive science literature and uncover relationships between the
-grammatical forms of words and their emotional content.</p>
-<p>The analysis focuses on three core emotional dimensions: *
-<strong>Valence:</strong> The pleasantness of a word (negative to
-positive). * <strong>Arousal:</strong> The intensity of emotion evoked
-by a word (calm to excited). * <strong>Dominance:</strong> The degree of
-control associated with a word (submissive to dominant).</p>
-</div>
-<div id="dataset" class="section level3">
-<h3>Dataset</h3>
+<p>This project presents an Exploratory Data Analysis (EDA) of a
+large-scale psycholinguistic dataset containing emotional ratings for
+nearly 14,000 English words. Using R and the <code>tidyverse</code>
+suite, the analysis replicates well-established findings in affective
+science and explores new patterns related to gender, linguistic form,
+and the emotional structure of the English lexicon.</p>
+<p>The dataset includes human ratings—on a 1–9 scale—along three core
+emotional dimensions: The analysis focuses on three core emotional
+dimensions: * <strong>Valence:</strong> The pleasantness of a word
+(unhappy to happy). * <strong>Arousal:</strong> The intensity of emotion
+evoked by a word (calm to excited). * <strong>Dominance:</strong> The
+degree of control associated with a word (controlled to in control).</p>
+<p>The project examines how these dimensions interact, how perceptions
+differ by gender, and how grammatical form (e.g., suffixes) shapes
+emotional meaning. ### Dataset</p>
 <p>The data used in this project comes from Warriner et al. (2013). It
 contains affective norms for 13,915 English lemmas collected via
 crowdsourcing.</p>
@@ -445,55 +445,57 @@ agreement).</td>
 </table>
 </div>
 </div>
-<div id="key-analysis-goals" class="section level3">
-<h3>Key Analysis Goals</h3>
-<p>This project aims to explore the following questions:</p>
+<div id="key-questions-explored" class="section level3">
+<h3>Key Questions Explored</h3>
+<p>This analysis addresses the following research questions: 1.
+Distributional Structure What are the shapes of the distributions for
+valence, arousal, and dominance? (Replicates the well-known “positivity
+bias.”)</p>
+<pre><code>2.  Relationships Between Dimensions</code></pre>
+<p>How do emotional dimensions relate? (Identifies the U-shaped
+association between valence and arousal.)</p>
+<pre><code>3.  Gender Differences</code></pre>
+<p>Do men and women rate the emotional intensity of words
+differently?</p>
+<pre><code>4.  Disagreement and Ambiguity</code></pre>
+<p>Which words show the most variability (high SD), indicating ambiguous
+emotional meaning?</p>
+<pre><code>5.  Linguistic Patterns</code></pre>
+<p>Do grammatical suffixes (e.g., -tion vs. -ize) correspond to
+different dominance or agency ratings?</p>
+</div>
+</div>
+<div id="repository-structure" class="section level2">
+<h2>Repository Structure</h2>
+<p>The project is organized as follows:</p>
+<pre class="plaintext"><code>project/
+│
+├── data/
+│   └── BRM-emot-submit.csv            # The Warriner et al. (2013) dataset
+│
+├── Liu_Fiona_Final_Report.qmd         # MAIN REPORT: Full EDA analysis code &amp; narrative
+├── Liu_Fiona_Final_Report.html        # Rendered HTML of the main report
+│
+├── Liu_Fiona_Executive_Summary.qmd    # Standalone high-level summary of findings
+├── Liu_Fiona_Executive_Summary.html   # Rendered HTML of the executive summary
+│
+├── Liu_Fiona_progress_memo_2.qmd      # Progress update (Memo 2)
+├── Liu_Fiona_progress_memo_1_2.qmd    # Initial progress update (Memo 1)
+│
+├── 0_data_cleaning.r                  # Utility script for initial data checks
+├── .gitignore                         # Git configuration
+└── README.md                          # Project documentation (this file)</code></pre>
+</div>
+<div id="how-to-reproduce" class="section level2">
+<h2>How to Reproduce</h2>
 <ol style="list-style-type: decimal">
-<li><p><strong>Univariate Distributions:</strong> What are the shapes of
-the distributions for valence, arousal, and dominance? (Replicating the
-“positivity bias”).</p></li>
-<li><p><strong>Bivariate Relationships:</strong> How do these dimensions
-relate to one another? (Investigating the U-shaped relationship between
-valence and arousal).</p></li>
-<li><p><strong>Demographic Differences:</strong> Do male and female
-participants rate certain categories of words (e.g., “taboo” words)
-differently?</p></li>
-<li><p><strong>Ambiguity &amp; Agreement:</strong> Which words have the
-highest disagreement (standard deviation) in their ratings?</p></li>
-<li><p><strong>Linguistic Analysis:</strong> Do words with common noun
-suffixes (e.g., <em>-ment</em>) differ emotionally from words with
-common verb suffixes (e.g., <em>-ize</em>)?</p></li>
+<li><strong>Clone this repository</strong> to your local machine.</li>
+<li>Open the project in <strong>RStudio</strong>.</li>
+<li>Ensure the following packages are installed:
+<code>r     install.packages(c(&quot;tidyverse&quot;, &quot;knitr&quot;, &quot;gt&quot;, &quot;patchwork&quot;))</code></li>
+<li>Open <code>Liu_Fiona_Final_Report.qmd</code> and click
+<strong>Render</strong> to generate the full analysis.</li>
 </ol>
-</div>
-<div id="repository-structure" class="section level3">
-<h3>Repository Structure</h3>
-<ul>
-<li><code>data/</code>: Contains the raw data file
-(<code>BRM-emot-submit.csv</code>).</li>
-<li><code>plots/</code>: Folder for saved plots from the analysis
-(optional).</li>
-<li><code>Liu_Fiona_Final_Project.qmd</code>: Main Quarto analysis
-document.</li>
-<li><code>Liu_Fiona_Final_Project.html</code>: Rendered final
-report.</li>
-<li><code>Liu_Fiona_progress_memo_1.qmd</code>: Progress memo.</li>
-<li><code>README.md</code>: Project overview (this file).</li>
-</ul>
-</div>
-<div id="usage-needed-to-run" class="section level3">
-<h3>Usage Needed to Run</h3>
-<p>To replicate this analysis:</p>
-<ol style="list-style-type: decimal">
-<li><p>Clone this repository.</p></li>
-<li><p>Ensure you have R and RStudio installed with the following
-packages: <code>tidyverse</code>, <code>knitr</code>,
-<code>skimr</code>.</p></li>
-<li><p>Open <code>Liu_Fiona_Final_Project.qmd</code> in
-RStudio.</p></li>
-<li><p>Render the file to HTML to view the full analysis and
-visualizations.</p></li>
-</ol>
-</div>
 </div>
 
 
