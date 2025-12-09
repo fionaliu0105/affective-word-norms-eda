@@ -100,8 +100,8 @@ My first objective was to understand the shape of the three main emotional dimen
 @fig-distributions displays the distributions for Valence, Arousal, and Dominance side-by-side.
 
 * **Arousal (Blue):** This distribution is **right-skewed**. The peak is concentrated at the lower end of the scale (between 3 and 4), indicating that the majority of words in the English lexicon are perceived as relatively "calm" or low-intensity. High-excitement words are comparatively rare.
-* **Dominance (Red):** This distribution is the most "peaked" (leptokurtic) and is centered slightly above the neutral mark (around 5.5). This suggests that for most words, participants feel a moderate to high sense of control.
-* **Valence (Green):** This shows the most variation. While roughly bell-shaped, it is centered slightly on the positive side (above 5). This aligns with the "Pollyanna Principle" in linguistics, where languages tend to contain more positive words than negative ones.
+* **Dominance (Red):** This distribution is the most "peaked" and is centered slightly above the neutral mark (around 5.5). This suggests that for most words, participants feel a moderate to high sense of control.
+* **Valence (Purple):** This shows the most variation. While roughly bell-shaped, it is centered slightly on the positive side (above 5). This aligns with the "Pollyanna Principle" in linguistics, where languages tend to contain more positive words than negative ones.
 
 <!-- end list -->
 
@@ -118,7 +118,7 @@ long_dims <- affective_data |>
 ggplot(long_dims, aes(x = Rating, fill = Dimension)) +
   geom_histogram(binwidth = 0.25, color = "white", show.legend = FALSE) +
   facet_wrap(~Dimension, scales = "free_y") +
-  scale_fill_manual(values = c("steelblue2", "indianred3", "violet")) +
+  scale_fill_manual(values = c("steelblue2", "indianred3", "purple2")) +
   labs(
     x = "Mean Rating (1-9 Scale)",
     y = "Count of Words"
@@ -127,7 +127,7 @@ ggplot(long_dims, aes(x = Rating, fill = Dimension)) +
 ```
 
 ### Correlation Analysis
-Before visualizing specific relationships, I examined the Pearson correlations among the three dimensions. As visualized in @fig-cor-heatmap, Valence and Dominance share a strong positive relationship ($r = 0.72$), indicated by the dark red square. In contrast, Arousal shows weak linear correlations with the other dimensions (lighter colors).
+Before visualizing specific relationships, I examined the Pearson correlations among the three dimensions. As visualized in @fig-cor-heatmap, Valence and Dominance share a strong positive relationship ($r = 0.72$). This suggests that more pleasant words also tend to be associated with a greater sense of control. In contrast, Arousal shows weak linear correlations with the other dimensions (lighter colors).
 
 ```{r}
 #| echo: false
