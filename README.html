@@ -368,10 +368,15 @@ science and explores new patterns related to gender, linguistic form,
 and the emotional structure of the English lexicon.</p>
 <p>The dataset includes human ratings—on a 1–9 scale—along three core
 emotional dimensions: The analysis focuses on three core emotional
-dimensions: * <strong>Valence:</strong> The pleasantness of a word
-(unhappy to happy). * <strong>Arousal:</strong> The intensity of emotion
-evoked by a word (calm to excited). * <strong>Dominance:</strong> The
-degree of control associated with a word (controlled to in control).</p>
+dimensions:</p>
+<ul>
+<li><p><strong>Valence:</strong> The pleasantness of a word (unhappy to
+happy).</p></li>
+<li><p><strong>Arousal:</strong> The intensity of emotion evoked by a
+word (calm to excited).</p></li>
+<li><p><strong>Dominance:</strong> The degree of control associated with
+a word (controlled to in control).</p></li>
+</ul>
 <p>The project examines how these dimensions interact, how perceptions
 differ by gender, and how grammatical form (e.g., suffixes) shapes
 emotional meaning. ### Dataset</p>
@@ -445,24 +450,23 @@ agreement).</td>
 </table>
 </div>
 </div>
-<div id="key-questions-explored" class="section level3">
-<h3>Key Questions Explored</h3>
-<p>This analysis addresses the following research questions: 1.
-Distributional Structure What are the shapes of the distributions for
-valence, arousal, and dominance? (Replicates the well-known “positivity
-bias.”)</p>
-<pre><code>2.  Relationships Between Dimensions</code></pre>
-<p>How do emotional dimensions relate? (Identifies the U-shaped
-association between valence and arousal.)</p>
-<pre><code>3.  Gender Differences</code></pre>
-<p>Do men and women rate the emotional intensity of words
-differently?</p>
-<pre><code>4.  Disagreement and Ambiguity</code></pre>
-<p>Which words show the most variability (high SD), indicating ambiguous
-emotional meaning?</p>
-<pre><code>5.  Linguistic Patterns</code></pre>
-<p>Do grammatical suffixes (e.g., -tion vs. -ize) correspond to
-different dominance or agency ratings?</p>
+<div id="key-findings" class="section level3">
+<h3>Key Findings</h3>
+<ul>
+<li><strong>The “Boomerang” of Intensity:</strong> Confirmed a
+non-linear U-shaped relationship where “neutral” words are the calmest,
+while highly positive and highly negative words trigger the highest
+arousal.</li>
+<li><strong>The Gender Gap in Arousal:</strong> Identified a systemic
+divergence where men consistently rate words as having higher intensity
+(arousal) than women.</li>
+<li><strong>The Grammar of Control:</strong> Discovered that active
+verbs (ending in <em>“-ize”</em>) carry significantly higher dominance
+ratings than abstract nouns (ending in <em>“-tion”</em>).</li>
+<li><strong>The Nature of Controversy:</strong> Analysis of standard
+deviations revealed that consensus breaks down most frequently around
+taboo topics (profanity) and subjective experiences.</li>
+</ul>
 </div>
 </div>
 <div id="repository-structure" class="section level2">
@@ -492,7 +496,7 @@ different dominance or agency ratings?</p>
 <li><strong>Clone this repository</strong> to your local machine.</li>
 <li>Open the project in <strong>RStudio</strong>.</li>
 <li>Ensure the following packages are installed:
-<code>r     install.packages(c(&quot;tidyverse&quot;, &quot;knitr&quot;, &quot;gt&quot;, &quot;patchwork&quot;))</code></li>
+<code>install.packages(c(&quot;tidyverse&quot;, &quot;knitr&quot;, &quot;gt&quot;, &quot;patchwork&quot;))</code></li>
 <li>Open <code>Liu_Fiona_Final_Report.qmd</code> and click
 <strong>Render</strong> to generate the full analysis.</li>
 </ol>

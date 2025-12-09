@@ -2326,6 +2326,7 @@ window.Quarto = {
   <li><a href="#identification-of-disagreement" id="toc-identification-of-disagreement" class="nav-link" data-scroll-target="#identification-of-disagreement">Identification of Disagreement</a></li>
   </ul></li>
   <li><a href="#linguistic-analysis-the-grammar-of-control" id="toc-linguistic-analysis-the-grammar-of-control" class="nav-link" data-scroll-target="#linguistic-analysis-the-grammar-of-control">Linguistic Analysis: The Grammar of Control</a></li>
+  <li><a href="#ambiguity-analysis-the-most-controversial-words" id="toc-ambiguity-analysis-the-most-controversial-words" class="nav-link" data-scroll-target="#ambiguity-analysis-the-most-controversial-words">Ambiguity Analysis: The Most Controversial Words</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -2384,8 +2385,8 @@ Data Science 1 with R (STAT 301-1)</div><p></p>
 </div>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>How do we quantify the “feeling” of a word? While language is subjective, psycholinguistics has established that human emotional reaction to concepts can be mapped onto a multi-dimensional space. Understanding these dimensions is crucial.</p>
-<p>This project conducts an Exploratory Data Analysis (EDA) on a large-scale dataset of affective norms. The motivation for this analysis is to uncover the structural relationship between emotional dimensions and to investigate how gender and linguistic features (word endings) modulate our perception of words.</p>
+<p>Language is often perceived as purely qualitative, yet psycholinguistics provides frameworks to quantify the emotional weight of our vocabulary. By mapping words onto a multi-dimensional space, we can transform subjective feelings into objective data points. This project conducts an Exploratory Data Analysis (EDA) on the <em>Warriner et al. (2013)</em> dataset, a comprehensive collection of affective norms for nearly 14,000 English lemmas.</p>
+<p>The objective of this analysis is to move beyond simple positive/negative sentiment tracking. Instead, I explore the structural relationships between three distinct emotional dimensions: Valence (pleasantness), Arousal (intensity), and Dominance (control). Furthermore, this report investigates how external factors—specifically the gender of the rater and the grammatical structure of the word—modulate our perception of these emotions.</p>
 </section>
 <section id="data-overview-quality" class="level2">
 <h2 class="anchored" data-anchor-id="data-overview-quality">Data Overview &amp; Quality</h2>
@@ -2405,20 +2406,20 @@ Table 1: Summary Statistics of Emotional Dimensions (Scale 1-9)
 </figcaption>
 <div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="vcvomoifvc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vcvomoifvc table {
+<div id="dngguwtdqr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dngguwtdqr table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#vcvomoifvc thead, #vcvomoifvc tbody, #vcvomoifvc tfoot, #vcvomoifvc tr, #vcvomoifvc td, #vcvomoifvc th {
+#dngguwtdqr thead, #dngguwtdqr tbody, #dngguwtdqr tfoot, #dngguwtdqr tr, #dngguwtdqr td, #dngguwtdqr th {
 border-style: none;
 }
-#vcvomoifvc p {
+#dngguwtdqr p {
 margin: 0;
 padding: 0;
 }
-#vcvomoifvc .gt_table {
+#dngguwtdqr .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -2443,11 +2444,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#vcvomoifvc .gt_caption {
+#dngguwtdqr .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#vcvomoifvc .gt_title {
+#dngguwtdqr .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -2458,7 +2459,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#vcvomoifvc .gt_subtitle {
+#dngguwtdqr .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -2469,7 +2470,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#vcvomoifvc .gt_heading {
+#dngguwtdqr .gt_heading {
 background-color: #FFFFFF;
 text-align: left;
 border-bottom-color: #FFFFFF;
@@ -2480,12 +2481,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#vcvomoifvc .gt_bottom_border {
+#dngguwtdqr .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#vcvomoifvc .gt_col_headings {
+#dngguwtdqr .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2499,7 +2500,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#vcvomoifvc .gt_col_heading {
+#dngguwtdqr .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2518,7 +2519,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#vcvomoifvc .gt_column_spanner_outer {
+#dngguwtdqr .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2529,13 +2530,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#vcvomoifvc .gt_column_spanner_outer:first-child {
+#dngguwtdqr .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#vcvomoifvc .gt_column_spanner_outer:last-child {
+#dngguwtdqr .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#vcvomoifvc .gt_column_spanner {
+#dngguwtdqr .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -2546,10 +2547,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#vcvomoifvc .gt_spanner_row {
+#dngguwtdqr .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#vcvomoifvc .gt_group_heading {
+#dngguwtdqr .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2574,7 +2575,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#vcvomoifvc .gt_empty_group_heading {
+#dngguwtdqr .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -2588,13 +2589,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#vcvomoifvc .gt_from_md > :first-child {
+#dngguwtdqr .gt_from_md > :first-child {
 margin-top: 0;
 }
-#vcvomoifvc .gt_from_md > :last-child {
+#dngguwtdqr .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#vcvomoifvc .gt_row {
+#dngguwtdqr .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2612,7 +2613,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#vcvomoifvc .gt_stub {
+#dngguwtdqr .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2624,7 +2625,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vcvomoifvc .gt_stub_row_group {
+#dngguwtdqr .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -2637,13 +2638,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#vcvomoifvc .gt_row_group_first td {
+#dngguwtdqr .gt_row_group_first td {
 border-top-width: 2px;
 }
-#vcvomoifvc .gt_row_group_first th {
+#dngguwtdqr .gt_row_group_first th {
 border-top-width: 2px;
 }
-#vcvomoifvc .gt_summary_row {
+#dngguwtdqr .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2652,14 +2653,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vcvomoifvc .gt_first_summary_row {
+#dngguwtdqr .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#vcvomoifvc .gt_first_summary_row.thick {
+#dngguwtdqr .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#vcvomoifvc .gt_last_summary_row {
+#dngguwtdqr .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2668,7 +2669,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#vcvomoifvc .gt_grand_summary_row {
+#dngguwtdqr .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -2677,7 +2678,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vcvomoifvc .gt_first_grand_summary_row {
+#dngguwtdqr .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2686,7 +2687,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#vcvomoifvc .gt_last_grand_summary_row_top {
+#dngguwtdqr .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -2695,10 +2696,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#vcvomoifvc .gt_striped {
+#dngguwtdqr .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#vcvomoifvc .gt_table_body {
+#dngguwtdqr .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -2706,7 +2707,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#vcvomoifvc .gt_footnotes {
+#dngguwtdqr .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2719,7 +2720,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#vcvomoifvc .gt_footnote {
+#dngguwtdqr .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -2727,7 +2728,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vcvomoifvc .gt_sourcenotes {
+#dngguwtdqr .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -2740,64 +2741,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#vcvomoifvc .gt_sourcenote {
+#dngguwtdqr .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vcvomoifvc .gt_left {
+#dngguwtdqr .gt_left {
 text-align: left;
 }
-#vcvomoifvc .gt_center {
+#dngguwtdqr .gt_center {
 text-align: center;
 }
-#vcvomoifvc .gt_right {
+#dngguwtdqr .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#vcvomoifvc .gt_font_normal {
+#dngguwtdqr .gt_font_normal {
 font-weight: normal;
 }
-#vcvomoifvc .gt_font_bold {
+#dngguwtdqr .gt_font_bold {
 font-weight: bold;
 }
-#vcvomoifvc .gt_font_italic {
+#dngguwtdqr .gt_font_italic {
 font-style: italic;
 }
-#vcvomoifvc .gt_super {
+#dngguwtdqr .gt_super {
 font-size: 65%;
 }
-#vcvomoifvc .gt_footnote_marks {
+#dngguwtdqr .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#vcvomoifvc .gt_asterisk {
+#dngguwtdqr .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#vcvomoifvc .gt_indent_1 {
+#dngguwtdqr .gt_indent_1 {
 text-indent: 5px;
 }
-#vcvomoifvc .gt_indent_2 {
+#dngguwtdqr .gt_indent_2 {
 text-indent: 10px;
 }
-#vcvomoifvc .gt_indent_3 {
+#dngguwtdqr .gt_indent_3 {
 text-indent: 15px;
 }
-#vcvomoifvc .gt_indent_4 {
+#dngguwtdqr .gt_indent_4 {
 text-indent: 20px;
 }
-#vcvomoifvc .gt_indent_5 {
+#dngguwtdqr .gt_indent_5 {
 text-indent: 25px;
 }
-#vcvomoifvc .katex-display {
+#dngguwtdqr .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#vcvomoifvc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#dngguwtdqr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -2950,20 +2951,20 @@ Table 2: Aggregate Gender Difference in Arousal Ratings
 </figcaption>
 <div aria-describedby="tbl-gender-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="zoqolpqbwo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zoqolpqbwo table {
+<div id="ozjczvvadj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ozjczvvadj table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#zoqolpqbwo thead, #zoqolpqbwo tbody, #zoqolpqbwo tfoot, #zoqolpqbwo tr, #zoqolpqbwo td, #zoqolpqbwo th {
+#ozjczvvadj thead, #ozjczvvadj tbody, #ozjczvvadj tfoot, #ozjczvvadj tr, #ozjczvvadj td, #ozjczvvadj th {
 border-style: none;
 }
-#zoqolpqbwo p {
+#ozjczvvadj p {
 margin: 0;
 padding: 0;
 }
-#zoqolpqbwo .gt_table {
+#ozjczvvadj .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -2988,11 +2989,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#zoqolpqbwo .gt_caption {
+#ozjczvvadj .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#zoqolpqbwo .gt_title {
+#ozjczvvadj .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -3003,7 +3004,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#zoqolpqbwo .gt_subtitle {
+#ozjczvvadj .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -3014,7 +3015,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#zoqolpqbwo .gt_heading {
+#ozjczvvadj .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -3025,12 +3026,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#zoqolpqbwo .gt_bottom_border {
+#ozjczvvadj .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#zoqolpqbwo .gt_col_headings {
+#ozjczvvadj .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3044,7 +3045,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#zoqolpqbwo .gt_col_heading {
+#ozjczvvadj .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3063,7 +3064,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#zoqolpqbwo .gt_column_spanner_outer {
+#ozjczvvadj .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3074,13 +3075,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#zoqolpqbwo .gt_column_spanner_outer:first-child {
+#ozjczvvadj .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#zoqolpqbwo .gt_column_spanner_outer:last-child {
+#ozjczvvadj .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#zoqolpqbwo .gt_column_spanner {
+#ozjczvvadj .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -3091,10 +3092,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#zoqolpqbwo .gt_spanner_row {
+#ozjczvvadj .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#zoqolpqbwo .gt_group_heading {
+#ozjczvvadj .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3119,7 +3120,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#zoqolpqbwo .gt_empty_group_heading {
+#ozjczvvadj .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -3133,13 +3134,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#zoqolpqbwo .gt_from_md > :first-child {
+#ozjczvvadj .gt_from_md > :first-child {
 margin-top: 0;
 }
-#zoqolpqbwo .gt_from_md > :last-child {
+#ozjczvvadj .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#zoqolpqbwo .gt_row {
+#ozjczvvadj .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3157,7 +3158,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#zoqolpqbwo .gt_stub {
+#ozjczvvadj .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3169,7 +3170,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zoqolpqbwo .gt_stub_row_group {
+#ozjczvvadj .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3182,13 +3183,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#zoqolpqbwo .gt_row_group_first td {
+#ozjczvvadj .gt_row_group_first td {
 border-top-width: 2px;
 }
-#zoqolpqbwo .gt_row_group_first th {
+#ozjczvvadj .gt_row_group_first th {
 border-top-width: 2px;
 }
-#zoqolpqbwo .gt_summary_row {
+#ozjczvvadj .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3197,14 +3198,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zoqolpqbwo .gt_first_summary_row {
+#ozjczvvadj .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#zoqolpqbwo .gt_first_summary_row.thick {
+#ozjczvvadj .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#zoqolpqbwo .gt_last_summary_row {
+#ozjczvvadj .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3213,7 +3214,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#zoqolpqbwo .gt_grand_summary_row {
+#ozjczvvadj .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3222,7 +3223,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zoqolpqbwo .gt_first_grand_summary_row {
+#ozjczvvadj .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3231,7 +3232,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#zoqolpqbwo .gt_last_grand_summary_row_top {
+#ozjczvvadj .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3240,10 +3241,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#zoqolpqbwo .gt_striped {
+#ozjczvvadj .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#zoqolpqbwo .gt_table_body {
+#ozjczvvadj .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3251,7 +3252,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#zoqolpqbwo .gt_footnotes {
+#ozjczvvadj .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3264,7 +3265,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#zoqolpqbwo .gt_footnote {
+#ozjczvvadj .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -3272,7 +3273,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zoqolpqbwo .gt_sourcenotes {
+#ozjczvvadj .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3285,64 +3286,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#zoqolpqbwo .gt_sourcenote {
+#ozjczvvadj .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zoqolpqbwo .gt_left {
+#ozjczvvadj .gt_left {
 text-align: left;
 }
-#zoqolpqbwo .gt_center {
+#ozjczvvadj .gt_center {
 text-align: center;
 }
-#zoqolpqbwo .gt_right {
+#ozjczvvadj .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#zoqolpqbwo .gt_font_normal {
+#ozjczvvadj .gt_font_normal {
 font-weight: normal;
 }
-#zoqolpqbwo .gt_font_bold {
+#ozjczvvadj .gt_font_bold {
 font-weight: bold;
 }
-#zoqolpqbwo .gt_font_italic {
+#ozjczvvadj .gt_font_italic {
 font-style: italic;
 }
-#zoqolpqbwo .gt_super {
+#ozjczvvadj .gt_super {
 font-size: 65%;
 }
-#zoqolpqbwo .gt_footnote_marks {
+#ozjczvvadj .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#zoqolpqbwo .gt_asterisk {
+#ozjczvvadj .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#zoqolpqbwo .gt_indent_1 {
+#ozjczvvadj .gt_indent_1 {
 text-indent: 5px;
 }
-#zoqolpqbwo .gt_indent_2 {
+#ozjczvvadj .gt_indent_2 {
 text-indent: 10px;
 }
-#zoqolpqbwo .gt_indent_3 {
+#ozjczvvadj .gt_indent_3 {
 text-indent: 15px;
 }
-#zoqolpqbwo .gt_indent_4 {
+#ozjczvvadj .gt_indent_4 {
 text-indent: 20px;
 }
-#zoqolpqbwo .gt_indent_5 {
+#ozjczvvadj .gt_indent_5 {
 text-indent: 25px;
 }
-#zoqolpqbwo .katex-display {
+#ozjczvvadj .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#zoqolpqbwo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ozjczvvadj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -3404,20 +3405,20 @@ Table 3: Top Words with Gender Disagreement in Arousal
 </figcaption>
 <div aria-describedby="tbl-outliers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="loxeeoclff" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#loxeeoclff table {
+<div id="trsdkbhedj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#trsdkbhedj table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#loxeeoclff thead, #loxeeoclff tbody, #loxeeoclff tfoot, #loxeeoclff tr, #loxeeoclff td, #loxeeoclff th {
+#trsdkbhedj thead, #trsdkbhedj tbody, #trsdkbhedj tfoot, #trsdkbhedj tr, #trsdkbhedj td, #trsdkbhedj th {
 border-style: none;
 }
-#loxeeoclff p {
+#trsdkbhedj p {
 margin: 0;
 padding: 0;
 }
-#loxeeoclff .gt_table {
+#trsdkbhedj .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -3442,11 +3443,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#loxeeoclff .gt_caption {
+#trsdkbhedj .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#loxeeoclff .gt_title {
+#trsdkbhedj .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -3457,7 +3458,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#loxeeoclff .gt_subtitle {
+#trsdkbhedj .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -3468,7 +3469,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#loxeeoclff .gt_heading {
+#trsdkbhedj .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -3479,12 +3480,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#loxeeoclff .gt_bottom_border {
+#trsdkbhedj .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#loxeeoclff .gt_col_headings {
+#trsdkbhedj .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3498,7 +3499,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#loxeeoclff .gt_col_heading {
+#trsdkbhedj .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3517,7 +3518,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#loxeeoclff .gt_column_spanner_outer {
+#trsdkbhedj .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3528,13 +3529,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#loxeeoclff .gt_column_spanner_outer:first-child {
+#trsdkbhedj .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#loxeeoclff .gt_column_spanner_outer:last-child {
+#trsdkbhedj .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#loxeeoclff .gt_column_spanner {
+#trsdkbhedj .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -3545,10 +3546,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#loxeeoclff .gt_spanner_row {
+#trsdkbhedj .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#loxeeoclff .gt_group_heading {
+#trsdkbhedj .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3573,7 +3574,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#loxeeoclff .gt_empty_group_heading {
+#trsdkbhedj .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -3587,13 +3588,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#loxeeoclff .gt_from_md > :first-child {
+#trsdkbhedj .gt_from_md > :first-child {
 margin-top: 0;
 }
-#loxeeoclff .gt_from_md > :last-child {
+#trsdkbhedj .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#loxeeoclff .gt_row {
+#trsdkbhedj .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3611,7 +3612,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#loxeeoclff .gt_stub {
+#trsdkbhedj .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3623,7 +3624,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#loxeeoclff .gt_stub_row_group {
+#trsdkbhedj .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3636,13 +3637,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#loxeeoclff .gt_row_group_first td {
+#trsdkbhedj .gt_row_group_first td {
 border-top-width: 2px;
 }
-#loxeeoclff .gt_row_group_first th {
+#trsdkbhedj .gt_row_group_first th {
 border-top-width: 2px;
 }
-#loxeeoclff .gt_summary_row {
+#trsdkbhedj .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3651,14 +3652,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#loxeeoclff .gt_first_summary_row {
+#trsdkbhedj .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#loxeeoclff .gt_first_summary_row.thick {
+#trsdkbhedj .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#loxeeoclff .gt_last_summary_row {
+#trsdkbhedj .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3667,7 +3668,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#loxeeoclff .gt_grand_summary_row {
+#trsdkbhedj .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3676,7 +3677,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#loxeeoclff .gt_first_grand_summary_row {
+#trsdkbhedj .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3685,7 +3686,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#loxeeoclff .gt_last_grand_summary_row_top {
+#trsdkbhedj .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3694,10 +3695,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#loxeeoclff .gt_striped {
+#trsdkbhedj .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#loxeeoclff .gt_table_body {
+#trsdkbhedj .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3705,7 +3706,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#loxeeoclff .gt_footnotes {
+#trsdkbhedj .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3718,7 +3719,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#loxeeoclff .gt_footnote {
+#trsdkbhedj .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -3726,7 +3727,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#loxeeoclff .gt_sourcenotes {
+#trsdkbhedj .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3739,64 +3740,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#loxeeoclff .gt_sourcenote {
+#trsdkbhedj .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#loxeeoclff .gt_left {
+#trsdkbhedj .gt_left {
 text-align: left;
 }
-#loxeeoclff .gt_center {
+#trsdkbhedj .gt_center {
 text-align: center;
 }
-#loxeeoclff .gt_right {
+#trsdkbhedj .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#loxeeoclff .gt_font_normal {
+#trsdkbhedj .gt_font_normal {
 font-weight: normal;
 }
-#loxeeoclff .gt_font_bold {
+#trsdkbhedj .gt_font_bold {
 font-weight: bold;
 }
-#loxeeoclff .gt_font_italic {
+#trsdkbhedj .gt_font_italic {
 font-style: italic;
 }
-#loxeeoclff .gt_super {
+#trsdkbhedj .gt_super {
 font-size: 65%;
 }
-#loxeeoclff .gt_footnote_marks {
+#trsdkbhedj .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#loxeeoclff .gt_asterisk {
+#trsdkbhedj .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#loxeeoclff .gt_indent_1 {
+#trsdkbhedj .gt_indent_1 {
 text-indent: 5px;
 }
-#loxeeoclff .gt_indent_2 {
+#trsdkbhedj .gt_indent_2 {
 text-indent: 10px;
 }
-#loxeeoclff .gt_indent_3 {
+#trsdkbhedj .gt_indent_3 {
 text-indent: 15px;
 }
-#loxeeoclff .gt_indent_4 {
+#trsdkbhedj .gt_indent_4 {
 text-indent: 20px;
 }
-#loxeeoclff .gt_indent_5 {
+#trsdkbhedj .gt_indent_5 {
 text-indent: 25px;
 }
-#loxeeoclff .katex-display {
+#trsdkbhedj .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#loxeeoclff div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#trsdkbhedj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -3912,6 +3913,530 @@ Figure 6: Dominance Ratings by Word Suffix. Verbs ending in ‘-ize’ show hig
 </div>
 </div>
 </section>
+<section id="ambiguity-analysis-the-most-controversial-words" class="level3">
+<h3 class="anchored" data-anchor-id="ambiguity-analysis-the-most-controversial-words">Ambiguity Analysis: The Most Controversial Words</h3>
+<p>While mean ratings provide the “average” feeling of a word, they hide the spread of opinions. A high Standard Deviation (SD) indicates <strong>ambiguity</strong> or <strong>disagreement</strong>—meaning some people rated the word very high while others rated it very low.</p>
+<p>I created a custom function <code>get_top_ambiguous()</code> to efficiently identify the top 5 words with the highest disagreement for each dimension.</p>
+<p><a href="#tbl-ambiguity" class="quarto-xref">Table 4</a> displays these “controversial” words.</p>
+<ul>
+<li><strong>Valence Disagreement:</strong> This list is dominated by taboo terms and “religion.” This reflects that some raters likely perceive these words as highly offensive, while others view them as neutral, empowering, or positive.</li>
+<li><strong>Arousal Disagreement:</strong> High variability appears in subjective concepts like “favorite” and “dreamland”. The intensity of these words likely depends heavily on individual personal experiences.</li>
+<li><strong>Dominance Disagreement:</strong> Words related to vices and external forces top this list, such as “cigarette,” “management,” and “crowd.” The disagreement here suggests a split in perceived agency: for example, a “cigarette” might represent a controllable object to some, but a controlling addiction to others.</li>
+</ul>
+<!-- end list -->
+<div class="cell">
+<div id="tbl-ambiguity" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ambiguity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 4: Top 5 Most Ambiguous Words (Highest Standard Deviation) by Dimension
+</figcaption>
+<div aria-describedby="tbl-ambiguity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="mwyjydmtur" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwyjydmtur table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#mwyjydmtur thead, #mwyjydmtur tbody, #mwyjydmtur tfoot, #mwyjydmtur tr, #mwyjydmtur td, #mwyjydmtur th {
+border-style: none;
+}
+#mwyjydmtur p {
+margin: 0;
+padding: 0;
+}
+#mwyjydmtur .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#mwyjydmtur .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#mwyjydmtur .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#mwyjydmtur .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#mwyjydmtur .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#mwyjydmtur .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#mwyjydmtur .gt_col_headings {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#mwyjydmtur .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#mwyjydmtur .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#mwyjydmtur .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#mwyjydmtur .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#mwyjydmtur .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#mwyjydmtur .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#mwyjydmtur .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#mwyjydmtur .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#mwyjydmtur .gt_from_md > :first-child {
+margin-top: 0;
+}
+#mwyjydmtur .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#mwyjydmtur .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#mwyjydmtur .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#mwyjydmtur .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#mwyjydmtur .gt_row_group_first td {
+border-top-width: 2px;
+}
+#mwyjydmtur .gt_row_group_first th {
+border-top-width: 2px;
+}
+#mwyjydmtur .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#mwyjydmtur .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#mwyjydmtur .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#mwyjydmtur .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#mwyjydmtur .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#mwyjydmtur .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#mwyjydmtur .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#mwyjydmtur .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#mwyjydmtur .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#mwyjydmtur .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#mwyjydmtur .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#mwyjydmtur .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#mwyjydmtur .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#mwyjydmtur .gt_left {
+text-align: left;
+}
+#mwyjydmtur .gt_center {
+text-align: center;
+}
+#mwyjydmtur .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#mwyjydmtur .gt_font_normal {
+font-weight: normal;
+}
+#mwyjydmtur .gt_font_bold {
+font-weight: bold;
+}
+#mwyjydmtur .gt_font_italic {
+font-style: italic;
+}
+#mwyjydmtur .gt_super {
+font-size: 65%;
+}
+#mwyjydmtur .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#mwyjydmtur .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#mwyjydmtur .gt_indent_1 {
+text-indent: 5px;
+}
+#mwyjydmtur .gt_indent_2 {
+text-indent: 10px;
+}
+#mwyjydmtur .gt_indent_3 {
+text-indent: 15px;
+}
+#mwyjydmtur .gt_indent_4 {
+text-indent: 20px;
+}
+#mwyjydmtur .gt_indent_5 {
+text-indent: 25px;
+}
+#mwyjydmtur .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#mwyjydmtur div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Word" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Word<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="Mean_Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Mean Score</th>
+<th id="SD" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Std. Dev. (Disagreement)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="3" id="Valence (Pleasantness)" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #F5F5F5; font-weight: bold" scope="colgroup">Valence (Pleasantness)</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="Valence (Pleasantness)  Word">f***ing</td>
+<td class="gt_row gt_right" headers="Valence (Pleasantness)  Mean_Rating">5.09</td>
+<td class="gt_row gt_right" headers="Valence (Pleasantness)  SD">3.29</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Valence (Pleasantness)  Word">f***</td>
+<td class="gt_row gt_right" headers="Valence (Pleasantness)  Mean_Rating">5.23</td>
+<td class="gt_row gt_right" headers="Valence (Pleasantness)  SD">3.25</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Valence (Pleasantness)  Word">porno</td>
+<td class="gt_row gt_right" headers="Valence (Pleasantness)  Mean_Rating">5.53</td>
+<td class="gt_row gt_right" headers="Valence (Pleasantness)  SD">3.12</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Valence (Pleasantness)  Word">religion</td>
+<td class="gt_row gt_right" headers="Valence (Pleasantness)  Mean_Rating">5.42</td>
+<td class="gt_row gt_right" headers="Valence (Pleasantness)  SD">3.08</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Valence (Pleasantness)  Word">sh*tfaced</td>
+<td class="gt_row gt_right" headers="Valence (Pleasantness)  Mean_Rating">4.65</td>
+<td class="gt_row gt_right" headers="Valence (Pleasantness)  SD">3.08</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="3" id="Arousal (Intensity)" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #F5F5F5; font-weight: bold" scope="colgroup">Arousal (Intensity)</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="Arousal (Intensity)  Word">favorite</td>
+<td class="gt_row gt_right" headers="Arousal (Intensity)  Mean_Rating">4.40</td>
+<td class="gt_row gt_right" headers="Arousal (Intensity)  SD">3.36</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Arousal (Intensity)  Word">dreamland</td>
+<td class="gt_row gt_right" headers="Arousal (Intensity)  Mean_Rating">3.95</td>
+<td class="gt_row gt_right" headers="Arousal (Intensity)  SD">3.33</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Arousal (Intensity)  Word">bitter</td>
+<td class="gt_row gt_right" headers="Arousal (Intensity)  Mean_Rating">4.64</td>
+<td class="gt_row gt_right" headers="Arousal (Intensity)  SD">3.30</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Arousal (Intensity)  Word">lovemaking</td>
+<td class="gt_row gt_right" headers="Arousal (Intensity)  Mean_Rating">6.14</td>
+<td class="gt_row gt_right" headers="Arousal (Intensity)  SD">3.29</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Arousal (Intensity)  Word">prince</td>
+<td class="gt_row gt_right" headers="Arousal (Intensity)  Mean_Rating">5.15</td>
+<td class="gt_row gt_right" headers="Arousal (Intensity)  SD">3.28</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="3" id="Dominance (Control)" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #F5F5F5; font-weight: bold" scope="colgroup">Dominance (Control)</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="Dominance (Control)  Word">cigarette</td>
+<td class="gt_row gt_right" headers="Dominance (Control)  Mean_Rating">5.05</td>
+<td class="gt_row gt_right" headers="Dominance (Control)  SD">3.37</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Dominance (Control)  Word">management</td>
+<td class="gt_row gt_right" headers="Dominance (Control)  Mean_Rating">4.70</td>
+<td class="gt_row gt_right" headers="Dominance (Control)  SD">3.32</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Dominance (Control)  Word">crowd</td>
+<td class="gt_row gt_right" headers="Dominance (Control)  Mean_Rating">5.21</td>
+<td class="gt_row gt_right" headers="Dominance (Control)  SD">3.29</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Dominance (Control)  Word">enforcer</td>
+<td class="gt_row gt_right" headers="Dominance (Control)  Mean_Rating">5.36</td>
+<td class="gt_row gt_right" headers="Dominance (Control)  SD">3.26</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Dominance (Control)  Word">cannibalism</td>
+<td class="gt_row gt_right" headers="Dominance (Control)  Mean_Rating">4.09</td>
+<td class="gt_row gt_right" headers="Dominance (Control)  SD">3.22</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="3" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Explicit terms have been masked for professional presentation, but remain part of the statistical analysis.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
@@ -3921,6 +4446,7 @@ Figure 6: Dominance Ratings by Word Suffix. Verbs ending in ‘-ize’ show hig
 <li><strong>The Shape of Emotion:</strong> We confirmed the “Pollyanna Principle,” observing that the English language is positively biased. However, we also established that emotional neutrality is synonymous with calmness; the “U-shaped” relationship between Valence and Arousal demonstrates that as words become more positive <em>or</em> more negative, they inherently become more intense.</li>
 <li><strong>The Gender Gap in Intensity:</strong> Perhaps the most significant finding was the systemic divergence in <strong>Arousal</strong>. While men and women largely agree on whether a word is pleasant (Valence) or controlling (Dominance), men consistently rate words as having higher intensity than women. This suggests a fundamental difference in how genders anchor their perception of excitement or alertness.</li>
 <li><strong>The Grammar of Agency:</strong> The linguistic analysis successfully linked grammatical form to emotional weight. By confirming that active verbs (ending in <em>-ize</em>) carry higher Dominance scores than abstract nouns (ending in <em>-tion</em>), we demonstrated that the structure of a word contributes to its perceived level of agency.</li>
+<li><strong>The Nature of Controversy:</strong> Our ambiguity analysis revealed that consensus breaks down most frequently around taboo topics. Profanity and religion drive the highest disagreement in Valence, while subjective experiences drive disagreement in Arousal.</li>
 </ul>
 <p><strong>Limitations &amp; Confounds:</strong></p>
 <p>It is important to acknowledge potential confounds in this analysis. First, the data relies on a North American sample, meaning the emotional ratings are culturally specific and may not generalize to other English-speaking populations (e.g., UK, Australia). Additionally, variables such as word familiarity and concreteness were not controlled for in this specific EDA; it is possible that abstract words generally receive lower dominance ratings regardless of their grammatical suffix.</p>
@@ -3928,7 +4454,7 @@ Figure 6: Dominance Ratings by Word Suffix. Verbs ending in ‘-ize’ show hig
 <ol type="1">
 <li><strong>Contextual Sentiment Analysis:</strong> Integrating this dictionary with natural language text (e.g., social media feeds or literature) to see if the gender gap in Arousal persists when words are used in full sentences.</li>
 <li><strong>Part-of-Speech Expansion:</strong> expanding the linguistic analysis beyond specific suffixes to compare all nouns, verbs, and adjectives to see if “part of speech” is a reliable predictor of Dominance.</li>
-<li><strong>Ambiguity Analysis:</strong> Investigating the standard deviations of the ratings to identify which words have the highest disagreement among all raters, regardless of gender.</li>
+<li><strong>Cross-Cultural Comparison:</strong> Comparing this dataset with Spanish or Dutch affective norms (available in similar psycholinguistic databases) to investigate if the “Gender Gap in Arousal” is a universal human trait or a cultural artifact of North American society.</li>
 </ol>
 </section>
 <section id="references" class="level2">

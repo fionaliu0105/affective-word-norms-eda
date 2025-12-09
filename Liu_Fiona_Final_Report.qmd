@@ -47,9 +47,9 @@ affective_data <- read_csv("data/BRM-emot-submit.csv")
 
 ## Introduction
 
-How do we quantify the "feeling" of a word? While language is subjective, psycholinguistics has established that human emotional reaction to concepts can be mapped onto a multi-dimensional space. Understanding these dimensions is crucial. 
+Language is often perceived as purely qualitative, yet psycholinguistics provides frameworks to quantify the emotional weight of our vocabulary. By mapping words onto a multi-dimensional space, we can transform subjective feelings into objective data points. This project conducts an Exploratory Data Analysis (EDA) on the *Warriner et al. (2013)* dataset, a comprehensive collection of affective norms for nearly 14,000 English lemmas.
 
-This project conducts an Exploratory Data Analysis (EDA) on a large-scale dataset of affective norms. The motivation for this analysis is to uncover the structural relationship between emotional dimensions and to investigate how gender and linguistic features (word endings) modulate our perception of words.
+The objective of this analysis is to move beyond simple positive/negative sentiment tracking. Instead, I explore the structural relationships between three distinct emotional dimensions: Valence (pleasantness), Arousal (intensity), and Dominance (control). Furthermore, this report investigates how external factors—specifically the gender of the rater and the grammatical structure of the word—modulate our perception of these emotions.
 
 ## Data Overview & Quality
 
@@ -368,6 +368,64 @@ ggplot(suffix_data, aes(x = Suffix, y = D.Mean.Sum, fill = Suffix)) +
   theme_minimal()
 ```
 
+### Ambiguity Analysis: The Most Controversial Words
+
+While mean ratings provide the "average" feeling of a word, they hide the spread of opinions. A high Standard Deviation (SD) indicates **ambiguity** or **disagreement**—meaning some people rated the word very high while others rated it very low.
+
+I created a custom function `get_top_ambiguous()` to efficiently identify the top 5 words with the highest disagreement for each dimension.
+
+@tbl-ambiguity displays these "controversial" words.
+
+  * **Valence Disagreement:** This list is dominated by taboo terms and "religion." This reflects that some raters likely perceive these words as highly offensive, while others view them as neutral, empowering, or positive.
+  * **Arousal Disagreement:** High variability appears in subjective concepts like "favorite" and "dreamland". The intensity of these words likely depends heavily on individual personal experiences.
+  * **Dominance Disagreement:** Words related to vices and external forces top this list, such as "cigarette," "management," and "crowd." The disagreement here suggests a split in perceived agency: for example, a "cigarette" might represent a controllable object to some, but a controlling addiction to others.
+
+<!-- end list -->
+
+```{r}
+#| echo: false
+#| label: tbl-ambiguity
+#| tbl-cap: "Top 5 Most Ambiguous Words (Highest Standard Deviation) by Dimension"
+
+get_top_ambiguous <- function(data, sd_col, mean_col, category_name) {
+  data |>
+    arrange(desc({{ sd_col }})) |>
+    head(5) |>
+
+    mutate(Word = case_when(
+      Word == "fuck" ~ "f***",
+      Word == "fucking" ~ "f***ing",
+      Word == "shitfaced" ~ "sh*tfaced",
+      TRUE ~ Word 
+    )) |>
+    select(Word, Mean_Rating = {{ mean_col }}, SD = {{ sd_col }}) |>
+    mutate(Dimension = category_name)
+}
+
+ambiguous_words <- bind_rows(
+  get_top_ambiguous(affective_data, V.SD.Sum, V.Mean.Sum, "Valence (Pleasantness)"),
+  get_top_ambiguous(affective_data, A.SD.Sum, A.Mean.Sum, "Arousal (Intensity)"),
+  get_top_ambiguous(affective_data, D.SD.Sum, D.Mean.Sum, "Dominance (Control)")
+)
+
+ambiguous_words |>
+  group_by(Dimension) |>
+  gt() |>
+  fmt_number(columns = c(Mean_Rating, SD), decimals = 2) |>
+  cols_label(
+    Mean_Rating = "Mean Score",
+    SD = "Std. Dev. (Disagreement)"
+  ) |>
+  tab_style(
+    style = list(cell_fill(color = "whitesmoke"), cell_text(weight = "bold")),
+    locations = cells_row_groups()
+  ) |>
+  tab_footnote(
+    footnote = "Explicit terms have been masked for professional presentation, but remain part of the statistical analysis.",
+    locations = cells_column_labels(columns = Word)
+  )
+  
+```
 
 ## Conclusion
 
@@ -378,6 +436,7 @@ This exploratory analysis of the Warriner et al. dataset has effectively mapped 
 * **The Shape of Emotion:** We confirmed the "Pollyanna Principle," observing that the English language is positively biased. However, we also established that emotional neutrality is synonymous with calmness; the "U-shaped" relationship between Valence and Arousal demonstrates that as words become more positive *or* more negative, they inherently become more intense.
 * **The Gender Gap in Intensity:** Perhaps the most significant finding was the systemic divergence in **Arousal**. While men and women largely agree on whether a word is pleasant (Valence) or controlling (Dominance), men consistently rate words as having higher intensity than women. This suggests a fundamental difference in how genders anchor their perception of excitement or alertness.
 * **The Grammar of Agency:** The linguistic analysis successfully linked grammatical form to emotional weight. By confirming that active verbs (ending in *-ize*) carry higher Dominance scores than abstract nouns (ending in *-tion*), we demonstrated that the structure of a word contributes to its perceived level of agency.
+* **The Nature of Controversy:** Our ambiguity analysis revealed that consensus breaks down most frequently around taboo topics. Profanity and religion drive the highest disagreement in Valence, while subjective experiences drive disagreement in Arousal.
 
 **Limitations & Confounds:**
 
@@ -388,7 +447,7 @@ While this project analyzed words in isolation (lemmas), language rarely exists 
 
 1.  **Contextual Sentiment Analysis:** Integrating this dictionary with natural language text (e.g., social media feeds or literature) to see if the gender gap in Arousal persists when words are used in full sentences.
 2.  **Part-of-Speech Expansion:** expanding the linguistic analysis beyond specific suffixes to compare all nouns, verbs, and adjectives to see if "part of speech" is a reliable predictor of Dominance.
-3.  **Ambiguity Analysis:** Investigating the standard deviations of the ratings to identify which words have the highest disagreement among all raters, regardless of gender.
+3. **Cross-Cultural Comparison:** Comparing this dataset with Spanish or Dutch affective norms (available in similar psycholinguistic databases) to investigate if the "Gender Gap in Arousal" is a universal human trait or a cultural artifact of North American society.
 
 ## References
 

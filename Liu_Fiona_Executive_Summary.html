@@ -2313,13 +2313,13 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#github-repo-link" id="toc-github-repo-link" class="nav-link active" data-scroll-target="#github-repo-link">Github Repo Link</a></li>
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#major-findings" id="toc-major-findings" class="nav-link" data-scroll-target="#major-findings">Major Findings</a>
   <ul>
   <li><a href="#the-boomerang-of-intensity" id="toc-the-boomerang-of-intensity" class="nav-link" data-scroll-target="#the-boomerang-of-intensity">1. The “Boomerang” of Intensity</a></li>
   <li><a href="#the-gender-gap-in-arousal" id="toc-the-gender-gap-in-arousal" class="nav-link" data-scroll-target="#the-gender-gap-in-arousal">2. The Gender Gap in Arousal</a></li>
   <li><a href="#the-grammar-of-agency" id="toc-the-grammar-of-agency" class="nav-link" data-scroll-target="#the-grammar-of-agency">3. The Grammar of Agency</a></li>
+  <li><a href="#the-nature-of-controversy" id="toc-the-nature-of-controversy" class="nav-link" data-scroll-target="#the-nature-of-controversy">4. The Nature of Controversy</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
@@ -2361,45 +2361,64 @@ window.Quarto = {
 </header>
 
 
-<section id="github-repo-link" class="level2">
-<h2 class="anchored" data-anchor-id="github-repo-link">Github Repo Link</h2>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Github Repo Link
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><a href="https://github.com/stat301-1-2025-fall/final-project-1-fionaliu0105">Fiona’s Github</a></p>
-</section>
+</div>
+</div>
 <section id="overview" class="level1">
 <h1>Overview</h1>
 <p>This report presents an exploratory data analysis (EDA) of the <em>Warriner et al. (2013)</em> dataset, which contains affective norms for nearly 14,000 English lemmas. The primary objective was to investigate the structural relationships between the three core dimensions of emotion—<strong>Valence</strong> (pleasantness), <strong>Arousal</strong> (intensity), and <strong>Dominance</strong> (control)—and to determine how demographic factors and linguistic forms influence these ratings.</p>
 </section>
 <section id="major-findings" class="level1">
 <h1>Major Findings</h1>
-<p>The analysis yielded three significant insights regarding the structure and perception of the English lexicon:</p>
+<p>The analysis yielded four significant insights regarding the structure and perception of the English lexicon:</p>
 <section id="the-boomerang-of-intensity" class="level3">
 <h3 class="anchored" data-anchor-id="the-boomerang-of-intensity">1. The “Boomerang” of Intensity</h3>
 <p>While the relationship between <strong>Valence</strong> and <strong>Dominance</strong> is linear and positive (<span class="math inline">\(r = 0.72\)</span>)—meaning pleasant words are generally perceived as controllable—the relationship between <strong>Valence</strong> and <strong>Arousal</strong> is non-linear and U-shaped.</p>
 <ul>
-<li><p><strong>Neutral words</strong> (Valence <span class="math inline">\(\approx\)</span> 5) elicit the lowest levels of arousal (calmness).</p></li>
-<li><p><strong>Extreme words</strong> (both highly positive and highly negative) trigger the highest levels of arousal. This confirms that emotional intensity is driven by magnitude, not direction.</p></li>
+<li><strong>Neutral words</strong> (Valence <span class="math inline">\(\approx\)</span> 5) elicit the lowest levels of arousal (calmness).</li>
+<li><strong>Extreme words</strong> (both highly positive and highly negative) trigger the highest levels of arousal.</li>
 </ul>
+<p>This confirms that emotional intensity is driven by magnitude, not direction.</p>
 </section>
 <section id="the-gender-gap-in-arousal" class="level3">
 <h3 class="anchored" data-anchor-id="the-gender-gap-in-arousal">2. The Gender Gap in Arousal</h3>
 <p>A distinct demographic divergence was identified in the perception of <strong>Arousal</strong>. While men and women largely agree on the pleasantness and dominance of words, <strong>men consistently rate words as having higher intensity than women</strong>.</p>
 <ul>
-<li><p><strong>Statistical Gap:</strong> On average, men rated words <strong>0.37 points higher</strong> on the intensity scale than women.</p></li>
-<li><p><strong>Implication:</strong> This suggests a systemic difference in how genders anchor their perception of excitement or alertness, with men having a lower threshold for reporting high intensity.</p></li>
+<li><strong>Statistical Gap:</strong> On average, men rated words <strong>0.29 points higher</strong> on the intensity scale than women.</li>
+<li><strong>Implication:</strong> This suggests a systemic difference in how genders anchor their perception of excitement or alertness, with men having a lower threshold for reporting high intensity.</li>
 </ul>
 </section>
 <section id="the-grammar-of-agency" class="level3">
 <h3 class="anchored" data-anchor-id="the-grammar-of-agency">3. The Grammar of Agency</h3>
 <p>Linguistic analysis confirmed that the grammatical form of a word carries inherent emotional weight regarding <strong>Dominance</strong>.</p>
 <ul>
-<li><p><strong>Verbs</strong> ending in <em>“-ize”</em> (e.g., <em>mobilize</em>) possess significantly higher median Dominance ratings than <strong>Abstract Nouns</strong> ending in <em>“-tion”</em> (e.g., <em>abstraction</em>).</p></li>
-<li><p>This validates the hypothesis that action-oriented language conveys a stronger sense of agency and control than state-of-being concepts.</p></li>
+<li><strong>Verbs</strong> ending in <em>“-ize”</em> (e.g., <em>mobilize</em>) possess significantly higher median Dominance ratings than <strong>Abstract Nouns</strong> ending in <em>“-tion”</em> (e.g., <em>abstraction</em>).</li>
+<li>This validates the hypothesis that action-oriented language conveys a stronger sense of agency and control than state-of-being concepts.</li>
+</ul>
+</section>
+<section id="the-nature-of-controversy" class="level3">
+<h3 class="anchored" data-anchor-id="the-nature-of-controversy">4. The Nature of Controversy</h3>
+<p>Analysis of rating variability (standard deviation) revealed that consensus breaks down most frequently around taboo topics.</p>
+<ul>
+<li><p><strong>Valence Disagreement:</strong> Highest for profanity and religious terms.</p></li>
+<li><p><strong>Arousal Disagreement:</strong> Highest for subjective experiences (e.g., <em>dreamland</em>).</p></li>
+<li><p><strong>Dominance Disagreement:</strong> Highest for words related to vices and external forces top</p></li>
 </ul>
 </section>
 </section>
 <section id="conclusion" class="level1">
 <h1>Conclusion</h1>
-<p>The English lexicon is not emotionally uniform. It follows the “Pollyanna Principle” (positive bias) but reserves high intensity for emotional extremes. Furthermore, our perception of these words is modulated by both biology and grammar; gender influences our baseline for intensity, while suffixes influence our perception of control. Future research should expand this analysis to include contextual usage in natural language to determine if these patterns hold in full sentences.</p>
+<p>The English lexicon is not emotionally uniform. It follows the “Pollyanna Principle” (positive bias) but reserves high intensity for emotional extremes. Furthermore, our perception of these words is modulated by biology, grammar, and culture; gender influences our baseline for intensity, suffixes influence our perception of control, and cultural taboos drive disagreement. Future research should expand this analysis to include contextual usage in natural language (e.g. social media text) to determine if these patterns hold in full sentences.</p>
 </section>
 
 </main>

@@ -12,8 +12,11 @@ This project presents an Exploratory Data Analysis (EDA) of a large-scale psycho
 
 The dataset includes human ratings—on a 1–9 scale—along three core emotional dimensions:
 The analysis focuses on three core emotional dimensions:
+
 * **Valence:** The pleasantness of a word (unhappy to happy).
+
 * **Arousal:** The intensity of emotion evoked by a word (calm to excited).
+
 * **Dominance:** The degree of control associated with a word (controlled to in control).
 
 The project examines how these dimensions interact, how perceptions differ by gender, and how grammatical form (e.g., suffixes) shapes emotional meaning.
@@ -37,25 +40,12 @@ The data used in this project comes from Warriner et al. (2013). It contains aff
 | `Valence_M` | `V.Mean.M` | Mean valence rating from male participants. |
 | `Valence_F` | `V.Mean.F` | Mean valence rating from female participants. |
 
-### Key Questions Explored
+### Key Findings
 
-This analysis addresses the following research questions:
-	1.	Distributional Structure
-What are the shapes of the distributions for valence, arousal, and dominance?
-(Replicates the well-known “positivity bias.”)
-	
-	2.	Relationships Between Dimensions
-How do emotional dimensions relate?
-(Identifies the U-shaped association between valence and arousal.)
-	
-	3.	Gender Differences
-Do men and women rate the emotional intensity of words differently?
-
-	4.	Disagreement and Ambiguity
-Which words show the most variability (high SD), indicating ambiguous emotional meaning?
-
-	5.	Linguistic Patterns
-Do grammatical suffixes (e.g., -tion vs. -ize) correspond to different dominance or agency ratings?
+* **The "Boomerang" of Intensity:** Confirmed a non-linear U-shaped relationship where "neutral" words are the calmest, while highly positive and highly negative words trigger the highest arousal.
+* **The Gender Gap in Arousal:** Identified a systemic divergence where men consistently rate words as having higher intensity (arousal) than women.
+* **The Grammar of Control:** Discovered that active verbs (ending in *"-ize"*) carry significantly higher dominance ratings than abstract nouns (ending in *"-tion"*).
+* **The Nature of Controversy:** Analysis of standard deviations revealed that consensus breaks down most frequently around taboo topics (profanity) and subjective experiences.
 
 ## Repository Structure
 
@@ -86,7 +76,7 @@ project/
 1.  **Clone this repository** to your local machine.
 2.  Open the project in **RStudio**.
 3.  Ensure the following packages are installed:
-    ```r
+    ```
     install.packages(c("tidyverse", "knitr", "gt", "patchwork"))
     ```
 4.  Open `Liu_Fiona_Final_Report.qmd` and click **Render** to generate the full analysis.
