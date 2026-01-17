@@ -110,7 +110,6 @@ My first objective was to understand the shape of the three main emotional dimen
 #| label: fig-distributions
 #| fig-cap: "Distributions of the three affective dimensions. Valence is bell-shaped, while Arousal and Dominance show slight skew."
 
-# Pivot data longer to use facet_wrap
 long_dims <- affective_data |> 
   select(Valence = V.Mean.Sum, Arousal = A.Mean.Sum, Dominance = D.Mean.Sum) |> 
   pivot_longer(cols = everything(), names_to = "Dimension", values_to = "Rating")
@@ -295,7 +294,7 @@ ggplot(gender_comp, aes(x = Male, y = Female)) +
     y = "Female Mean Rating"
   ) +
   theme_minimal() +
-  coord_fixed() # Ensures the aspect ratio is square so the line is 45 degrees
+  coord_fixed() 
 ```
 
 
