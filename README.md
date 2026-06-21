@@ -2,16 +2,19 @@
 
 **Author:** Fiona Liu
 
-**Course:** STAT 301-1 Data Science 1 with R (Fall 2025)
+### Overview
 
-**Final Project**
+How is emotional meaning organized in the mental lexicon?
 
-### Project Overview
+This project analyzes affective ratings for nearly 14,000 English words from the Warriner et al. (2013) norms dataset. Using R and the `tidyverse` suite, the analysis examines how valence, arousal, and dominance interact across the lexicon, how emotional judgments differ by rater gender, and how linguistic structure relates to emotional meaning.
 
-This project presents an Exploratory Data Analysis (EDA) of a large-scale psycholinguistic dataset containing emotional ratings for nearly 14,000 English words. Using R and the `tidyverse` suite, the analysis replicates well-established findings in affective science and explores new patterns related to gender, linguistic form, and the emotional structure of the English lexicon.
+The project combines psycholinguistics, affective science, and data science to explore large-scale patterns in human semantic representations.
 
-The dataset includes human ratings—on a 1–9 scale—along three core emotional dimensions:
-The analysis focuses on three core emotional dimensions:
+### Why This Matters
+
+Understanding how emotional meaning is structured in language provides insight into human cognition, affective processing, and semantic memory. Large-scale affective norms datasets make it possible to study these questions computationally across thousands of concepts rather than through small laboratory samples.
+
+The dataset includes human ratings on a 1–9 scale along three core emotional dimensions:
 
 * **Valence:** The pleasantness of a word (unhappy to happy).
 
@@ -19,7 +22,6 @@ The analysis focuses on three core emotional dimensions:
 
 * **Dominance:** The degree of control associated with a word (controlled to in control).
 
-The project examines how these dimensions interact, how perceptions differ by gender, and how grammatical form (e.g., suffixes) shapes emotional meaning.
 ### Dataset
 
 The data used in this project comes from Warriner et al. (2013). It contains affective norms for 13,915 English lemmas collected via crowdsourcing.
@@ -57,17 +59,18 @@ project/
 ├── data/
 │   └── BRM-emot-submit.csv            # The Warriner et al. (2013) dataset
 │
-├── Liu_Fiona_Final_Report.qmd         # MAIN REPORT: Full EDA analysis code & narrative
-├── Liu_Fiona_Final_Report.html        # Rendered HTML of the main report
-│
-├── Liu_Fiona_Executive_Summary.qmd    # Standalone high-level summary of findings
-├── Liu_Fiona_Executive_Summary.html   # Rendered HTML of the executive summary
-│
-├── Liu_Fiona_progress_memo_2.qmd      # Progress update (Memo 2)
-├── Liu_Fiona_progress_memo_1_2.qmd    # Initial progress update (Memo 1)
-│
-├── 0_data_cleaning.r                  # Utility script for initial data checks
-├── .gitignore                         # Git configuration
+├── report.qmd                         # Main report: full EDA analysis and narrative
+├── report.html                        # Rendered HTML version of the main report
+├── executive_summary.qmd              # Standalone high-level summary of findings
+├── executive_summary.html             # Rendered HTML version of the executive summary
+├── 00_setup.R                         # Load packages, read data, and create summary table
+├── 01_distribution_analysis.R         # Univariate distributions and Valence-Arousal pattern
+├── 02_correlation_analysis.R          # Correlation heatmap
+├── 03_gender_analysis.R               # Gender comparisons and outlier tables
+├── 04_linguistic_analysis.R           # Suffix-based dominance comparison
+├── 05_ambiguity_analysis.R            # Most ambiguous words by emotional dimension
+├── run_all.R                          # Sources the analysis scripts in order
+├── .gitattributes                      # Marks rendered HTML as generated on GitHub
 └── README.md                          # Project documentation (this file)
 ```
 
@@ -76,16 +79,23 @@ project/
 1.  **Clone this repository** to your local machine.
 2.  Open the project in **RStudio**.
 3.  Ensure the following packages are installed:
-    ```
+    ```r
     install.packages(c("tidyverse", "knitr", "gt", "patchwork"))
     ```
-4.  Open `Liu_Fiona_Final_Report.qmd` and click **Render** to generate the full analysis.
+4.  Source `run_all.R` to generate the analysis objects and tables:
+    ```r
+    source("run_all.R")
+    ```
+5.  Render `report.qmd` for the full analysis, or `executive_summary.qmd` for a shorter version.
 
+## Scripts
 
+The analysis is split into smaller files so each section can be inspected independently:
 
-
-
-
-
-
-
+* `00_setup.R`: loads packages, imports the data, and builds the summary table.
+* `01_distribution_analysis.R`: distribution plots and the valence-arousal relationship.
+* `02_correlation_analysis.R`: correlation heatmap.
+* `03_gender_analysis.R`: gender comparisons and outlier tables.
+* `04_linguistic_analysis.R`: suffix-based dominance comparison.
+* `05_ambiguity_analysis.R`: most ambiguous words by emotional dimension.
+* `run_all.R`: sources the analysis scripts in order.

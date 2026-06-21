@@ -2,7 +2,9 @@
 
 ### Overview
 
-This directory contains the dataset used for the final project in STAT 301-1. The data consists of emotional ratings for 13,915 English words (lemmas), gathered through a large-scale crowdsourcing study.
+This directory contains the dataset used for the affective semantics project. The data consists of emotional ratings for 13,915 English words (lemmas), gathered through a large-scale crowdsourcing study.
+
+The main preprocessing and summary code lives in [`../00_setup.R`](../00_setup.R), and the analysis is organized through [`../run_all.R`](../run_all.R).
 
 ### Files
 

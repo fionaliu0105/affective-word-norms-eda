@@ -1,10 +1,9 @@
 ---
-title: "Final Report"
+title: "Exploratory Data Analysis of Affective Word Norms"
 subtitle: |
-  | Final Project 
-  | Data Science 1 with R (STAT 301-1)
+  | Large-Scale Analysis of Affective Semantics
 author: "Fiona Liu"
-pagetitle: "Final Report Fiona Liu"
+pagetitle: "Affective Word Norms Analysis"
 date: today
 format:
   html:
@@ -27,9 +26,9 @@ editor_options:
 
 ::: {.callout-tip icon=false}
 
-## Github Repo Link
+## Project Repository
 
-[Fiona's Github](https://github.com/stat301-1-2025-fall/final-project-1-fionaliu0105)
+[README](README.md)
 
 :::
 
@@ -45,11 +44,17 @@ library(patchwork)
 affective_data <- read_csv("data/BRM-emot-submit.csv")
 ```
 
-## Introduction
+## Overview
 
-Language is often perceived as purely qualitative, yet psycholinguistics provides frameworks to quantify the emotional weight of our vocabulary. By mapping words onto a multi-dimensional space, we can transform subjective feelings into objective data points. This project conducts an Exploratory Data Analysis (EDA) on the *Warriner et al. (2013)* dataset, a comprehensive collection of affective norms for nearly 14,000 English lemmas.
+How is emotional meaning organized in the mental lexicon?
 
-The objective of this analysis is to move beyond simple positive/negative sentiment tracking. Instead, I explore the structural relationships between three distinct emotional dimensions: Valence (pleasantness), Arousal (intensity), and Dominance (control). Furthermore, this report investigates how external factors—specifically the gender of the rater and the grammatical structure of the word—modulate our perception of these emotions.
+This project analyzes affective ratings for nearly 14,000 English words from the *Warriner et al. (2013)* norms dataset. Using computational and statistical methods, I examine how valence, arousal, and dominance interact across the lexicon, how emotional judgments differ by rater gender, and how linguistic structure relates to emotional meaning.
+
+The project combines psycholinguistics, affective science, and data science to explore large-scale patterns in human semantic representations.
+
+## Why This Matters
+
+Understanding how emotional meaning is structured in language provides insight into human cognition, affective processing, and semantic memory. Large-scale affective norms datasets make it possible to study these questions computationally across thousands of concepts rather than through small laboratory samples.
 
 ## Data Overview & Quality
 
@@ -69,14 +74,33 @@ The dataset consists of 13,915 observations and 63 variables. The data quality i
 #| label: tbl-summary
 #| tbl-cap: "Summary Statistics of Emotional Dimensions (Scale 1-9)"
 #| echo: false
-summary_stats <- affective_data |>
-  summarise(
+summary_stats <- tibble(
     Variable = c("Valence", "Arousal", "Dominance"),
-    Mean = c(mean(V.Mean.Sum), mean(A.Mean.Sum), mean(D.Mean.Sum)),
-    Median = c(median(V.Mean.Sum), median(A.Mean.Sum), median(D.Mean.Sum)),
-    SD = c(sd(V.Mean.Sum), sd(A.Mean.Sum), sd(D.Mean.Sum)),
-    Min = c(min(V.Mean.Sum), min(A.Mean.Sum), min(D.Mean.Sum)),
-    Max = c(max(V.Mean.Sum), max(A.Mean.Sum), max(D.Mean.Sum))
+    Mean = c(
+      mean(affective_data$V.Mean.Sum),
+      mean(affective_data$A.Mean.Sum),
+      mean(affective_data$D.Mean.Sum)
+    ),
+    Median = c(
+      median(affective_data$V.Mean.Sum),
+      median(affective_data$A.Mean.Sum),
+      median(affective_data$D.Mean.Sum)
+    ),
+    SD = c(
+      sd(affective_data$V.Mean.Sum),
+      sd(affective_data$A.Mean.Sum),
+      sd(affective_data$D.Mean.Sum)
+    ),
+    Min = c(
+      min(affective_data$V.Mean.Sum),
+      min(affective_data$A.Mean.Sum),
+      min(affective_data$D.Mean.Sum)
+    ),
+    Max = c(
+      max(affective_data$V.Mean.Sum),
+      max(affective_data$A.Mean.Sum),
+      max(affective_data$D.Mean.Sum)
+    )
   )
 
 summary_stats |>

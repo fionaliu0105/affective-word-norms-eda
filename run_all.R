@@ -1,0 +1,6 @@
+source("00_setup.R")
+source("01_distribution_analysis.R")
+source("02_correlation_analysis.R")
+source("03_gender_analysis.R")
+source("04_linguistic_analysis.R")
+source("05_ambiguity_analysis.R")
