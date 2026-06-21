@@ -1,7 +1,5 @@
 ## Exploratory Data Analysis of Affective Word Norms
 
-**Author:** Fiona Liu
-
 ### Overview
 
 How is emotional meaning organized in the mental lexicon?
