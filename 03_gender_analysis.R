@@ -1,5 +1,7 @@
 source("00_setup.R")
 
+dir.create("figures", showWarnings = FALSE)
+
 gender_long <- affective_data |>
   select(
     Word,
@@ -72,6 +74,14 @@ p_gender_scatter <- ggplot(gender_comp, aes(x = Male, y = Female)) +
   coord_fixed()
 
 print(p_gender_scatter)
+
+ggsave(
+  filename = "figures/gender_comparison.png",
+  plot = p_gender_scatter,
+  width = 8,
+  height = 6,
+  dpi = 300
+)
 
 outliers <- affective_data |>
   mutate(Arousal_Diff = A.Mean.M - A.Mean.F) |>

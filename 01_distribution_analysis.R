@@ -1,5 +1,7 @@
 source("00_setup.R")
 
+dir.create("figures", showWarnings = FALSE)
+
 # Univariate analysis: distributions
 long_dims <- affective_data |>
   select(
@@ -39,3 +41,11 @@ p_valence_arousal <- ggplot(affective_data, aes(x = V.Mean.Sum, y = A.Mean.Sum))
   theme_minimal()
 
 print(p_valence_arousal)
+
+ggsave(
+  filename = "figures/valence_arousal.png",
+  plot = p_valence_arousal,
+  width = 8,
+  height = 6,
+  dpi = 300
+)

@@ -10,6 +10,13 @@ This project analyzes affective ratings for nearly 14,000 English words from the
 
 The project combines psycholinguistics, affective science, and data science to explore large-scale patterns in human semantic representations.
 
+### Technical Summary
+
+* **Dataset:** 13,915 English lemmas from Warriner et al. (2013)
+* **Domain:** Psycholinguistics and affective science
+* **Tools:** R, `tidyverse`, `ggplot2`
+* **Methods:** Exploratory data analysis, correlation analysis, demographic comparisons, and linguistic feature analysis
+
 ### Why This Matters
 
 Understanding how emotional meaning is structured in language provides insight into human cognition, affective processing, and semantic memory. Large-scale affective norms datasets make it possible to study these questions computationally across thousands of concepts rather than through small laboratory samples.
@@ -44,10 +51,25 @@ The data used in this project comes from Warriner et al. (2013). It contains aff
 
 ### Key Findings
 
-* **The "Boomerang" of Intensity:** Confirmed a non-linear U-shaped relationship where "neutral" words are the calmest, while highly positive and highly negative words trigger the highest arousal.
-* **The Gender Gap in Arousal:** Identified a systemic divergence where men consistently rate words as having higher intensity (arousal) than women.
-* **The Grammar of Control:** Discovered that active verbs (ending in *"-ize"*) carry significantly higher dominance ratings than abstract nouns (ending in *"-tion"*).
-* **The Nature of Controversy:** Analysis of standard deviations revealed that consensus breaks down most frequently around taboo topics (profanity) and subjective experiences.
+### The "Boomerang" of Intensity
+
+![Valence-Arousal Relationship](figures/valence_arousal.png)
+
+Mean arousal follows a clear non-linear pattern across valence: neutral words tend to be least arousing, while highly positive and highly negative words are associated with higher arousal.
+
+### Gender Differences in Emotional Intensity
+
+![Gender Comparison](figures/gender_comparison.png)
+
+Male participants consistently assigned higher arousal ratings than female participants across much of the lexicon, suggesting systematic differences in affective evaluation.
+
+### Linguistic Structure and Control
+
+Active verbs ending in `-ize` showed higher dominance ratings than abstract nouns ending in `-tion`, indicating that lexical form is associated with perceived control.
+
+### Disagreement and Ambiguity
+
+Words with the highest rating dispersion were concentrated around taboo terms and subjective experiences, suggesting that affective agreement decreases for semantically or socially complex concepts.
 
 ## Repository Structure
 
