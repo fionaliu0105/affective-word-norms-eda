@@ -23,11 +23,23 @@ The project combines psycholinguistics, affective science, and data science to e
 
 Mean arousal follows a clear non-linear pattern across valence: neutral words tend to be least arousing, while highly positive and highly negative words are associated with higher arousal.
 
-### Gender Differences in Emotional Intensity
+### Rating Distributions by Gender
+
+![Rating Distributions by Gender](figures/gender_distributions.png)
+
+The three affective dimensions show broadly similar distributions across male, female, and overall ratings, with the most visible separation appearing in arousal.
+
+### Gender Differences in Ratings
 
 ![Gender Comparison](figures/gender_comparison.png)
 
 Male participants consistently assigned higher arousal ratings than female participants across much of the lexicon, suggesting systematic differences in affective evaluation.
+
+### Correlation Structure
+
+![Correlation Heatmap](figures/correlation_heatmap.png)
+
+Valence, arousal, and dominance are positively related overall, with valence and dominance showing the strongest pairing in the heat map.
 
 ### Linguistic Structure and Control
 

@@ -1,5 +1,7 @@
 source("00_setup.R")
 
+dir.create("figures", showWarnings = FALSE)
+
 cor_matrix <- affective_data |>
   select(
     Valence = V.Mean.Sum,
@@ -36,3 +38,11 @@ p_correlation_heatmap <- ggplot(cor_long, aes(x = Dimension1, y = Dimension2, fi
   )
 
 print(p_correlation_heatmap)
+
+ggsave(
+  filename = "figures/correlation_heatmap.png",
+  plot = p_correlation_heatmap,
+  width = 5.5,
+  height = 5,
+  dpi = 300
+)

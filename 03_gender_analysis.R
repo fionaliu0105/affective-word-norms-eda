@@ -30,6 +30,14 @@ p_gender_density <- ggplot(gender_long, aes(x = Rating, color = Group, fill = Gr
 
 print(p_gender_density)
 
+ggsave(
+  filename = "figures/gender_distributions.png",
+  plot = p_gender_density,
+  width = 7.5,
+  height = 8.5,
+  dpi = 300
+)
+
 gender_gap_summary <- affective_data |>
   summarise(
     Mean_Male_Arousal = mean(A.Mean.M),
@@ -78,8 +86,8 @@ print(p_gender_scatter)
 ggsave(
   filename = "figures/gender_comparison.png",
   plot = p_gender_scatter,
-  width = 8,
-  height = 6,
+  width = 9,
+  height = 5.5,
   dpi = 300
 )
 
