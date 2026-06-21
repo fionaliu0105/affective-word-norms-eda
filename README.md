@@ -15,38 +15,6 @@ The project combines psycholinguistics, affective science, and data science to e
 * **Tools:** R, `tidyverse`, `ggplot2`
 * **Methods:** Exploratory data analysis, correlation analysis, demographic comparisons, and linguistic feature analysis
 
-### Why This Matters
-
-Understanding how emotional meaning is structured in language provides insight into human cognition, affective processing, and semantic memory. Large-scale affective norms datasets make it possible to study these questions computationally across thousands of concepts rather than through small laboratory samples.
-
-The dataset includes human ratings on a 1–9 scale along three core emotional dimensions:
-
-* **Valence:** The pleasantness of a word (unhappy to happy).
-
-* **Arousal:** The intensity of emotion evoked by a word (calm to excited).
-
-* **Dominance:** The degree of control associated with a word (controlled to in control).
-
-### Dataset
-
-The data used in this project comes from Warriner et al. (2013). It contains affective norms for 13,915 English lemmas collected via crowdsourcing.
-
-* **Citation:** Warriner, A. B., Kuperman, V., & Brysbaert, M. (2013). Norms of valence, arousal, and dominance for 13,915 English lemmas. *Behavior Research Methods, 45*(4), 1191–1207. https://doi.org/10.3758/s13428-012-0314-x.
-* **Source URL:** [https://link.springer.com/article/10.3758/s13428-012-0314-x](https://link.springer.com/article/10.3758/s13428-012-0314-x), located in the "Electronic supplementary material"
-* **License/Access:** Data is available for academic and research use.
-
-#### Data Dictionary (Key Variables)
-
-| Variable | Original Name | Description |
-| :--- | :--- | :--- |
-| `Word` | `Word` | The English lemma rated by participants. |
-| `Valence` | `V.Mean.Sum` | Mean valence rating (1 = unhappy, 9 = happy). |
-| `Arousal` | `A.Mean.Sum` | Mean arousal rating (1 = calm, 9 = excited). |
-| `Dominance` | `D.Mean.Sum` | Mean dominance rating (1 = controlled, 9 = in control). |
-| `Valence_SD` | `V.SD.Sum` | Standard deviation of valence ratings (measure of agreement). |
-| `Valence_M` | `V.Mean.M` | Mean valence rating from male participants. |
-| `Valence_F` | `V.Mean.F` | Mean valence rating from female participants. |
-
 ### Key Findings
 
 ### The "Boomerang" of Intensity
@@ -68,6 +36,36 @@ Active verbs ending in `-ize` showed higher dominance ratings than abstract noun
 ### Disagreement and Ambiguity
 
 Words with the highest rating dispersion were concentrated around taboo terms and subjective experiences, suggesting that affective agreement decreases for semantically or socially complex concepts.
+
+### Why This Matters
+
+Understanding how emotional meaning is structured in language provides insight into human cognition, affective processing, and semantic memory. Large-scale affective norms datasets make it possible to study these questions computationally across thousands of concepts rather than through small laboratory samples.
+
+### Dataset
+
+The data used in this project comes from Warriner et al. (2013). It contains affective norms for 13,915 English lemmas collected via crowdsourcing.
+
+The ratings are reported on a 1–9 scale along three core emotional dimensions:
+
+* **Valence:** The pleasantness of a word (unhappy to happy).
+* **Arousal:** The intensity of emotion evoked by a word (calm to excited).
+* **Dominance:** The degree of control associated with a word (controlled to in control).
+
+#### Data Dictionary (Key Variables)
+
+| Variable | Original Name | Description |
+| :--- | :--- | :--- |
+| `Word` | `Word` | The English lemma rated by participants. |
+| `Valence` | `V.Mean.Sum` | Mean valence rating (1 = unhappy, 9 = happy). |
+| `Arousal` | `A.Mean.Sum` | Mean arousal rating (1 = calm, 9 = excited). |
+| `Dominance` | `D.Mean.Sum` | Mean dominance rating (1 = controlled, 9 = in control). |
+| `Valence_SD` | `V.SD.Sum` | Standard deviation of valence ratings (measure of agreement). |
+| `Valence_M` | `V.Mean.M` | Mean valence rating from male participants. |
+| `Valence_F` | `V.Mean.F` | Mean valence rating from female participants. |
+
+* **Citation:** Warriner, A. B., Kuperman, V., & Brysbaert, M. (2013). Norms of valence, arousal, and dominance for 13,915 English lemmas. *Behavior Research Methods, 45*(4), 1191–1207. https://doi.org/10.3758/s13428-012-0314-x.
+* **Source URL:** [https://link.springer.com/article/10.3758/s13428-012-0314-x](https://link.springer.com/article/10.3758/s13428-012-0314-x), located in the "Electronic supplementary material"
+* **License/Access:** Data is available for academic and research use.
 
 ## Repository Structure
 
